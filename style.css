@@ -1,0 +1,196 @@
+/* Message CSS */
+
+.notification-success{
+    border-left: 4px solid #7ad03a;
+    color: #333;
+}
+
+.notification-error{
+    border-left: 4px solid #dd3d36;
+    color: #dd3d36;
+}
+
+#notification-message{
+    background-color: #fff;
+        -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+        -moz-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    margin: 5px 0 15px 0;
+    padding: 1px 12px;
+}
+
+/* Common CSS */
+
+.text-center{
+    text-align: center;
+}
+
+.dead{
+    color: grey;
+}
+
+.required,
+.ad-inactive{
+    color: #dd3d36;
+}
+
+.ad-active{
+    color: darkgreen;
+}
+
+.hide-me{
+    display: none;
+}
+
+.show-block{
+    display: block !important;
+}
+
+/* Plugin  CSS */
+
+.nano-ad{
+    font-family: "Tahoma", "Arial", "Helvetica", sans-serif; /* into the plugin body */
+}
+
+.nano-ad-body input[type='text'],
+.nano-ad-body textarea{
+    width: 99.9%;
+}
+
+.nano-ad-body label.ad-label{
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0.3125em;
+    color: #333;
+}
+
+.nano-ad-body .row:before,
+.nano-ad-body .row:after{
+    content: '';
+    display: table;
+    line-height: 1.2;
+}
+
+.nano-ad-body .row:after{
+    clear: both;
+}
+
+.mt10{
+    margin-top: 10px;
+}
+
+
+
+/* Add Ad Page */
+
+.nano-ad-add .nano-ad-body{
+    width: 100%;
+    max-width: 100%;
+}
+
+.nano-ad-add .nano-ad-body .direction {
+    margin: 0;
+    font-size: 1em;
+    color: #666;
+    padding: 0 0.3125em;
+}
+
+.nano-ad-add .nano-ad-body .form-elements{
+    background-color: #fff;
+    padding: 0.3125em;
+    border: 1px solid #ccc;
+}
+
+.nano-ad-add .nano-ad-body .nano-ad-left{
+    float: left;
+    width: 75%;
+}
+
+.nano-ad-add .nano-ad-body .codediv textarea{
+    font-family: 'Courier New',monospace;
+}
+
+.nano-ad-add .nano-ad-body .imagediv #nano-ad-image-url{
+    width: 80%;
+    font-family: 'Courier New',monospace;
+}
+
+.nano-ad-add .nano-ad-body .nano-ad-block-left{
+    float: left;
+    width: 46%;
+}
+
+.nano-ad-add .nano-ad-body .nano-ad-block-right{
+    float: right;
+    width: 46%;
+}
+
+.nano-ad-add .nano-ad-body .nano-ad-submit #nano-ad-publish{
+    float: right;
+}
+
+.nano-ad-add .nano-ad-body .nano-ad-submit-zone{
+    padding: 0.5em;
+}
+
+.nano-ad-add .nano-ad-body .nano-ad-right{
+    float: left;
+    width: 20.5%;
+    margin-left: 3%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.nano-ad-add .nano-ad-body .nano-ad-right p{
+    padding-bottom: 0.625em;
+    border-bottom: 1px solid #ccc;
+}
+
+
+
+/* Ad View Page */
+
+.nano-ad-view .nano-ad-list{
+    margin: 5px 0;
+}
+.nano-ad-view .nano-ad-list li{
+    color: #000;
+}
+
+.nano-ad-view .row-ad-name{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.nano-ad-view .ad_edit_links{
+    visibility: hidden;
+}
+
+.nano-ad-view tr.ad_row:hover .ad_edit_links{
+    visibility: visible;
+}
+
+.nano-ad-view .nano-ad-table .ad-inactive{
+    background-color: #FCF5F8 !important;
+}
+
+.nano-ad-view .ad-active-id{
+    border-left: 2px solid #3C9BC4;
+}
+
+.nano-ad-view .ad-inactive-id{
+    border-left: 2px solid #dd3d36;
+}
+
+.nano-ad-view .nano-ad-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.nano-ad-view .nano-ad-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.nano-ad-view .nano-ad-table .code{
+    font-family: "Courier New", Courier, monospace;
+}
