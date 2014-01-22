@@ -51,6 +51,7 @@
             <th>Specification</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Shortcode</th>
         </tr>
         </thead>
         <tbody>
@@ -158,6 +159,7 @@
                     echo "</td>";
                     echo "<td>" . mysql2date( 'j M Y', $the_ad->str_time) . "<br/>" . mysql2date( 'g:i A', $the_ad->str_time) . "</td>";
                     echo "<td>" . mysql2date( 'j M Y', $the_ad->end_time) . "<br/>" . mysql2date( 'g:i A', $the_ad->end_time) . "</td>";
+                    echo '<td><span class="code">[wp-adzonia id="'. $the_ad->id .'"]</span></td>';
                 echo "</tr>";
             }
 
@@ -178,6 +180,7 @@
             <th>Specification</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Shortcode</th>
         </tr>
         </tfoot>
     </table>

@@ -219,69 +219,70 @@ function nano_ad_admin_scripts() {
 
 function show_ad_zonia( $id ){
 
-    global $wpdb, $plugin_prefix;
-    $table = $wpdb->wp_adzonia = $wpdb->prefix . "wp_adzonia";
+        global $wpdb, $plugin_prefix;
+        $table = $wpdb->wp_adzonia = $wpdb->prefix . "wp_adzonia";
 
-    $ad_show_query = $wpdb->get_results(
-        "SELECT *
-            FROM $table
-            WHERE id = $id;
-            ");
+        $ad_show_query = $wpdb->get_results(
+            "SELECT *
+                FROM $table
+                WHERE id = $id;
+                ");
 
-    $datetoday = new DateTime();
-    $datetoday = strtotime($datetoday->format('Y-m-d H:i:s'));
-    $startDateString = strtotime($ad_show_query[0]->str_time);
-    $endDateString = strtotime($ad_show_query[0]->end_time);
+        $datetoday = new DateTime();
+        $datetoday = strtotime($datetoday->format('Y-m-d H:i:s'));
+        $startDateString = ( $ad_show_query[0]->str_time != '' ? strtotime( $ad_show_query[0]->str_time ) : '' );
+        $endDateString = ( $ad_show_query[0]->end_time != '' ? strtotime( $ad_show_query[0]->end_time ) : '' );
 
-    $ad_output = '';
+        $ad_output = '';
 
-    //check the ad is "Active" and "Not Expired"
-    if( $ad_show_query[0]->ad_status == '1' && $datetoday >= $startDateString && $datetoday <= $endDateString ){
 
-        if( $ad_show_query[0]->ad_type == 'imagead' ){
+        //check the ad is "Active" and "Not Expired"
+        if( $ad_show_query[0]->ad_status == '1' && $datetoday >= $startDateString && $datetoday <= $endDateString ){
 
-            echo '<div id="'. $plugin_prefix . $ad_show_query[0]->id .'" class="'. $plugin_prefix .'holder '. $plugin_prefix . $ad_show_query[0]->ad_type .' '. $plugin_prefix . $ad_show_query[0]->ad_type . '-' . $ad_show_query[0]->id .'">';
+            if( $ad_show_query[0]->ad_type == 'imagead' ){
 
-                // Image Ad Output
-                $ad_output = '<a href="'. esc_url( $ad_show_query[0]->url ) .'" target="_blank"><img src="'. esc_url( $ad_show_query[0]->ad_image_url ) .'"/></a>';
+                echo '<div id="'. $plugin_prefix . $ad_show_query[0]->id .'" class="'. $plugin_prefix .'holder '. $plugin_prefix . $ad_show_query[0]->ad_type .' '. $plugin_prefix . $ad_show_query[0]->ad_type . '-' . $ad_show_query[0]->id .'">';
+
+                    // Image Ad Output
+                    $ad_output = '<a href="'. esc_url( $ad_show_query[0]->url ) .'" target="_blank"><img src="'. esc_url( $ad_show_query[0]->ad_image_url ) .'"/></a>';
+                    echo $ad_output;
+
+                echo '</div> <!-- #'. $plugin_prefix . $ad_show_query[0]->id .' Type: '. $ad_show_query[0]->ad_type .' -->';
+
+            } else if ( $ad_show_query[0]->ad_type == 'codead' ) {
+
+                echo '<div id="'. $plugin_prefix . $ad_show_query[0]->id .'" class="'. $plugin_prefix .'holder '. $plugin_prefix . $ad_show_query[0]->ad_type .' '. $plugin_prefix . $ad_show_query[0]->ad_type . '-' . $ad_show_query[0]->id .'">';
+
+                    // Code Ad Output
+                    $ad_output = stripslashes($ad_show_query[0]->ad_code);
+                    echo $ad_output;
+
+                echo '</div> <!-- #'. $plugin_prefix . $ad_show_query[0]->id .' Type: '. $ad_show_query[0]->ad_type .' -->';
+
+            } else if ( $ad_show_query[0]->ad_type == 'googleadsense' ) {
+
+                $width_and_height = explode("x", $ad_show_query[0]->adsense_ad_size );
+
+                echo '<div id="'. $plugin_prefix . $ad_show_query[0]->id .'" class="'. $plugin_prefix .'holder '. $plugin_prefix . $ad_show_query[0]->ad_type .' '. $plugin_prefix . $ad_show_query[0]->ad_type . '-' . $ad_show_query[0]->id .'" style="width: '. $width_and_height[0] .'px; height: '. $width_and_height[1] .'px;">';
+
+                // AdSense Output
+                $ad_output = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <!-- '. $ad_show_query[0]->ad_type .'_'. $width_and_height[0] .'x'. $width_and_height[1] .'_as -->
+                                <ins class="adsbygoogle"
+                                     style="display:inline-block;width:'. $width_and_height[0] .'px;height:'. $width_and_height[1] .'px"
+                                     data-ad-client="'. $ad_show_query[0]->adsense_pub_id .'"
+                                     data-ad-slot="'. $ad_show_query[0]->adsense_ad_slot .'"></ins>
+                                <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                             </script>';
                 echo $ad_output;
 
-            echo '</div> <!-- #'. $plugin_prefix . $ad_show_query[0]->id .' Type: '. $ad_show_query[0]->ad_type .' -->';
+                echo '</div> <!-- #'. $plugin_prefix . $ad_show_query[0]->id .' Type: '. $ad_show_query[0]->ad_type .' -->';
+            }
 
-        } else if ( $ad_show_query[0]->ad_type == 'codead' ) {
+        } //endif( $ad_show_query[0]->ad_status == '1'
 
-            echo '<div id="'. $plugin_prefix . $ad_show_query[0]->id .'" class="'. $plugin_prefix .'holder '. $plugin_prefix . $ad_show_query[0]->ad_type .' '. $plugin_prefix . $ad_show_query[0]->ad_type . '-' . $ad_show_query[0]->id .'">';
-
-                // Code Ad Output
-                $ad_output = stripslashes($ad_show_query[0]->ad_code);
-                echo $ad_output;
-
-            echo '</div> <!-- #'. $plugin_prefix . $ad_show_query[0]->id .' Type: '. $ad_show_query[0]->ad_type .' -->';
-
-        } else if ( $ad_show_query[0]->ad_type == 'googleadsense' ) {
-
-            $width_and_height = explode("x", $ad_show_query[0]->adsense_ad_size );
-
-            echo '<div id="'. $plugin_prefix . $ad_show_query[0]->id .'" class="'. $plugin_prefix .'holder '. $plugin_prefix . $ad_show_query[0]->ad_type .' '. $plugin_prefix . $ad_show_query[0]->ad_type . '-' . $ad_show_query[0]->id .'" style="width: '. $width_and_height[0] .'px; height: '. $width_and_height[1] .'px;">';
-
-            // AdSense Output
-            $ad_output = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- '. $ad_show_query[0]->ad_type .'_'. $width_and_height[0] .'x'. $width_and_height[1] .'_as -->
-                            <ins class="adsbygoogle"
-                                 style="display:inline-block;width:'. $width_and_height[0] .'px;height:'. $width_and_height[1] .'px"
-                                 data-ad-client="'. $ad_show_query[0]->adsense_pub_id .'"
-                                 data-ad-slot="'. $ad_show_query[0]->adsense_ad_slot .'"></ins>
-                            <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                         </script>';
-            echo $ad_output;
-
-            echo '</div> <!-- #'. $plugin_prefix . $ad_show_query[0]->id .' Type: '. $ad_show_query[0]->ad_type .' -->';
-        }
-
-    } //endif( $ad_show_query[0]->ad_status == '1'
-
-    return $ad_output;
+        return $ad_output;
 
 }
 
@@ -306,11 +307,115 @@ function ad_zonia_shortcode($atts){
     );
     $atts = (int) $args['id'];
 
-    ob_start();
-    $scOutput = show_ad_zonia( $atts );
-    $scOutput = ob_get_clean();
+    if(!empty($atts)){
+        ob_start();
+        $scOutput = show_ad_zonia( $atts );
+        $scOutput = ob_get_clean();
+    } else {
+        $scOutput = '';
+    }
 
     return $scOutput;
 }
 
 add_shortcode('wp-adzonia', 'ad_zonia_shortcode');
+
+
+
+
+
+/**
+ * STEP V: ADDING AD WIDGET
+ * Adding a widget to add ad to the widget areas easily
+ */
+
+class ad_zonia_widget extends WP_Widget {
+
+    function __construct() {
+        parent::__construct(
+            'ad_zonia_widget', //base ID of widget
+            __('Ad Zonia Widget', PLUGINTEXTDOMAIN), //name of the widget
+            array( 'description' => __( 'Ad Zonia Widget to call the advertisement easily.', PLUGINTEXTDOMAIN ) )
+        );
+    }
+
+    // Widget Backend
+    public function form( $instance ) {
+
+        if ( isset( $instance[ 'title' ] ) ) {
+            $title = $instance[ 'title' ];
+        }
+        else {
+            $title = '';
+        }
+
+        if ( isset( $instance[ 'ad_id' ] ) ) {
+            $ad_id = $instance[ 'ad_id' ];
+        } else {
+            $ad_id = '';
+        }
+
+        // Widget admin form
+        global $wpdb, $plugin_prefix;
+        $table = $wpdb->wp_adzonia = $wpdb->prefix . "wp_adzonia";
+
+        $widget_ad_query = $wpdb->get_results(
+            "SELECT *
+            FROM $table;
+            ");
+
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id( 'ad_id' ); ?>"><?php _e( 'Advertisements:' ); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id( 'ad_id' ); ?>" name="<?php echo $this->get_field_name( 'ad_id' ); ?>">
+                <option value="">Choose one...</option>
+                <?php
+                foreach( $widget_ad_query as $activead ) { ?>
+                    <option value="<?php echo $activead->id; ?>" <?php
+                    if( isset($ad_id) && $ad_id == $activead->id )
+                        echo 'selected="selected"'; ?>>
+                        <?php
+                        echo $activead->id . '&nbsp;&mdash;&nbsp;' . ( !empty($activead->name_of_ad) ? $activead->name_of_ad : $activead->ad_type);
+                    echo '</option>';
+                }
+                ?>
+            </select>
+        </p>
+    <?php
+    }
+
+    // Updating widget replacing old instances with new
+    public function update( $new_instance, $old_instance ) {
+        $instance = array();
+        $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+        $instance['ad_id'] = ( ! empty( $new_instance['ad_id'] ) ) ? $new_instance['ad_id'] : '';
+        return $instance;
+    }
+
+    //Creating Widget Front End
+    public function widget( $args, $instance ) {
+        $title = apply_filters( 'widget_title', $instance['title'] );
+        echo $args['before_widget'];
+
+        if ( ! empty( $title ) )
+            echo $args['before_title'] . $title . $args['after_title']; //before & after widget args are defined by themes
+        // This is where you run the code and display the output
+        if ( ! empty( $ad_id ) )
+            $instance['ad_id'];
+            show_ad_zonia( $instance['ad_id'] );
+
+        echo $args['after_widget'];
+    }
+
+}
+
+// Register and load the widget
+function nano_load_widget() {
+    register_widget( 'ad_zonia_widget' );
+}
+
+add_action( 'widgets_init', 'nano_load_widget' );
