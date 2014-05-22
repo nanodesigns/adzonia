@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: WP Adzonia
+ * Plugin Name: WP AdZonia
  * Plugin URI: http://nanodesignsbd.com
- * Description: An easier Ad management Plugin for WordPress sites
+ * Description: An simpler and easier Ad management Plugin for WordPress sites
  * Version: 0.1
  * Author: Mayeenul Islam (@mayeenulislam)
  * Author URI: http://nishachor.com
@@ -34,32 +34,30 @@
  *  - Setting the plugin name
  *  - Setting the Plugin textdomain
  */
-define( "PLUGINTEXTDOMAIN", "'ad-zonia'" );
-$plugin_name = 'WP Adzonia';
-$plugin_folder = 'ad-zonia';
-$plugin_prefix = 'ad-zonia-';
+$plugin_name = 'WP AdZonia';
+$plugin_prefix = 'adzonia-';
 
 /**
  * STEP 0: SETUP NECESSARY FILES
  * A CSS file to do styles
  */
 
-add_action( 'admin_enqueue_scripts', 'nano_ad_css' );
+add_action( 'admin_enqueue_scripts', 'adzonia_css' );
 
-function nano_ad_css() {
-    wp_register_style( 'nano-ad-style', plugins_url('style.css', __FILE__) );
+function adzonia_css() {
+    wp_register_style( 'adzonia-style', plugins_url('style.css', __FILE__) );
     wp_register_style( 'datepicker-style', plugins_url('css/jquery.datetimepicker.css', __FILE__) );
 
-    wp_enqueue_style( 'nano-ad-style' );
+    wp_enqueue_style( 'adzonia-style' );
     wp_enqueue_style( 'datepicker-style' );
 }
 
-add_action( 'wp_enqueue_scripts', 'nano_ad_output_css' );
+add_action( 'wp_enqueue_scripts', 'adzonia_output_css' );
 
-function nano_ad_output_css() {
-    wp_register_style( 'nano-ad-output-style', plugins_url('css/output.css', __FILE__) );
+function adzonia_output_css() {
+    wp_register_style( 'adzonia-output-style', plugins_url('css/output.css', __FILE__) );
 
-    wp_enqueue_style( 'nano-ad-output-style' );
+    wp_enqueue_style( 'adzonia-output-style' );
 }
 
 
@@ -95,9 +93,6 @@ function add_the_table(){
                   ad_code text NOT NULL,
                   ad_image_url text NOT NULL,
                   url VARCHAR(100) DEFAULT '' NOT NULL,
-                  adsense_pub_id VARCHAR(50) DEFAULT '' NOT NULL,
-                  adsense_ad_slot int(20) NOT NULL,
-                  adsense_ad_size VARCHAR(30) DEFAULT '' NOT NULL,
                   str_time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
                   end_time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
                   ad_status boolean NOT NULL,
@@ -127,29 +122,29 @@ add_action('admin_menu', 'add_nano_ad_plugin_menu');
 function add_nano_ad_plugin_menu() {
 
     add_object_page(
-        'WordPress Ad Management',  // Page Title
-        'WordPress ad',             // Menu Title
+        'WP AdZonia',               // Page Title
+        'WP AdZonia',               // Menu Title
         'read',                     // Capability
-        'site-ad',                  // Menu Slug/ID
-        'nano_ad_page',             // Callback
+        'adzonia',                  // Menu Slug/ID
+        'adzonia_page',             // Callback
         ''                          // Icon URL
     );
 
     add_submenu_page(
-        'site-ad',                  // Parent Slug
-        'Add a new Advertisement',  // Page Title
-        'Add a new ad',             // Menu Title
+        'adzonia',                  // Parent Slug
+        'Add New Advertisement',    // Page Title
+        'Add New Ad',               // Menu Title
         'read',                     // Capability
-        'add-site-ad',              // Menu Slug/ID
-        'nano_add_ad_subpage'       // Callback
+        'add-adzonia',              // Menu Slug/ID
+        'adzonia_add_ad_subpage'    // Callback
     );
 
 }
 
 // Callback Ad Page
-function nano_ad_page() {
-    include('ad-view-page.php');
-} //function nano_ad_page()
+function adzonia_page() {
+    include('adzonia-view.php');
+} //function adzonia_page()
 
 /*
  * VALIDATION MESSAGES
@@ -158,9 +153,9 @@ $success_message = '';
 $error_message = '';
 
 // Callback Add Ad Subpage
-function nano_add_ad_subpage() {
-    include('ad-insert-edit-page.php');
-} //function nano_add_ad_subpage()
+function adzonia_add_ad_subpage() {
+    include('adzonia-insert-edit.php');
+} //function adzonia_add_ad_subpage()
 
 
 
@@ -170,14 +165,13 @@ function nano_add_ad_subpage() {
  *
  */
 
-add_action('admin_enqueue_scripts', 'nano_ad_admin_scripts');
+add_action('admin_enqueue_scripts', 'adzonia_admin_scripts');
 
-function nano_ad_admin_scripts() {
-    global $plugin_folder;
+function adzonia_admin_scripts() {
     $jQueryLatestURI = "http://code.jquery.com/jquery-latest.min.js";
     @$connection = fopen( $jQueryLatestURI, "r" );
 
-    if ( ( isset( $_GET['page'] ) && ( $_GET['page'] == 'add-site-ad') ) ) {
+    if ( ( isset( $_GET['page'] ) && ( $_GET['page'] === 'add-adzonia' || $_GET['page'] === 'adzonia' ) ) ) {
         wp_enqueue_media();
 
         /**
@@ -195,20 +189,18 @@ function nano_ad_admin_scripts() {
         } else {
 
             /* In-Package jQuery Library */
-            wp_register_script('jquery-js', WP_PLUGIN_URL.'/'.$plugin_folder.'/js/jquery.js');
+            wp_register_script('jquery-js', plugins_url('/js/jquery.js', __FILE__) );
             wp_enqueue_script('jquery-js');
 
         } //endif($connection)
 
-        wp_register_script('nano-ad-js', WP_PLUGIN_URL.'/'.$plugin_folder.'/js/nano-ad.js', array('jquery'));
-        wp_register_script('datepicker-js', WP_PLUGIN_URL.'/'.$plugin_folder.'/js/jquery.datetimepicker.js', array('jquery'));
+        wp_register_script('adzonia-js', plugins_url('/js/adzonia.js', __FILE__) );
+        wp_register_script('datepicker-js', plugins_url('/js/jquery.datetimepicker.js', __FILE__) );
 
-        wp_enqueue_script('nano-ad-js');
+        wp_enqueue_script('adzonia-js');
         wp_enqueue_script('datepicker-js');
     }
 }
-
-
 
 
 /**
@@ -228,8 +220,8 @@ function show_ad_zonia( $id ){
                 WHERE id = $id;
                 ");
 
-        $datetoday = new DateTime();
-        $datetoday = strtotime($datetoday->format('Y-m-d H:i:s'));
+        $thisDate = date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
+        $datetoday = strtotime( $thisDate );
         $startDateString = ( $ad_show_query[0]->str_time != '' ? strtotime( $ad_show_query[0]->str_time ) : '' );
         $endDateString = ( $ad_show_query[0]->end_time != '' ? strtotime( $ad_show_query[0]->end_time ) : '' );
 
@@ -259,30 +251,11 @@ function show_ad_zonia( $id ){
 
                 echo '</div> <!-- #'. $plugin_prefix . $ad_show_query[0]->id .' Type: '. $ad_show_query[0]->ad_type .' -->';
 
-            } else if ( $ad_show_query[0]->ad_type == 'googleadsense' ) {
-
-                $width_and_height = explode("x", $ad_show_query[0]->adsense_ad_size );
-
-                echo '<div id="'. $plugin_prefix . $ad_show_query[0]->id .'" class="'. $plugin_prefix .'holder '. $plugin_prefix . $ad_show_query[0]->ad_type .' '. $plugin_prefix . $ad_show_query[0]->ad_type . '-' . $ad_show_query[0]->id .'" style="width: '. $width_and_height[0] .'px; height: '. $width_and_height[1] .'px;">';
-
-                // AdSense Output
-                $ad_output = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- '. $ad_show_query[0]->ad_type .'_'. $width_and_height[0] .'x'. $width_and_height[1] .'_as -->
-                                <ins class="adsbygoogle"
-                                     style="display:inline-block;width:'. $width_and_height[0] .'px;height:'. $width_and_height[1] .'px"
-                                     data-ad-client="'. $ad_show_query[0]->adsense_pub_id .'"
-                                     data-ad-slot="'. $ad_show_query[0]->adsense_ad_slot .'"></ins>
-                                <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                             </script>';
-                echo $ad_output;
-
-                echo '</div> <!-- #'. $plugin_prefix . $ad_show_query[0]->id .' Type: '. $ad_show_query[0]->ad_type .' -->';
             }
 
         } //endif( $ad_show_query[0]->ad_status == '1'
 
-        return $ad_output;
+        //return $ad_output;
 
 }
 
@@ -334,8 +307,8 @@ class ad_zonia_widget extends WP_Widget {
     function __construct() {
         parent::__construct(
             'ad_zonia_widget', //base ID of widget
-            __('Ad Zonia Widget', PLUGINTEXTDOMAIN), //name of the widget
-            array( 'description' => __( 'Ad Zonia Widget to call the advertisement easily.', PLUGINTEXTDOMAIN ) )
+            __('Ad Zonia Widget', 'ad-zonia'), //name of the widget
+            array( 'description' => __( 'Ad Zonia Widget to call the advertisement easily.', 'ad-zonia' ) )
         );
     }
 
