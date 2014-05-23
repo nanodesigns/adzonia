@@ -1,7 +1,9 @@
-###WordPress Ad Management Plugin###
-Developer: Mayeenul Islam (@mayeenulislam)
+##WordPress Ad Management Plugin##
+<strong>Developer:</strong> Mayeenul Islam (@mayeenulislam)
 
-The plugin is to add, edit, delete and manage advertisement easily with less effort in any WordPress website or blog.
+<h3>STILL UNDER DEVELOPMENT - USE WITH YOUR OWN RISK</h3>
+
+The plugin is to add, edit, delete and manage advertisement easily with less effort in any WordPress website or blog. It deploys only a single database table, hence a lightweight one for your WordPress powered website or blog.
 
 ###Credits###
 Thanks to my plugin guru Ms. Tahmina Aktar for the appreciation and support from the very begining.
