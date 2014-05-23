@@ -265,17 +265,18 @@ if( isset( $_GET["action"] ) && $_GET["action"] === 'edit' ) {
 
             <script type="text/javascript">
                 // First to load the DOM, then the jQuery
-                $(function() {
-                    $('#nano_ad_type').change(function(){
-                        $('.togglediv').hide();
-                        $('#' + $(this).val()).show();
-                    }).focus(function(){
+                // Details: http://codex.wordpress.org/Function_Reference/wp_enqueue_script#jQuery_noConflict_Wrappers
+                jQuery(document).ready(function($) {
+                    $(function() {
+                        $('#nano_ad_type').change(function(){
                             $('.togglediv').hide();
                             $('#' + $(this).val()).show();
-                        });
-                });
+                        }).focus(function(){
+                                $('.togglediv').hide();
+                                $('#' + $(this).val()).show();
+                            });
+                    });
 
-                $(document).ready(function() {
                     $('#datetimepickerstart').datetimepicker();
                     $('#datetimepickerend').datetimepicker();
                 });
