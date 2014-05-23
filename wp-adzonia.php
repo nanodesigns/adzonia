@@ -62,7 +62,7 @@ function adzonia_output_css() {
 
 
 /**
- * STEP I: Setup the Database
+ * Setup the Database
  * create table if not exists
  *
  * With assistance:
@@ -112,7 +112,7 @@ register_activation_hook( __FILE__, 'add_the_table' );
 
 
 /**
- * STEP II: SETUP A DASHBOARD
+ * SETUP A DASHBOARD
  * An admin page, from where the ad will be controlled
  */
 
@@ -161,38 +161,18 @@ function adzonia_add_ad_subpage() {
 
 
 /**
- * STEP II: ADD THE NECESSARY JAVASCRIPT FILE
+ * ADD THE NECESSARY JAVASCRIPT FILE
  *
  */
 
 add_action('admin_enqueue_scripts', 'adzonia_admin_scripts');
 
 function adzonia_admin_scripts() {
-    $jQueryLatestURI = "http://code.jquery.com/jquery-latest.min.js";
-    @$connection = fopen( $jQueryLatestURI, "r" );
 
     if ( ( isset( $_GET['page'] ) && ( $_GET['page'] === 'add-adzonia' || $_GET['page'] === 'adzonia' ) ) ) {
         wp_enqueue_media();
-
-        /**
-         * FALLBACK
-         * Check whether the jQuery library from server is available or not
-         * If available, load from server,
-         * If not, load from the plugin 'js' folder
-         */
-
-        if($connection) {
-
-            /* Latest jQuery Library from Server */
-            wp_register_script('jQuery-library', $jQueryLatestURI, array('jquery'));
-            wp_enqueue_script('jQuery-library');
-        } else {
-
-            /* In-Package jQuery Library */
-            wp_register_script('jquery-js', plugins_url('/js/jquery.js', __FILE__) );
-            wp_enqueue_script('jquery-js');
-
-        } //endif($connection)
+        
+        wp_enqueue_script( 'jquery' ); // load the jQuery library from WP Admin
 
         wp_register_script('adzonia-js', plugins_url('/js/adzonia.js', __FILE__) );
         wp_register_script('datepicker-js', plugins_url('/js/jquery.datetimepicker.js', __FILE__) );
@@ -204,7 +184,7 @@ function adzonia_admin_scripts() {
 
 
 /**
- * STEP III: FUNCTION TO SHOW THE AD
+ * FUNCTION TO SHOW THE AD
  * to call the function into the tempalte you have to include
  * <?php if (function_exists("show_ad_zonia")){ show_ad_zonia($id); }; ?>
  */
@@ -263,7 +243,7 @@ function show_ad_zonia( $id ){
 
 
 /**
- * STEP IV: SHORTCODE
+ * SHORTCODE
  * Adding shortcode to call the ad inside post, pages, widgets - everywhere
  * [ad-zonia id="#"]
  */
@@ -298,7 +278,7 @@ add_shortcode('wp-adzonia', 'ad_zonia_shortcode');
 
 
 /**
- * STEP V: ADDING AD WIDGET
+ * ADDING AD WIDGET
  * Adding a widget to add ad to the widget areas easily
  */
 
@@ -392,3 +372,10 @@ function nano_load_widget() {
 }
 
 add_action( 'widgets_init', 'nano_load_widget' );
+
+/**
+ * REQUIRE THE NECESSARY FUNCITONS
+ * to accumulate all the functions into a single page
+ */
+
+require_once('adzonia-functions.php');
