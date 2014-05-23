@@ -43,15 +43,17 @@ if( !isset( $_GET["action"] ) ) {
         // validation
         if( ( ( $ad_str_time && $ad_end_time ) != '' )
             && (
-                   ($_POST['nano_ad_type'] == 'imagead' && ($ad_image_url && $ad_url) != '')
-                || ($_POST['nano_ad_type'] == 'codead' && $ad_code != '')
+                   ($_POST['nano_ad_type'] === 'imagead' && ($ad_image_url && $ad_url) != '')
+                || ($_POST['nano_ad_type'] === 'codead' && $ad_code != '')
             ) )
                 {
 
                     $success = $wpdb->insert( $table, $data, $format );
 
                     // Redirect to view ad page
-                    header( "location:" . admin_url('/admin.php?page=adzonia&addnew=1&success') );
+                    $location = admin_url('/admin.php?page=adzonia&addnew=1&success');
+                    wp_redirect( $location );
+                    exit;
                 }
 
         if(isset($success)) {
@@ -111,7 +113,9 @@ if( isset( $_GET["action"] ) && $_GET["action"] === 'edit' ) {
                 $success = $wpdb->update( $table, $data, $where );
 
                 // Redirect to view ad page
-                header( "location:" . admin_url('/admin.php?page=adzonia&edit=1&success') );
+                $location = admin_url('/admin.php?page=adzonia&edit=1&success');
+                wp_redirect( $location );
+                exit;
             }
 
         if(isset($success)) {
