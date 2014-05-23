@@ -1,6 +1,3 @@
-<?php require_once('adzonia-functions.php'); ?>
-
-
 <div class="wrap nano-ad nano-ad-view">
   <h2 class="page-title">AdZonia Ad Management<a href="<?php echo admin_url('/admin.php?page=add-adzonia'); ?>" class="add-new-h2">Add New</a></h2>
   <?php
@@ -63,62 +60,6 @@
         <tbody>
         
         <?php
-        /*
-         * UPDATE
-         * Activate or Deactivate on this page
-         */
-        if( isset( $_GET["activate"] ) ) {
-            $row_id = $_GET["id"];
-
-            // ACTIVATE
-            if ($_GET["activate"] === 'true'){
-                $wpdb->update(
-                    $table,
-                    array(
-                        'ad_status' => '1' //integer
-                    ),
-                    array( 'ID' => $row_id ),
-                    array(
-                        '%d'
-                    )
-                );
-            }
-
-            /*// DEACTIVATE
-            if ($_GET["activate"] == 'false'){
-                $wpdb->update(
-                    $table,
-                    array(
-                        'ad_status' => '0' //integer
-                    ),
-                    array( 'ID' => $row_id ),
-                    array(
-                        '%d'
-                    )
-                );
-            }*/
-        }
-
-        /*
-         * DELETE
-         * delete row on click
-         */
-
-        if( isset( $_GET["delete"] ) ) {
-            $item_id = $_GET["id"];
-
-            // DELETE ROW
-            if ($_GET["delete"] == 'yes'){
-                $wpdb->delete(
-                    $table,
-                    array( 'ID' => $item_id ),
-                    array(
-                        '%d' //integer
-                    )
-                );
-            }
-        } //endif( isset( $_GET["delete"] ) )
-
         if( !empty( $ad_query ) ) {
 
             foreach ( $ad_query as $the_ad ) {
@@ -140,9 +81,9 @@
                         echo '<div class="ad_edit_links">';
                         echo '<a href="?page=add-adzonia&id='. $the_ad->id .'&action=edit">Edit</a>';
                         echo '&nbsp;|&nbsp';
-                        echo ( $the_ad->ad_status === '1' ? '<a class="deactivate-ad" href="#" id="'. $element_id .'">Deactivate</a>' : '<a href="?page=adzonia&id='. $the_ad->id .'&activate=true&success">Activate</a>' );
+                        echo ( $the_ad->ad_status === '1' ? '<a href="#" class="deactivate-ad" id="'. $element_id .'">Deactivate</a>' : '<a href="#" class="activate-ad" id="'. $element_id .'">Activate</a>' );
                         echo '&nbsp;|&nbsp';
-                        echo '<a href="?page=adzonia&id='. $the_ad->id .'&delete=yes&success">Delete</a>';
+                        echo '<a href="#" class="delete-ad" id="'. $element_id .'">Delete</a>';
                         echo '</div>';
                     echo "</td>";
                     echo "<td>";
@@ -195,9 +136,11 @@
 <script type="text/javascript">
   var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 
+  /**
+  * AJAX to DEACTIVATE THE AD
+  */
   jQuery(document).on('click', '.deactivate-ad', function () {
       var id = this.id;
-      alert(id);
       jQuery.ajax({
           type: 'POST',
           url: ajaxurl,
@@ -206,42 +149,46 @@
                   id: id
                 },
           success: function (data) {
-            alert(data);
+            window.location = "admin.php?page=adzonia&activate=false&success";
+          }
+      });
+  });
+
+
+  /**
+  * AJAX to ACTIVATE THE AD
+  */
+  jQuery(document).on('click', '.activate-ad', function () {
+      var id = this.id;
+      jQuery.ajax({
+          type: 'POST',
+          url: ajaxurl,
+          data: {
+                  action: "activate_ad",
+                  id: id
+                },
+          success: function (data) {
+            window.location = "admin.php?page=adzonia&activate=true&success";
+          }
+      });
+  });
+
+
+  /**
+  * AJAX to ACTIVATE THE AD
+  */
+  jQuery(document).on('click', '.delete-ad', function () {
+      var id = this.id;
+      jQuery.ajax({
+          type: 'POST',
+          url: ajaxurl,
+          data: {
+                  action: "delete_ad",
+                  id: id
+                },
+          success: function (data) {
+            window.location = "admin.php?page=adzonia&delete=yes&success";
           }
       });
   });
 </script>
-
-<?php
-function deactivate_ad() {
-    //global $wpdb;
-    //$table = $wpdb->wp_adzonia = $wpdb->prefix . "wp_adzonia";
-
-    //$id = explode('_', $_POST['id']);
-
-    if( isset( $_POST['id'] ) ) {
-      /*if( wp_verify_nonce( $id[2], $id[0] . '_' . $id[1] ) ) {
-        $wpdb->update(
-                    $table,
-                    array(
-                        'ad_status' => '0' //integer
-                    ),
-                    array( 'ID' => $id[1] ),
-                    array(
-                        '%d'
-                    )
-                );*/
-        echo $_POST['id'];
-        echo 'Updated status';
-      /*} else {
-        echo 'Nonce not verified';
-      }*/
-    } else {
-        echo 'Sorry, not done';
-    }
-    wp_die(); // ajax call must die to avoid trailing 0 in your response
-}
-
-add_action('wp_ajax_deactivate_ad', 'deactivate_ad');
-add_action( 'wp_ajax_nopriv_deactivate_ad', 'deactivate_ad'); //not logged in users
-?>
