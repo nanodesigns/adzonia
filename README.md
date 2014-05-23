@@ -1,7 +1,8 @@
-##WordPress Ad Management Plugin##
+##WP AdZonia##
+WordPress Ad Management Plugin<br>
 <strong>Developer:</strong> Mayeenul Islam (@mayeenulislam)
 
-<h3>STILL UNDER DEVELOPMENT - USE WITH YOUR OWN RISK</h3>
+<h5>STILL UNDER DEVELOPMENT - USE WITH YOUR OWN RISK</h5>
 
 The plugin is to add, edit, delete and manage advertisement easily with less effort in any WordPress website or blog. It deploys only a single database table, hence a lightweight one for your WordPress powered website or blog.
 
