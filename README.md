@@ -1,3 +1,4 @@
+<img src="assets/banner-1544x500.png" alt="WP AdZonia - WordPress Ad Management Plugin"/>
 ##WP AdZonia##
 WordPress Ad Management Plugin<br>
 Version 1.0<br>
