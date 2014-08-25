@@ -1,7 +1,19 @@
-/* OUTPUT CSS */
+/**
+*	OUTPUT CSS
+*	WP AdZonia - WordPress plugin for Ad Management
+*
+*	This CSS file is to show the advertisement with
+*	 a good look
+*	-------------------------------------------------- */
 
-.adzonia-holder{
+.wp-adzonia-ad-block{
     display: inline-block;
     max-width: 100%;
     max-height: 100%;
+}
+
+.wp-adzonia-ad-block img{
+	max-width: 100%;
+	height: auto;
+	max-height: 100%;
 }

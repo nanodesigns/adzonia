@@ -1,18 +1,10 @@
 ##WP AdZonia##
 WordPress Ad Management Plugin<br>
+Version 1.0<br>
 <strong>Developer:</strong> Mayeenul Islam (@mayeenulislam)
 
-<h5>STILL UNDER DEVELOPMENT - USE WITH YOUR OWN RISK</h5>
-
-The plugin is to add, edit, delete and manage advertisement easily with less effort in any WordPress website or blog. It deploys only a single database table, hence a lightweight one for your WordPress powered website or blog.
+A simplest and easiest Ad management Plugin for WordPress sites, and most astonishingly - it's in <strong>WordPress way</strong>. You can call the advertisements into your template using a simple function: <code><?php if ( function_exists( "show_adzonia" )  ) show_adzonia( # ); ?></code>, or you can call the ad in anywhere using the shortcode: <code>[wp-adzonia id="#"]</code>
 
 ###Credits###
 Thanks to my plugin guru Ms. Tahmina Aktar for the appreciation and support from the very begining.
-Thanks also to-
-* Mr. Shimul Islam
-  (PHP, mySQL and WordPress Specialist at Aslan Interactive Chicago Web Design and Development; PHP/MySQL and Wordpress Expert at Digital Spark; and Senior php/mysql Programmer at Ezrabydesign)
-* Mr. Tareq Hasan
-  (Founder at weDevs; Technical Administrator at Projanmo Forum)
-* Mr. Kaiser
-* Mr. Sisir Kanti Adhikari
-  (Works at Kallzu; Freelance Web Designer and developer)
+Thanks also to Shimul Islam, Tareq Hasan, Sisir Kanti Adhikari. And thanks also to Franz Josef Kaiser, Stephen Harris, Tom J Nowell, Andrey Savchenko (Rarst), and Thomas Scholz (Toscho) for their remote support and assistance. I won't ever forget their love. Thanks a lot and jazakALLAH

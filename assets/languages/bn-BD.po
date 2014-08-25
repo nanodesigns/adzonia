@@ -1,0 +1,123 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP AdZonia\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-25 13:52+0600\n"
+"PO-Revision-Date: 2014-08-25 13:53+0600\n"
+"Last-Translator: Mayeenul Islam <wz.islam@gmail.com>\n"
+"Language-Team: nanodesigns <info@nanodesignsbd.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;_n;_x\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Bengali\n"
+"X-Poedit-Country: BANGLADESH\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../wp-adzonia.php:123
+#: ../wp-adzonia.php:124
+#: ../wp-adzonia.php:134
+msgid "AdZonia"
+msgstr "AdZonia"
+
+#: ../wp-adzonia.php:125
+msgid "Add New"
+msgstr "নতুন যোগ"
+
+#: ../wp-adzonia.php:126
+msgid "Add New AdZonia"
+msgstr "নতুন AdZonia যোগ"
+
+#: ../wp-adzonia.php:127
+msgid "Edit AdZonia"
+msgstr "AdZonia সম্পাদনা"
+
+#: ../wp-adzonia.php:128
+msgid "New AdZonia"
+msgstr "নতুন AdZonia"
+
+#: ../wp-adzonia.php:129
+msgid "View AdZonia"
+msgstr "AdZonia দেখাও"
+
+#: ../wp-adzonia.php:130
+msgid "Search AdZonia"
+msgstr "AdZonia অনুসন্ধান"
+
+#: ../wp-adzonia.php:131
+msgid "No AdZonia is created yet. Try making one first"
+msgstr "কোনো AdZonia তৈরি করা হয়নি। আগে একটা তৈরি করা যাক"
+
+#: ../wp-adzonia.php:132
+msgid "No AdZonia found in Trash"
+msgstr "ময়লার ঝুড়িতে কোনো AdZonia পাওয়া যায়নি"
+
+#: ../wp-adzonia.php:133
+msgid "Parent AdZonia:"
+msgstr "শীর্ষ AdZonia:"
+
+#: ../wp-adzonia.php:176
+msgid "AdZonia Specification"
+msgstr "AdZonia বৃত্তান্ত"
+
+#: ../wp-adzonia.php:191
+msgid "Ad Image"
+msgstr "ছবি বিজ্ঞাপন"
+
+#: ../wp-adzonia.php:192
+msgid "Add an image if you wish to show an image ad (banner ad)"
+msgstr "একটি ছবি যোগ করুন যদি আপনি ছবি বিজ্ঞাপন (ব্যানার বিজ্ঞাপন) দেখাতে চান"
+
+#: ../wp-adzonia.php:197
+msgid "Ad Code"
+msgstr "কোড বিজ্ঞাপন"
+
+#: ../wp-adzonia.php:198
+msgid "If your ad is a Code-ad, then write down the code here, or paste it"
+msgstr "যদি আপনি কোড বিজ্ঞাপন দিতে চান, তাহলে কোড এখানে লিখুন, কিংবা পেস্ট করুন"
+
+#: ../wp-adzonia.php:203
+msgid "End Date"
+msgstr "শেষ তারিখ"
+
+#: ../wp-adzonia.php:204
+msgid "Choose a date until when the ad will be visible"
+msgstr "যে তারিখ পর্যন্ত বিজ্ঞাপনটি দেখাতে চান, সেই তারিখটি বাছাই করুন"
+
+#: ../wp-adzonia.php:209
+msgid "Target URL"
+msgstr "লক্ষ্য ইউআরএল"
+
+#: ../wp-adzonia.php:210
+msgid "Enter the URL, to where the ad will direct the viewer after clicking"
+msgstr "বিজ্ঞাপনে ক্লিক করলে দর্শক যেখানে যাবে, সেই লিংকটি এখানে লিখুন"
+
+#: ../wp-adzonia.php:225
+msgid ""
+"Either create an <strong>Image ad</strong> (<span class=\"dashicons dashicons-format-image p-icon\"></span>), or a <strong>Code ad</strong> (<span class=\"dashicons dashicons-editor-code p-icon\"></span>). Mixure won't be counted, sorry.<br>\n"
+"            Please note: \"Target URL\" is applicable for Image Ad only."
+msgstr ""
+"হয় একটা <strong>ছবি বিজ্ঞাপন</strong> (<span class=\"dashicons dashicons-format-image p-icon\"></span>) যোগ করুন, নয়তো একটা <strong>কোড বিজ্ঞাপন</strong> (<span class=\"dashicons dashicons-editor-code p-icon\"></span>) যোগ করুন। দুটোর মিশেল আসলে কাজে আসবে না, দুঃখিত।<br>\n"
+"            লক্ষ করুন: \"লক্ষ্য ইউআরএল\" শুধুমাত্র ছবি বিজ্ঞাপন-এর ক্ষেত্রে প্রযোজ্য।"
+
+#: ../wp-adzonia.php:378
+msgid "ID"
+msgstr "আইডি"
+
+#: ../wp-adzonia.php:379
+msgid "Preview"
+msgstr "প্রাকদর্শন"
+
+#: ../wp-adzonia.php:381
+msgid "Until"
+msgstr "পর্যন্ত"
+
+#: ../wp-adzonia.php:382
+msgid "Shortcode"
+msgstr "শর্টকোড"
+
+#: ../wp-adzonia.php:469
+msgid "AdZonia ad "
+msgstr "AdZonia বিজ্ঞাপন"
+

@@ -1,0 +1,13 @@
+Copy/Cut the following files to the plugin's root folder, and start developing yourself:
+
+- admin-style.less
+
+NO NEED TO COPY the following file:
+
+- lessmixins.less
+
+
+
+nanodesigns
+Dhaka
+nanodesignsbd.com
