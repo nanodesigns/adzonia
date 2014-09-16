@@ -1,6 +1,7 @@
-Copy/Cut the following files to the plugin's root folder, and start developing yourself:
+Copy/Cut the following files to the theme's root folder, and start developing yourself:
 
-- admin-style.less
+- style.less
+- print-style.less
 
 NO NEED TO COPY the following file:
 

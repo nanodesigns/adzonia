@@ -2,8 +2,8 @@
 /**
  * Plugin Name: WP AdZonia
  * Plugin URI: http://nanodesignsbd.com
- * Description: A simplest and easiest Ad management Plugin for WordPress sites, and most astonishingly - it's in <strong>WordPress way</strong>. You can call the advertisements into your template using a simple function: <code><?php if ( function_exists( "show_adzonia" )  ) show_adzonia( # ); ?></code>, or you can call the ad in anywhere using the shortcode: <code>[wp-adzonia id="#"]</code>
- * Version: 1.0
+ * Description: A simpler and easier Ad management Plugin for WordPress sites, and most astonishing - it's in WordPress way
+ * Version: 1.2
  * Author: Mayeenul Islam (@mayeenulislam)
  * Author URI: http://nishachor.com
  * License: GNU General Public License v2.0
@@ -11,7 +11,7 @@
  */
 
 
-/*  Copyright 2014  nanodesigns  (email : info@nanodesignsbd.com)
+/*  Copyright 2014 nanodesigns (email: info@nanodesignsbd.com)
 
     This plugin is a free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -34,25 +34,22 @@ if( !defined( 'ABSPATH' ) ) exit;
 /**
 *   MAKE PLUGIN TRANSLATION-READY
 *   -----------------------------------------------------*/
-
-load_plugin_textdomain( 'wp-adzonia', FALSE, 'wp-adzonia/assets/languages' );
+load_plugin_textdomain( 'wp-adzonia', FALSE, 'wp-adzonia/languages' );
 
 
 
 /**
 *   AdZonia CSS
-*
-*    - For Admin styling
-*    - For Front-end styling
+*    - For Admin styling.
+*    - For Front-end styling.
 *   -----------------------------------------------------*/
 
 function adzonia_css() {
-    wp_enqueue_style( 'adzonia-admin-style', plugins_url('admin-style.css', __FILE__) );
+    wp_enqueue_style( 'adzonia-admin-style', plugins_url('css/admin-style.css', __FILE__) );
     wp_enqueue_style( 'datepicker-style', plugins_url('css/jquery.datetimepicker.css', __FILE__) );
 }
 
 add_action( 'admin_enqueue_scripts', 'adzonia_css' );
-
 
 function adzonia_output_css() {
     wp_enqueue_style( 'adzonia-output-style', plugins_url('css/output.css', __FILE__) );
@@ -65,9 +62,7 @@ add_action( 'wp_enqueue_scripts', 'adzonia_output_css' );
 
 /**
 *   ENQUEUE NECESSARY SCRIPTS
-*
-*   Custom post type to get the advertisement information
-*    in WordPress way
+*   Custom post type to get the advertisement information in WordPress way.
 *   -----------------------------------------------------*/
 
 function adzonia_admin_scripts() {
@@ -78,9 +73,8 @@ function adzonia_admin_scripts() {
 
         //wp_enqueue_script( 'jquery-lib-scripts', plugins_url('/js/jquery-1.11.1.min.js', __FILE__) );
         wp_enqueue_script( 'jquery' );
-        //wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_script( 'datepicker-js', plugins_url('/js/jquery.datetimepicker.js', __FILE__), '', '', true );
-        wp_enqueue_script( 'adzonia', plugins_url( '/js/adzonia-scripts.js', __FILE__ ), '', '', true );
+        wp_enqueue_script( 'adzonia', plugins_url( '/js/adzonia-scripts.min.js', __FILE__ ), '', '', true );
 
         if(function_exists('wp_enqueue_media')) {
             wp_enqueue_media();
@@ -165,9 +159,8 @@ add_action( 'init', 'register_cpt_adzonia' );
 
 
 /**
-*   ADD A META BOX:
-*   @id: adzonia-info
-*   @title: Product Specification
+*   AdZonia Metabox
+*   Product specification.
 *   -----------------------------------------------------*/
 
 function adzonia_specifications_meta_box() {
@@ -188,26 +181,26 @@ add_action( 'add_meta_boxes', 'adzonia_specifications_meta_box' );
 $prefix = 'wpadz_';
 $adzonia_meta_fields = array(
     array(
-        'label' => __('Ad Image', 'wp-adzonia'),
-        'desc'  => __('Add an image if you wish to show an image ad (banner ad)', 'wp-adzonia'),
+        'label'=> 'Ad Image',
+        'desc'  => 'Add an image if you wish to show an image ad',
         'id'    => $prefix.'ad_image',
         'type'  => 'ad_image'
     ),
     array(
-        'label' => __('Ad Code', 'wp-adzonia'),
-        'desc'  => __('If your ad is a Code-ad, then write down the code here, or paste it', 'wp-adzonia'),
+        'label'=> 'Ad Code',
+        'desc'  => 'If your ad is a Code-ad, then write down the code here',
         'id'    => $prefix.'ad_code',
         'type'  => 'ad_code'
     ),
     array(
-        'label' => __('End Date', 'wp-adzonia'),
-        'desc'  => __('Choose a date until when the ad will be visible', 'wp-adzonia'),
+        'label'=> 'End Date',
+        'desc'  => 'Choose a date until when the ad will be visible',
         'id'    => $prefix.'end_date',
         'type'  => 'end_date'
     ),
     array(
-        'label' => __('Target URL', 'wp-adzonia'),
-        'desc'  => __('Enter the URL, to where the ad will direct the viewer after clicking', 'wp-adzonia'),
+        'label'=> 'Target URL',
+        'desc'  => 'Enter the URL, to where the ad will direct the viewer after clicking',
         'id'    => $prefix.'target_url',
         'type'  => 'target_url'
     )
@@ -222,8 +215,7 @@ echo '<input type="hidden" name="adzonia_nonce" value="'.wp_create_nonce(basenam
 ?>
     <div class="row adz-meta-div">
 
-        <p><?php _e( 'Either create an <strong>Image ad</strong> (<span class="dashicons dashicons-format-image p-icon"></span>), or a <strong>Code ad</strong> (<span class="dashicons dashicons-editor-code p-icon"></span>). Mixure won\'t be counted, sorry.<br>
-            Please note: "Target URL" is applicable for Image Ad only.', 'wp-adzonia' ) ?></p>
+        <p><?php _e( 'Either create an <strong>Image ad</strong> (<span class="dashicons dashicons-format-image p-icon"></span>), or a <strong>Code ad</strong> (<span class="dashicons dashicons-editor-code p-icon"></span>). Mixure won\'t be counted, sorry.', 'wp-adzonia' ) ?></p>
 
         <table id="adz-meta-table">
             <?php
@@ -340,34 +332,6 @@ add_action( 'add_meta_boxes', 'remove_yoast_metabox_adzonia', 11 );
 *   ADD COLUMNS TO AdZonia LIST TABLE
 *   -----------------------------------------------------*/
 
-/*function set_custom_adzonia_columns( $columns ) {
-
-    $columns['ad_id'] = __( 'ID', 'wp-adzonia' );
-    $columns['ad_image'] = __( 'Ad Preview', 'wp-adzonia' );
-    $columns['until'] = __( 'Until', 'wp-adzonia' );
-    $columns['adz_shortcode'] = __( 'Shortcode', 'wp-adzonia' );
-
-    return $columns;
-
-}
-
-add_filter( 'manage_edit-adzonia_columns', 'set_custom_adzonia_columns' );
-
-
-
-function reset_columns( $columns ) {
-
-  $new = array();
-  foreach( $columns as $key => $title ) {
-    if ($key=='title') { $new['ad_image'] = 'Ad Preview'; } // Ad Image column before Title column
-    $new[$key] = $title;
-  }
-  return $new;
-
-}
-
-add_filter('manage_edit-adzonia_columns', 'reset_columns'); */
-
 function set_custom_adzonia_columns( $columns ) {
     //Insert columns after 'title'
     $index = array_search( "title", array_keys( $columns ) );
@@ -407,7 +371,7 @@ function custom_adzonia_column( $column, $post_id ) {
 
         case 'until' :
             $to_date = get_post_meta( $post_id , 'wpadz_end_date' , true );
-            echo mysql2date( 'j M Y', $to_date) . '<br/>' . mysql2date( 'g:i A', $to_date);
+            echo mysql2date( 'Y/m/j', $to_date) . '<br/>' . mysql2date( 'g:i A', $to_date);
             break;
 
         case 'adz_shortcode' :
@@ -422,77 +386,54 @@ add_action( 'manage_adzonia_posts_custom_column' , 'custom_adzonia_column', 10, 
 
 
 
-
 /**
 *   SHOW AdZonia
+*   @param (int) $ad_id. Would be the post ID.
 *   -----------------------------------------------------*/
 
 function show_adzonia( $ad_id ) {
+    $ad = get_post( $ad_id );
 
-    $wpadz_args = array(
-            'post_type' => 'adzonia',
-            'posts_per_page' => 1,
-            'post_status' => 'publish',
-            'p' => $ad_id
-        );
+    $thisDate = date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
+    $datetoday = strtotime( $thisDate );
 
-    $adzonia_query = new WP_Query( $wpadz_args );
+    $postID = $ad->ID;
 
-    if( $adzonia_query->have_posts() ) {
+    $image_ad_url = get_post_meta( $postID, 'wpadz_ad_image', true );
+    $ad_code = get_post_meta( $postID, 'wpadz_ad_code', true );
+    $end_date = get_post_meta( $postID, 'wpadz_end_date', true );
+    $get_target_url = get_post_meta( $postID, 'wpadz_target_url', true );
+    $target_url = $get_target_url != '' ? $get_target_url : '#';
 
-        $thisDate = date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
-        $datetoday = strtotime( $thisDate );
+    $endDateString = ( $end_date != '' ? strtotime( $end_date ) : '' );
 
-        while( $adzonia_query->have_posts() ) {
-            $adzonia_query->the_post();
+    if( $datetoday <= $endDateString ) {
 
-            global $post;
-            $postID = $post->ID;
+        if( !empty( $get_target_url ) ) echo '<a href="'. $target_url .'">';
 
-            $image_ad_url = get_post_meta( $postID, 'wpadz_ad_image', true );
-            $ad_code = get_post_meta( $postID, 'wpadz_ad_code', true );
-            $end_date = get_post_meta( $postID, 'wpadz_end_date', true );
-            $get_target_url = get_post_meta( $postID, 'wpadz_target_url', true );
-            $target_url = $get_target_url != '' ? $get_target_url : '#';
-
-            $endDateString = ( $end_date != '' ? strtotime( $end_date ) : '' );
-
-            if( $datetoday <= $endDateString ) {
-
-                echo '<div class="wp-adzonia-ad-block wp-adzonia-'. $postID .'">';
-
-                    // Image ad
-                    if ( $image_ad_url != '' ) {
-
-                        echo '<a href="'. $target_url .'">';
-
-                            echo '<img src="'. $image_ad_url .'" alt="'. __('AdZonia ad ', 'wp-adzonia'), the_title_attribute('echo=0') .'" />';
-
-                        echo '</a>';
-
-                    }
-                    // Code ad
-                    else if ( $ad_code != '' ) {
-
-                        echo $ad_code;
-
-                    }
-
-                echo '</div>';
-
+            // Image ad
+            if ( $image_ad_url != '' ) {
+                echo '<img src="'. $image_ad_url .'" alt="'. __('AdZonia ad ', 'wp-adzonia'), the_title_attribute('echo=0') .'" />';
+            }
+            // Code ad
+            else if ( $ad_code != '' ) {
+                echo $ad_code;
             }
 
-        }
+        if( !empty( $get_target_url ) ) echo '</a>';
 
-    } //endif
-
-    wp_reset_postdata();
-
+    }
+    
 }
 
 
 /**
 *   AdZonia SHORTCODE
+*   @see show_adzonia()
+*   @param (int) $ad_id. Would be the post ID.
+*
+*   Usage:
+*   [wp-adzonia id="#"]
 *   -----------------------------------------------------*/
 
 function adzonia_shortcode( $atts ) {
@@ -504,11 +445,110 @@ function adzonia_shortcode( $atts ) {
     $adID = $atts['id'];
 
     ob_start();
-
-        if ( function_exists( "show_adzonia" )  ) show_adzonia( $adID );
-
+    ?>
+        <div class="wp-adzonia-ad <?php echo $adID != '' ? 'adzonia-'. $adID : '' ?>">
+            <?php show_adzonia( $adID ); ?>
+        </div>
+    <?php
     return ob_get_clean();
 
 }
 
 add_shortcode( 'wp-adzonia', 'adzonia_shortcode' );
+
+
+
+
+
+/**
+*   AdZonia Widget
+*   adding a widget to add ad to the widget areas easily
+*   -----------------------------------------------------*/
+
+class adzonia_widget extends WP_Widget {
+
+    function __construct() {
+        parent::__construct(
+            'adzonia_widget', //base ID of widget
+            __('AdZonia', 'wp-adzonia'), //name of the widget
+            array( 'description' => __( 'AdZonia widget to call the advertisement easily.', 'wp-adzonia' ) )
+        );
+    }
+
+    // Widget Backend
+    public function form( $instance ) {
+
+        if ( isset( $instance[ 'title' ] ) ) {
+            $title = $instance[ 'title' ];
+        }
+        else {
+            $title = '';
+        }
+
+        if ( isset( $instance[ 'ad_id' ] ) ) {
+            $ad_id = $instance[ 'ad_id' ];
+        } else {
+            $ad_id = '';
+        }
+
+        // Widget admin form
+        $wpadz_args = array(
+            'post_type' => 'adzonia',
+            'posts_per_page' => -1,
+            'post_status' => 'publish'
+        );
+
+        $widget_ad_query = get_posts( $wpadz_args );
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id( 'ad_id' ); ?>"><?php _e( 'Advertisements:', 'wp-adzonia' ); ?></label>         
+            <select class="widefat" id="<?php echo $this->get_field_id( 'ad_id' ); ?>" name="<?php echo $this->get_field_name( 'ad_id' ); ?>">
+                <option value=""><?php _e( 'Choose one...', 'wp-adzonia' ); ?></option>
+                <?php
+                foreach( $widget_ad_query as $active_ad ) { ?>
+                    <option value="<?php echo $active_ad->ID; ?>" <?php selected( $ad_id, $active_ad->ID ); ?>>
+                        <?php
+                        echo $active_ad->ID . '&nbsp;&mdash;&nbsp;' . $active_ad->post_title;
+                    echo '</option>';
+                }
+                ?>
+            </select>
+        </p>
+    <?php
+    }
+
+    // Updating widget replacing old instances with new
+    public function update( $new_instance, $old_instance ) {
+        $instance = array();
+        $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+        $instance['ad_id'] = ( ! empty( $new_instance['ad_id'] ) ) ? $new_instance['ad_id'] : '';
+        return $instance;
+    }
+
+    //Creating Widget Front End
+    public function widget( $args, $instance ) {
+        $title = apply_filters( 'widget_title', $instance['title'] );
+        echo $args['before_widget'];
+
+        if ( ! empty( $title ) )
+            echo $args['before_title'] . $title . $args['after_title']; //before & after widget args are defined by themes
+        // This is where you run the code and display the output
+        if ( ! empty( $ad_id ) )
+            $instance['ad_id'];
+            show_adzonia( $instance['ad_id'] );
+
+        echo $args['after_widget'];
+    }
+
+}
+
+// Register and load the widget
+function adzonia_load_widget() {
+    register_widget( 'adzonia_widget' );
+}
+
+add_action( 'widgets_init', 'adzonia_load_widget' );
