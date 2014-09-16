@@ -34,7 +34,7 @@ if( !defined( 'ABSPATH' ) ) exit;
 /**
 *   MAKE PLUGIN TRANSLATION-READY
 *   -----------------------------------------------------*/
-load_plugin_textdomain( 'wp-adzonia', FALSE, 'wp-adzonia/languages' );
+load_plugin_textdomain( 'wp-adzonia', FALSE, 'wp-adzonia/assets/languages' );
 
 
 

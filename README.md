@@ -9,3 +9,19 @@ A simplest and easiest Ad management Plugin for WordPress sites, and most astoni
 ###Credits###
 Thanks to my plugin guru Ms. Tahmina Aktar for the appreciation and support from the very begining.
 Thanks also to Shimul Islam, Tareq Hasan, Sisir Kanti Adhikari. And thanks also to Franz Josef Kaiser, Stephen Harris, Tom J Nowell, Andrey Savchenko (Rarst), and Thomas Scholz (Toscho) for their remote support and assistance. I won't ever forget their love. Thanks a lot and jazakALLAH
+
+###Change Log###
+####0.1####
+* Custom Table
+* Media Uploader
+* Different ad types
+
+####1.0###
+* Discarded the custom table
+* Custom Post Type (CPT)
+* Custom Meta Fields
+* Two ad types only
+* Table Columns are added
+
+####1.1###
+* Discarded the custom table
