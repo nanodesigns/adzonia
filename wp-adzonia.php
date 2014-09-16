@@ -3,7 +3,7 @@
  * Plugin Name: WP AdZonia
  * Plugin URI: http://nanodesignsbd.com
  * Description: A simpler and easier Ad management Plugin for WordPress sites, and most astonishing - it's in WordPress way
- * Version: 1.2
+ * Version: 1.1
  * Author: Mayeenul Islam (@mayeenulislam)
  * Author URI: http://nishachor.com
  * License: GNU General Public License v2.0
