@@ -12,7 +12,7 @@ if( !defined( 'ABSPATH' ) && !defined( 'WP_UNINSTALL_PLUGIN' ) )
 
 
 // To delete options from options table
-//delete_option('post_type_rules_flased_adzonia');
+delete_option('adzonia_options');
 
 $adz_args = array(
 			'post_type' => 'adzonia',

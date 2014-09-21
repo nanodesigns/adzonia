@@ -24,7 +24,7 @@ jQuery(function($){
 
             //extend the wp.media object
             adzonia_uploader = wp.media.frames.file_frame = wp.media( {
-                title:"Choose Image",
+                title:"Choose Ad Image",
                 button:{
                     text: "Choose Image"
                 },

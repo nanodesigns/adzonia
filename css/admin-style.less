@@ -1,4 +1,4 @@
-@import "dev/lessmixins.less";
+@import "../dev/lessmixins.less";
 
 /*---------------------
 *   Common CSS
@@ -15,18 +15,6 @@
 .required,
 .ad-inactive{
     color: #dd3d36;
-}
-
-.ad-active{
-    color: darkgreen;
-}
-
-.hide-me{
-    display: none;
-}
-
-.show-block{
-    display: block !important;
 }
 
 /*---------------------
@@ -75,7 +63,17 @@
   }
 
   textarea#wpadz_ad_code{
-    font-family: "Courier New", monospace;
+    font-family: Consolas, Monaco, monospace;
+  }
+}
+
+#adzonia-info{
+  background: #f3f3f3;
+}
+
+body.post-type-adzonia.post-new-php{
+  #postexcerpt.postbox{
+    background: #f3f3f3;
   }
 }
 

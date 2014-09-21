@@ -1,14 +1,14 @@
-Copy/Cut the following files to the theme's root folder, and start developing yourself:
-
-- style.less
-- print-style.less
-
-NO NEED TO COPY the following file:
+NO NEED TO COPY the following files:
 
 - lessmixins.less
 
 
 
+
+- adzonia-scripts.js (after changes just minify it and replace the js/adzonia-scripts.min.js)
+
 nanodesigns
+
 Dhaka
+
 nanodesignsbd.com
