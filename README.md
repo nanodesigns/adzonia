@@ -1,7 +1,7 @@
 <img src="assets/banner-1544x500.png" alt="WP AdZonia - WordPress Ad Management Plugin"/>
 ##WP AdZonia##
 WordPress Advertisement Manager Plugin<br>
-Version 1.2<br>
+Version 1.2.1<br>
 <strong>Developer:</strong> Mayeenul Islam (@mayeenulislam)
 
 A simplest and easiest Advertisement Manager Plugin for WordPress sites, and most astonishingly - it's in <strong>WordPress way</strong>. You can call the advertisements into your template using a simple function: <code><?php if ( function_exists( "show_adzonia" )  ) show_adzonia( # ); ?></code>, or you can call the ad in anywhere using the shortcode: <code>[wp-adzonia id="#"]</code>, or you can use the AdZonia widget into any widget-enabled area of your site.
@@ -14,7 +14,7 @@ A simplest and easiest Advertisement Manager Plugin for WordPress sites, and mos
 
 ###Credits###
 Thanks to my plugin guru Ms. Tahmina Aktar for the appreciation and support from the very beginning.
-Thanks also to Shimul Islam, Tareq Hasan, Sisir Kanti Adhikari. And thanks also to Franz Josef Kaiser, Stephen Harris, Tom J Nowell, Andrey Savchenko (Rarst), and Thomas Scholz (Toscho) for their remote support and assistance. I won't ever forget their love and teaching. Thanks a lot and jazakALLAH
+Thanks also to Shimul Islam, Tareq Hasan, Sisir Kanti Adhikari. And thanks also to Franz Josef Kaiser, Stephen Harris, Tom J Nowell, Andrey Savchenko (Rarst), Thomas Scholz (Toscho), and Giuseppe (G.M) for their remote support and assistance. I won't ever forget their love and teachings. Thanks a lot and jazakALLAH
 
 ###Change Log###
 ####1.2####
@@ -23,7 +23,7 @@ Thanks also to Shimul Islam, Tareq Hasan, Sisir Kanti Adhikari. And thanks also 
 * CSS improvements
 * Settings Page
 * Basic Instructions Manual
-* Fallback jQuery installer
+* Fall-back jQuery installer
 * Detailed instructions in Wiki
 * Minor visual fixes
 * Reorganization of files

@@ -3,7 +3,7 @@
  * Plugin Name: WP AdZonia
  * Plugin URI: http://nanodesignsbd.com
  * Description: A simpler and easier advertisement manager plugin for WordPress sites, and most astonishingly - it's in WordPress way. Read the instructions (AdZonia &raquo; Settings-Instructions)</a>.
- * Version: 1.2
+ * Version: 1.2.1
  * Author: Mayeenul Islam (@mayeenulislam)
  * Author URI: http://nanodesignsbd.com/mayeenulislam
  * License: GNU General Public License v2.0
@@ -196,7 +196,7 @@ function adzonia_admin_scripts() {
 
     if( $screen->post_type === 'adzonia' && $screen->base == 'post' ) {
 
-        if( $get_options['adzonia_jquery_check'] === true ) {
+        if( isset($get_options['adzonia_jquery_check']) && $get_options['adzonia_jquery_check'] === true ) {
             //fallback, if the default jQuery isn't loading properly
             wp_enqueue_script( 'jquery-lib-scripts', plugins_url('/js/jquery-1.11.1.min.js', __FILE__) );
         } else {
@@ -322,6 +322,22 @@ $adzonia_meta_fields = array(
         'desc'  => __('Enter the URL, to where the ad will direct the viewer after clicking', 'wp-adzonia'),
         'id'    => $prefix.'target_url',
         'type'  => 'target_url'
+    ),
+    array(
+        'label'=> __('Location', 'wp-adzonia'),
+        'desc'  => __('Choose a location to show the ad in predefined areas', 'wp-adzonia'),
+        'id'    => $prefix.'location',
+        'type'  => 'location',
+        'options' => array (
+            'before_content' => array (
+                'label' => 'Before all the Post/Page Content',
+                'value' => 'before_content'
+            ),
+            'after_content' => array (
+                'label' => 'After all the Post/Page Content',
+                'value' => 'after_content'
+            )
+        )
     )
 );
 
@@ -348,7 +364,7 @@ echo '<input type="hidden" name="adzonia_nonce" value="'.wp_create_nonce(basenam
                         case 'ad_image':
                             echo '<tr>';
                                 echo '<td><div class="dashicons dashicons-format-image"></div></td>';
-                                echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'</label></td>';
+                                echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'<span class="orange">*</span></label></td>';
                                 echo '<td class="adz-info-td">';
                                     echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" />';
                                     echo '<input type="button" name="nano_ad_image" class="button" id="nano-ad-image" value="Upload"/>';
@@ -360,9 +376,9 @@ echo '<input type="hidden" name="adzonia_nonce" value="'.wp_create_nonce(basenam
                         case 'ad_code':
                             echo '<tr>';
                                 echo '<td><div class="dashicons dashicons-editor-code"></div></td>';
-                                echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'</label></td>';
+                                echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'<span class="orange">*</span></label></td>';
                                 echo '<td class="adz-info-td">';
-                                    echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="50" rows="5">'.$meta.'</textarea>';
+                                    echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="50" rows="5">'.stripslashes( $meta ).'</textarea>';
                                 echo '</td>';
                                 echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span></td>';
                             echo '</tr>';
@@ -371,9 +387,9 @@ echo '<input type="hidden" name="adzonia_nonce" value="'.wp_create_nonce(basenam
                         case 'end_date':
                             echo '<tr>';
                                 echo '<td><div class="dashicons dashicons-calendar"></div></td>';
-                                echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'</label></td>';
+                                echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'<span class="required">*</span></label></td>';
                                 echo '<td class="adz-info-td">';
-                                    echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" autocomplete="off" placeholder="YYYY/MM/DD 24:00" />';
+                                    echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" autocomplete="off" placeholder="YYYY/MM/DD 24:00" required />';
                                 echo '</td>';
                                 echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span></td>';
                             echo '</tr>';
@@ -385,6 +401,24 @@ echo '<input type="hidden" name="adzonia_nonce" value="'.wp_create_nonce(basenam
                                 echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'</label></td>';
                                 echo '<td class="adz-info-td">';
                                     echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" placeholder="http://example.com" />';
+                                echo '</td>';
+                                echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span></td>';
+                            echo '</tr>';
+                        break;
+
+                        case 'location':
+                            echo '<tr>';
+                                echo '<td><div class="dashicons dashicons-align-right"></div></td>';
+                                echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'</label></td>';
+                                echo '<td class="adz-info-td">';
+                                    echo '<select name="'.$field['id'].'" id="'.$field['id'].'">';
+                                        echo '<option>Select a predefined place (optional)</option>';
+                                        foreach ($field['options'] as $option) {
+                                            echo '<option', $meta == $option['value'] ? ' selected="selected"' : '', ' 
+
+value="'.$option['value'].'">'.$option['label'].'</option>';
+                                        }
+                                    echo '</select>';
                                 echo '</td>';
                                 echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span></td>';
                             echo '</tr>';
@@ -414,7 +448,7 @@ function save_adzonia_meta( $post_id ) {
     if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
         return $post_id;
     // check permissions
-    if ( 'adzonia' == $_POST['post_type'] ) {
+    if ( 'adzonia' === $_POST['post_type'] ) {
         if ( !current_user_can('edit_page', $post_id) )
             return $post_id;
         } elseif ( !current_user_can('edit_post', $post_id) ) {
@@ -426,7 +460,15 @@ function save_adzonia_meta( $post_id ) {
         $old = get_post_meta($post_id, $field['id'], true);
         $new = $_POST[$field['id']];
         if ( $new && $new != $old ) {
-            update_post_meta($post_id, $field['id'], $new);
+            //if it's the code field, sanitize the data
+            if( $field['id'] === 'wpadz_ad_code' ) {
+                $filtered_code = addslashes( $_POST[$field['id']] );
+                update_post_meta($post_id, $field['id'], $filtered_code);
+            }
+            //otherwise simply insert 'em
+            else {
+                update_post_meta($post_id, $field['id'], $new);
+            }
         } elseif ( '' == $new && $old ) {
             delete_post_meta($post_id, $field['id'], $old);
         }
@@ -503,12 +545,14 @@ add_action( 'manage_adzonia_posts_custom_column' , 'custom_adzonia_column', 10, 
 
 
 
-
 /**
-*   SHOW AdZonia
-*   @param (int) $ad_id. Would be the post ID.
-*   -----------------------------------------------------*/
-function show_adzonia( $ad_id ) {
+ * Get AdZonia
+ * @param  (int) $ad_id. Would be the post ID.
+ * @return (string) $the_ad. The complete advertisement.
+ */
+function get_adzonia( $ad_id ) {
+    $the_ad = '';
+
     $ad = get_post( $ad_id );
 
     $thisDate = date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
@@ -526,21 +570,37 @@ function show_adzonia( $ad_id ) {
 
     if( $datetoday <= $endDateString ) {
 
-        if( !empty( $get_target_url ) ) echo '<a href="'. $target_url .'">';
+        $the_ad .= '<div id="adzonia-ad-'. $postID .'" class="adzonia-holder">';
 
-            // Image ad
-            if ( $image_ad_url != '' ) {
-                echo '<img src="'. $image_ad_url .'" alt="'. __('AdZonia ad ', 'wp-adzonia'), the_title_attribute('echo=0') .'" />';
-            }
-            // Code ad
-            else if ( $ad_code != '' ) {
-                echo $ad_code;
-            }
+            if( !empty( $get_target_url ) ) $the_ad .= '<a href="'. esc_url( $target_url ) .'">';
 
-        if( !empty( $get_target_url ) ) echo '</a>';
+                // Image ad
+                if ( $image_ad_url != '' ) {
+                    $the_ad .= '<img src="'. esc_url( $image_ad_url ) .'" alt="Advertisement '.the_title_attribute(array('echo'=>0,'post'=>$postID)) .'" />';
+                }
+                // Code ad
+                else if ( $ad_code != '' ) {
+                    $the_ad .= stripslashes( $ad_code );
+                }
+
+            if( !empty( $get_target_url ) ) $the_ad .= '</a>';
+
+        $the_ad .= '</div> <!-- #adzonia-ad-'. $postID .' .adzonia-holder -->';
 
     }
+
+    return $the_ad;
     
+}
+
+
+
+/**
+*   SHOW AdZonia
+*   @param (int) $ad_id. Would be the post ID.
+*   -----------------------------------------------------*/
+function show_adzonia( $ad_id ) {
+    echo get_adzonia( $ad_id );
 }
 
 
@@ -667,3 +727,77 @@ function adzonia_load_widget() {
 }
 
 add_action( 'widgets_init', 'adzonia_load_widget' );
+
+
+
+/**
+ * Assistance from G.M. or Giuseppe (@gmazzap) - Italy
+ * @param  WP_Query $query
+ *
+ * Show the advertisement into the starting of the posts or
+ * into the ending of the posts
+ */
+function adzonia_ad_position_executioner( \WP_Query $query ) {
+  if ( ! $query->is_main_query() ) {
+  return;
+  }
+  $key =  'wpadz_location';
+  $ads_args = array(
+    'post_type' => 'adzonia',
+    'meta_query' => array(
+      array(
+        'key' => $key,
+        'value' => array( 'after_content', 'before_content' ),
+        'compare' => 'IN'
+      )
+    ),
+    'nopaging' => TRUE,
+    'post_status' => 'publish'
+  );
+  $ads = get_posts( $ads_args );
+  if ( empty( $ads ) ) {
+    return;
+  }
+  $before = '';
+  $after = '';
+  foreach( $ads as $ad ) {
+    $ad_content = get_adzonia( $ad->ID );
+    if ( get_post_meta( $ad->ID, $key, TRUE ) === 'before_content' ) {
+      $before .= $ad_content;
+    } else {
+      $after .= $ad_content;
+    }
+  }
+
+  $query->adzonia_before = $before;
+  $query->adzonia_after = $after;
+
+  add_filter( 'the_content', 'adzonia_ad_position_func', PHP_INT_MAX  );
+  add_filter( 'the_excerpt', 'adzonia_ad_position_func', PHP_INT_MAX  );
+  
+  // at the very end remove the filter
+  add_action( 'loop_end', 'adzonia_remove_hooks' );
+}
+
+add_action( 'loop_start', 'adzonia_ad_position_executioner' );
+
+function adzonia_ad_position_func( $content ) {
+  global $wp_query;
+  if ( isset($wp_query->adzonia_before) && ! empty($wp_query->adzonia_before) ) {
+    $content = $wp_query->adzonia_before . $content;
+  }
+  if ( isset($wp_query->adzonia_after) && ! empty($wp_query->adzonia_after) ) {
+    $content = $content . $wp_query->adzonia_after;
+  }
+  // reset $wp_query vars
+  //$wp_query->adzonia_before = $wp_query->adzonia_after = '';
+
+  return $content;
+}
+
+function adzonia_remove_hooks() {
+  remove_action( 'loop_start', 'adzonia_ad_position_executioner' );
+  remove_filter( 'the_content', 'adzonia_ad_position_func', PHP_INT_MAX  );
+  remove_filter( 'the_excerpt', 'adzonia_ad_position_func', PHP_INT_MAX  );
+  remove_action( current_filter(), __FUNCTION__  );
+}
