@@ -1,9 +1,10 @@
 #Direction for the Developers
-NO NEED TO COPY the following files:
+**NO NEED TO COPY** the following files:
 
-- lessmixins.less
-- adzonia-scripts.js (after changes just minify it and replace the js/adzonia-scripts.min.js)
+- <code>lessmixins.less</code>
+- <code>adzonia-scripts.js</code> (after changes just minify it and replace the <code>js/adzonia-scripts.min.js</code>)
 
+---
 **nano**designs<br>
 Dhaka<br>
-[nanodesignsbd.com](http://nanodesignsbd.com)
+[**nano**designsbd.com](http://nanodesignsbd.com)

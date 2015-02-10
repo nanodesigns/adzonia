@@ -31,6 +31,22 @@
 .row:after{
     clear: both;
 }
+.adzonia-left-column{
+  float: left;
+  width: 78%;
+}
+.adzonia-right-column{
+  float: right;
+  width: 20%;
+}
+@media (max-width:728px){
+  .adzonia-left-column,
+  .adzonia-right-column{
+    float: none;
+    clear: both;
+    width: 100%;
+  }
+}
 .adz-meta-table{
   td{
     vertical-align: top;

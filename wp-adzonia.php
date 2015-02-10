@@ -64,12 +64,20 @@ function adzonia_settings_page_callback() {
     <div class="wrap">
         <h2><?php _e('Settings & Instructions', 'wp-adzonia' ); ?></h2>
         <?php settings_errors(); ?>
-        <form action="options.php" method="post">
-            <?php settings_fields('adzonia_options'); ?>
-            <?php do_settings_sections('adzonia_settings'); ?>
-            <?php submit_button(); ?>
-        </form>
-        
+        <div class="adzonia-left-column">
+            <form action="options.php" method="post">
+                <?php settings_fields('adzonia_options'); ?>
+                <?php do_settings_sections('adzonia_settings'); ?>
+                <?php submit_button(); ?>
+            </form>            
+        </div>
+        <!-- /.adzonia-left-column -->
+        <div class="adzonia-right-column">
+            
+        </div>
+        <!-- /.adzonia-right-column -->
+        <div class="clearfix"></div>
+        <hr>
         <?php
         //get the manual from external file
         require_once( 'manual/inner-manual.php' );
@@ -121,7 +129,7 @@ function adzonia_gen_section_callback() {
 
 function adzonia_setting_css_field() {
     $options = get_option('adzonia_options');
-    echo "<input name='adzonia_options[adzonia_css_check]' id='adzonia_css' type='checkbox' value='1' ".checked( 1, $options['adzonia_css_check'], false ) . " /> <label for='adzonia_css'>". __( 'check the box to load AdZonia CSS into the site\'s front-end', 'wp-adzonia' ) ."</label>";
+    echo "<input name='adzonia_options[adzonia_css_check]' id='adzonia_css' type='checkbox' value='1' ".checked( 1, $options['adzonia_css_check'], false ) . " /> <label for='adzonia_css'>". __( 'check the box to show Ads as inline element rather block element. It will load AdZonia CSS into the site\'s front-end', 'wp-adzonia' ) ."</label>";
 }
 
 // Troubleshoot Section

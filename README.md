@@ -2,10 +2,12 @@
 ##WP AdZonia##
 WordPress Advertisement Manager Plugin<br>
 Version 1.2.1<br>
-<strong>Developer:</strong> Mayeenul Islam (@mayeenulislam)
+<strong>Developer:</strong> Mayeenul Islam (@mayeenulislam)<br>
 [**nano**designs](http://nanodesignsbd.com)
 
 A simplest and easiest Advertisement Manager Plugin for WordPress sites, and most astonishingly - it's in <strong>WordPress' way</strong>. You can call the advertisements into your template using a simple function: <code><?php if ( function_exists( "show_adzonia" )  ) show_adzonia( # ); ?></code>, or you can call the ad in anywhere using the shortcode: <code>[wp-adzonia id="#"]</code>, or you can use the AdZonia widget into any widget-enabled area of your site.
+
+A new feature is added in v1.2.1 as a *beta feature* that enables any ad to show in predefined areas directly from the admin panel, without any coding. *Isn't that cool!*
 
 ###Screenshots###
 <img src="assets/screenshot-1.png" alt="WP AdZonia - List of advertisements"/>
@@ -28,6 +30,7 @@ Thanks also to Shimul Islam, Tareq Hasan, Sisir Kanti Adhikari. And thanks also 
 * Admin panel tabs for Image ad and Code ad
 * No-js elements are considered and implemented
 * Additional functions for more user-friendliness
+* Show ad in predefined places <em style="color: red">*Beta Feature</em>
 
 ####1.2####
 * Completely Translation-ready
