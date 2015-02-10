@@ -461,7 +461,7 @@ echo '<input type="hidden" name="adzonia_nonce" value="'.wp_create_nonce(basenam
                                         }
                                     echo '</select>';
                                 echo '</td>';
-                                echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span></td>';
+                                echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span> <em style="color: red">*Beta Feature</em></td>';
                             echo '</tr>';
                         break;
 
@@ -583,38 +583,50 @@ function get_adzonia( $ad_id ) {
 
     $ad = get_post( $ad_id );
 
-    $thisDate = date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
-    $datetoday = strtotime( $thisDate );
+    if( $ad !== '' && $ad->post_type === 'adzonia' ) {
 
-    $postID = $ad->ID;
+        $this_date = date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
+        $datetoday = strtotime( $this_date );
 
-    $image_ad_url = get_post_meta( $postID, 'wpadz_ad_image', true );
-    $ad_code = get_post_meta( $postID, 'wpadz_ad_code', true );
-    $end_date = get_post_meta( $postID, 'wpadz_end_date', true );
-    $get_target_url = get_post_meta( $postID, 'wpadz_target_url', true );
-    $target_url = $get_target_url != '' ? $get_target_url : '#';
+        $postID = $ad->ID;
 
-    $endDateString = ( $end_date != '' ? strtotime( $end_date ) : '' );
+        $image_ad_url   = get_post_meta( $postID, 'wpadz_ad_image', true );
+        $ad_code        = get_post_meta( $postID, 'wpadz_ad_code', true );
+        $end_date       = get_post_meta( $postID, 'wpadz_end_date', true );
+        $get_target_url = get_post_meta( $postID, 'wpadz_target_url', true );
+        $target_url     = $get_target_url != '' ? $get_target_url : '#';
 
-    if( $datetoday <= $endDateString ) {
+        $endDateString = ( $end_date != '' ? strtotime( $end_date ) : '' );
 
-        $the_ad .= '<div id="adzonia-ad-'. $postID .'" class="adzonia-holder">';
+        if( $datetoday <= $endDateString ) {
 
-            if( !empty( $get_target_url ) ) $the_ad .= '<a href="'. esc_url( $target_url ) .'">';
+            $the_ad .= '<div id="adzonia-ad-'. $postID .'" class="adzonia-holder">';
 
-                // Image ad
-                if ( $image_ad_url != '' ) {
-                    $the_ad .= '<img src="'. esc_url( $image_ad_url ) .'" alt="Advertisement '.the_title_attribute(array('echo'=>0,'post'=>$postID)) .'" />';
-                }
-                // Code ad
-                else if ( $ad_code != '' ) {
-                    $the_ad .= stripslashes( $ad_code );
-                }
+                if( !empty( $get_target_url ) ) $the_ad .= '<a href="'. esc_url( $target_url ) .'">';
 
-            if( !empty( $get_target_url ) ) $the_ad .= '</a>';
+                    // Image ad
+                    if ( $image_ad_url !== '' ) {
+                        $the_ad .= '<img src="'. esc_url( $image_ad_url ) .'" alt="Advertisement '.the_title_attribute(array('echo'=>0,'post'=>$postID)) .'" />';
+                    }
+                    // Code ad
+                    else if ( $ad_code !== '' ) {
+                        $the_ad .= stripslashes( $ad_code );
+                    }
 
-        $the_ad .= '</div> <!-- #adzonia-ad-'. $postID .' .adzonia-holder -->';
+                if( !empty( $get_target_url ) ) $the_ad .= '</a>';
 
+            $the_ad .= '</div> <!-- /#adzonia-ad-'. $postID .' .adzonia-holder -->';
+
+        } else {
+            $the_ad .= '<div id="adzonia-ad-'. $postID .'" class="adzonia-holder">';
+                $the_ad .= '<span style="color:red;">'. __( '<strong>WARNING:</strong> Assigned ad is expired! <em>Extend</em> the term or <em>Delete</em> it.', 'wp-adzonia' ) .'</span>';
+            $the_ad .= '</div> <!-- /#adzonia-ad-'. $postID .' .adzonia-holder -->';
+        }
+
+    } else {
+        $the_ad .= '<div class="adzonia-holder">';
+            $the_ad .= '<span style="color:red;">'. __( '<strong>Sorry!</strong> No such Ad exists!', 'wp-adzonia' ) .'</span>';
+        $the_ad .= '</div> <!-- /.adzonia-holder -->';
     }
     return $the_ad;    
 }
@@ -744,7 +756,6 @@ function adzonia_load_widget() {
     register_widget( 'adzonia_widget' );
 }
 add_action( 'widgets_init', 'adzonia_load_widget' );
-
 
 
 /**
