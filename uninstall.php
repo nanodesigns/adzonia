@@ -1,4 +1,9 @@
 <?php
+/**
+ * Uninstallation
+ * @package  wp-adzonia
+ * ----------------------------------------------------
+ */
 //if uninstall not called from WordPress exit
 if( !defined( 'ABSPATH' ) && !defined( 'WP_UNINSTALL_PLUGIN' ) )
     exit();
@@ -6,6 +11,7 @@ if( !defined( 'ABSPATH' ) && !defined( 'WP_UNINSTALL_PLUGIN' ) )
 
 /**
  * DELETE ALL THE THINGS, THE PLUGIN CREATED
+ * ----------------------------------------------------
  */
 
 // To delete options from options table
@@ -30,7 +36,6 @@ foreach ( $get_adzonia_posts as $post ) {
 	delete_post_meta( $postid, 'wpadz_end_date' );
 	delete_post_meta( $postid, 'wpadz_target_url' );
 	delete_post_meta( $postid, 'wpadz_location' );
-
 }
 
 wp_reset_postdata();

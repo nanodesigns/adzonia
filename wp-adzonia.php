@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:     WP AdZonia
- * Plugin URI:      http://nanodesignsbd.com
+ * Plugin URI:      http://nanodesignsbd.com/
  * Description:     A simpler and easier advertisement manager plugin for WordPress sites, and most astonishingly - it's in WordPress way. Read the instructions (AdZonia &raquo; Settings-Instructions).
- * Version:         1.2.1
+ * Version:         1.2.2
  * Author:          Mayeenul Islam (@mayeenulislam)
- * Author URI:      http://nanodesignsbd.com/mayeenulislam
+ * Author URI:      http://nanodesignsbd.com/mayeenulislam/
  * License:         GNU General Public License v2.0
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -56,6 +56,7 @@ add_action( 'init', 'adzonia_load_textdomain', 1 );
  * @link http://ottopress.com/2009/wordpress-settings-api-tutorial/
  *
  * @since 1.2.0
+ * ----------------------------------------------------
  */
 function adzonia_settings_page() {
     add_submenu_page(
@@ -175,6 +176,7 @@ $get_options = get_option('adzonia_options');
 
 /**
  * AdZonia Admin Styles.
+ * ----------------------------------------------------
  */
 function adzonia_css() {
     wp_enqueue_style( 'adzonia-admin-style', plugins_url('css/admin-style.css', __FILE__) );
@@ -185,6 +187,7 @@ add_action( 'admin_enqueue_scripts', 'adzonia_css' );
 /**
  * AdZonia FrontEnd stylesheet.
  * @see  option is checked or not.
+ * ----------------------------------------------------
  */
 if( $get_options['adzonia_css_check'] === true ) {
     function adzonia_output_css() {
@@ -198,6 +201,7 @@ if( $get_options['adzonia_css_check'] === true ) {
 /**
  * Enqueue necessary admin scripts.
  * Load scripts only where necessary using get_currecnt_screen().
+ * ----------------------------------------------------
  */
 function adzonia_admin_scripts() {
     $screen = get_current_screen();
@@ -221,8 +225,8 @@ function adzonia_admin_scripts() {
             global $post;
             $image_ad   = '';
             $code_ad    = '';
-            $image_ad   = get_post_meta( $post->ID, 'wpadz_ad_image', TRUE );
-            $code_ad    = get_post_meta( $post->ID, 'wpadz_ad_code', TRUE );
+            $image_ad   = get_post_meta( $post->ID, 'wpadz_ad_image', true );
+            $code_ad    = get_post_meta( $post->ID, 'wpadz_ad_code', true );
 
             wp_localize_script( 'adzonia',
                 'adzonia',     //the var key in JS
@@ -245,6 +249,7 @@ add_action('admin_enqueue_scripts', 'adzonia_admin_scripts');
  * in WordPress' way.
  *
  * @since  1.0.0
+ * ----------------------------------------------------
  */
 function register_cpt_adzonia() {
     $labels = array(
@@ -267,13 +272,13 @@ function register_cpt_adzonia() {
         'hierarchical'          => false,
         'description'           => 'Get the advertisement information into post format',
         'supports'              => array( 'title', 'excerpt' ),
-        'public'                => true,
+        'public'                => false,
         'show_ui'               => true,
         'show_in_menu'          => true,
         'menu_position'         => 25,
         'menu_icon'             => plugins_url('/assets/adzonia-icon.png', __FILE__),
         'show_in_nav_menus'     => false,
-        'publicly_queryable'    => true,
+        'publicly_queryable'    => false,
         'exclude_from_search'   => true,
         'has_archive'           => false,
         'query_var'             => true,
@@ -293,6 +298,7 @@ add_action( 'init', 'register_cpt_adzonia' );
  *
  * @since  1.0.0 initiated
  * @since  1.2.0 modified
+ * ----------------------------------------------------
  */
 function adzonia_specifications_meta_box() {
     add_meta_box(
@@ -365,8 +371,8 @@ echo '<input type="hidden" name="adzonia_nonce" value="'.wp_create_nonce(basenam
         <?php
         $image_ad = '';
         $code_ad = '';
-        $image_ad = get_post_meta( $post->ID, 'wpadz_ad_image', TRUE );
-        $code_ad = get_post_meta( $post->ID, 'wpadz_ad_code', TRUE );
+        $image_ad = get_post_meta( $post->ID, 'wpadz_ad_image', true );
+        $code_ad = get_post_meta( $post->ID, 'wpadz_ad_code', true );
         ?>
 
         <div id="adzonia-tabs">
@@ -538,6 +544,7 @@ add_action( 'new_to_publish',   'save_adzonia_meta' );
  * @return array          Modified columns.
  *
  * @since  1.2.0
+ * ----------------------------------------------------
  */
 function adzonia_set_custom_columns( $columns ) {
 
@@ -565,6 +572,7 @@ add_filter( 'manage_edit-adzonia_columns', 'adzonia_set_custom_columns', 50 );
  * 
  * @param  array $column  specific post type column.
  * @param  integer $post_id adzonia post id.
+ * ----------------------------------------------------
  */
 function adzonia_custom_column( $column, $post_id ) {
     switch ( $column ) {
@@ -600,6 +608,7 @@ add_action( 'manage_adzonia_posts_custom_column' , 'adzonia_custom_column', 10, 
  * 
  * @param  integer $ad_id Would be the post ID.
  * @return string $the_ad The complete advertisement.
+ * ----------------------------------------------------
  */
 function get_adzonia( $ad_id ) {
     $the_ad = '';
@@ -661,6 +670,7 @@ function get_adzonia( $ad_id ) {
  * @see  get_adzonia()
  * 
  * @param  integer $ad_id pass the ID of the AdZonia post.
+ * ----------------------------------------------------
  */
 function show_adzonia( $ad_id ) {
     echo get_adzonia( $ad_id );
@@ -673,6 +683,7 @@ function show_adzonia( $ad_id ) {
  * @see  show_adzonia()
  * @param  array $atts attributes that passed through shortcode.
  * @return string       formatted ad.
+ * ----------------------------------------------------
  */
 function adzonia_shortcode( $atts ) {    
     $atts = shortcode_atts( array(
@@ -698,6 +709,7 @@ add_shortcode( 'wp-adzonia', 'adzonia_shortcode' );
  * Adding a widget to add ad to the widget-enabled areas easily.
  *
  * @since  1.2.0
+ * ----------------------------------------------------
  */
 class adzonia_widget extends WP_Widget {
     function __construct() {
@@ -789,6 +801,7 @@ add_action( 'widgets_init', 'adzonia_load_widget' );
  * Assistance from Giuseppe (aka Gmazzap, G.M.) (@gmazzap) - Italy.
  * @param  \WP_Query $query
  * @since  1.2.1
+ * ----------------------------------------------------
  *
  * Show the advertisement into the starting of the posts or
  * into the ending of the posts.
@@ -807,7 +820,7 @@ function adzonia_ad_position_executioner( \WP_Query $query ) {
                 'compare' => 'IN'
               )
             ),
-                'nopaging' => TRUE,
+                'nopaging' => true,
                 'post_status' => 'publish'
             );
     $ads = get_posts( $ads_args );
@@ -818,7 +831,7 @@ function adzonia_ad_position_executioner( \WP_Query $query ) {
     $after = '';
     foreach( $ads as $ad ) {
         $ad_content = get_adzonia( $ad->ID );
-        if ( get_post_meta( $ad->ID, $key, TRUE ) === 'before_content' ) {
+        if ( get_post_meta( $ad->ID, $key, true ) === 'before_content' ) {
             $before .= $ad_content;
         } else {
             $after .= $ad_content;
@@ -865,5 +878,6 @@ function adzonia_remove_hooks() {
  * are taken away from this page.
  * 
  * @since  1.2.1
+ * ----------------------------------------------------
  */
 require_once( 'inc/functions-additionals.php' );
