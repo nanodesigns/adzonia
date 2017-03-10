@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AdZonia 2.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/nanodesigns/adzonia/issues\n"
-"POT-Creation-Date: 2017-03-10 19:56:39+00:00\n"
+"POT-Creation-Date: 2017-03-10 20:18:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -70,51 +70,51 @@ msgstr ""
 msgid "Load jQuery from plugin"
 msgstr ""
 
-#: adzonia.php:306
+#: adzonia.php:304
 msgid "AdZonia Specification"
 msgstr ""
 
-#: adzonia.php:319
+#: adzonia.php:318
 msgid "Ad Image"
 msgstr ""
 
-#: adzonia.php:320
+#: adzonia.php:319
 msgid "Add an image if you wish to show an image ad"
 msgstr ""
 
-#: adzonia.php:325
+#: adzonia.php:324
 msgid "Ad Code"
 msgstr ""
 
-#: adzonia.php:326
+#: adzonia.php:325
 msgid "If your ad is a Code-ad, then write down the code here"
 msgstr ""
 
-#: adzonia.php:331
+#: adzonia.php:330
 msgid "End Date"
 msgstr ""
 
-#: adzonia.php:332
+#: adzonia.php:331
 msgid "Choose a date until when the ad will be visible"
 msgstr ""
 
-#: adzonia.php:337
+#: adzonia.php:336
 msgid "Target URL"
 msgstr ""
 
-#: adzonia.php:338
+#: adzonia.php:337
 msgid "Enter the URL, to where the ad will direct the viewer after clicking"
 msgstr ""
 
-#: adzonia.php:343
+#: adzonia.php:342
 msgid "Location"
 msgstr ""
 
-#: adzonia.php:344
+#: adzonia.php:343
 msgid "Choose a location to show the ad in predefined areas"
 msgstr ""
 
-#: adzonia.php:369
+#: adzonia.php:368
 msgid ""
 "Either create an <strong>Image ad</strong> (<span class=\"dashicons "
 "dashicons-format-image p-icon\"></span>), or a <strong>Code ad</strong> "
@@ -138,13 +138,13 @@ msgstr ""
 msgid "Shortcode"
 msgstr ""
 
-#: adzonia.php:654
+#: adzonia.php:656
 msgid ""
 "<strong>WARNING:</strong> Assigned ad is expired! <em>Extend</em> the term "
 "or <em>Delete</em> it."
 msgstr ""
 
-#: adzonia.php:660
+#: adzonia.php:662
 msgid "<strong>Sorry!</strong> No such Ad exists!"
 msgstr ""
 
@@ -152,19 +152,19 @@ msgstr ""
 msgid "AdZonia"
 msgstr ""
 
-#: adzonia.php:719
+#: adzonia.php:722
 msgid "AdZonia widget to call the advertisement easily."
 msgstr ""
 
-#: adzonia.php:749
+#: adzonia.php:752
 msgid "Title:"
 msgstr ""
 
-#: adzonia.php:753
+#: adzonia.php:756
 msgid "Advertisements:"
 msgstr ""
 
-#: adzonia.php:755
+#: adzonia.php:758
 msgid "Choose one..."
 msgstr ""
 
@@ -236,47 +236,47 @@ msgstr ""
 msgid "http://nanodesignsbd.com/mayeenulislam/"
 msgstr ""
 
-#: adzonia.php:256 adzonia.php:257 adzonia.php:267
+#: adzonia.php:254 adzonia.php:255 adzonia.php:265
 msgctxt "AdZonia"
 msgid "AdZonia"
 msgstr ""
 
-#: adzonia.php:258 adzonia.php:261
+#: adzonia.php:256 adzonia.php:259
 msgctxt "AdZonia"
 msgid "New AdZonia"
 msgstr ""
 
-#: adzonia.php:259
+#: adzonia.php:257
 msgctxt "AdZonia"
 msgid "Add New AdZonia"
 msgstr ""
 
-#: adzonia.php:260
+#: adzonia.php:258
 msgctxt "AdZonia"
 msgid "Edit AdZonia"
 msgstr ""
 
-#: adzonia.php:262
+#: adzonia.php:260
 msgctxt "AdZonia"
 msgid "View AdZonia"
 msgstr ""
 
-#: adzonia.php:263
+#: adzonia.php:261
 msgctxt "AdZonia"
 msgid "Search AdZonia"
 msgstr ""
 
-#: adzonia.php:264
+#: adzonia.php:262
 msgctxt "AdZonia"
 msgid "No AdZonia is created yet. Try making one first"
 msgstr ""
 
-#: adzonia.php:265
+#: adzonia.php:263
 msgctxt "AdZonia"
 msgid "No AdZonia found in Trash"
 msgstr ""
 
-#: adzonia.php:266
+#: adzonia.php:264
 msgctxt "AdZonia"
 msgid "Parent AdZonia:"
 msgstr ""

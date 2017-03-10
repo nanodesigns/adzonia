@@ -175,16 +175,6 @@ $get_options = get_option('adzonia_options');
 
 
 /**
- * AdZonia Admin Styles.
- * ----------------------------------------------------
- */
-function adzonia_css() {
-    wp_enqueue_style( 'adzonia-admin', plugins_url('assets/css/adzonia-admin.css', __FILE__) );
-    //wp_enqueue_style( 'datepicker-style', plugins_url('assets/css/jquery.datetimepicker.css', __FILE__) );
-}
-add_action( 'admin_enqueue_scripts', 'adzonia_css' );
-
-/**
  * AdZonia FrontEnd stylesheet.
  * @see  option is checked or not.
  * ----------------------------------------------------
@@ -204,10 +194,15 @@ if( $get_options['adzonia_css_check'] === true ) {
  * ----------------------------------------------------
  */
 function adzonia_admin_scripts() {
+
     $screen = get_current_screen();
     if( 'adzonia' === $screen->post_type && 'post' === $screen->base ) {
         
-        //wp_enqueue_script( 'datetimepicker-js', plugins_url('/assets/js/jquery.datetimepicker.min.js', __FILE__), array('jquery'), PLUGINVERSION, true );
+        /**
+         * jQuery DateTimePicker
+         */
+        wp_register_style( 'jquery-datetimepicker', plugins_url('libs/jquery-datetimepicker/jquery.datetimepicker.css', __FILE__) );
+        wp_register_script( 'jquery-datetimepicker', plugins_url('/libs/jquery-datetimepicker/jquery.datetimepicker.min.js', __FILE__), array('jquery'), PLUGINVERSION, true );
 
         if( function_exists('wp_enqueue_media') ) {
             wp_enqueue_media();
@@ -218,7 +213,8 @@ function adzonia_admin_scripts() {
             wp_enqueue_style('thickbox');
         }
 
-        wp_enqueue_script( 'adzonia', plugins_url( '/assets/js/adzonia-admin.min.js', __FILE__ ), array('jquery', 'jquery-ui-tabs', 'jquery-ui-datepicker'), PLUGINVERSION, true );
+        wp_enqueue_style( 'adzonia-admin', plugins_url('assets/css/adzonia-admin.css', __FILE__), array('jquery-datetimepicker'), PLUGINVERSION );
+        wp_enqueue_script( 'adzonia-admin', plugins_url( '/assets/js/adzonia-admin.min.js', __FILE__ ), array('jquery', 'jquery-ui-tabs', 'jquery-datetimepicker'), PLUGINVERSION, true );
 
         //load only on edit page (not in add-new page)
         if( $screen->action == '' ) {
@@ -228,7 +224,8 @@ function adzonia_admin_scripts() {
             $image_ad   = get_post_meta( $post->ID, 'wpadz_ad_image', true );
             $code_ad    = get_post_meta( $post->ID, 'wpadz_ad_code', true );
 
-            wp_localize_script( 'adzonia',
+            wp_localize_script(
+                'adzonia-admin',
                 'adzonia',     //the var key in JS
                 array(
                     'is_img_ad'    => $image_ad,
@@ -239,6 +236,7 @@ function adzonia_admin_scripts() {
 
     } //endif
 }
+
 add_action('admin_enqueue_scripts', 'adzonia_admin_scripts');
 
 
@@ -310,6 +308,7 @@ function adzonia_specifications_meta_box() {
         'high'                                          // 'high', 'core', 'default' or 'low'
     );
 }
+
 add_action( 'add_meta_boxes', 'adzonia_specifications_meta_box' );
 
 
@@ -533,6 +532,7 @@ function save_adzonia_meta( $post_id ) {
         }
     } // end foreach
 }
+
 add_action( 'save_post',        'save_adzonia_meta' );
 add_action( 'new_to_publish',   'save_adzonia_meta' );
 
@@ -563,7 +563,8 @@ function adzonia_set_custom_columns( $columns ) {
     }
     return $columns;
 
-} 
+}
+
 add_filter( 'manage_edit-adzonia_columns', 'adzonia_set_custom_columns', 50 );
 
 
@@ -595,10 +596,11 @@ function adzonia_custom_column( $column, $post_id ) {
             break;
 
         case 'adz_shortcode' :
-            echo '<code>[wp-adzonia id="'. $post_id .'"]</code>';
+            echo '<code>[adzonia id="'. $post_id .'"]</code>';
             break;
     }
 }
+
 add_action( 'manage_adzonia_posts_custom_column' , 'adzonia_custom_column', 10, 2 );
 
 
@@ -679,7 +681,7 @@ function show_adzonia( $ad_id ) {
 
 /**
  * AdZonia Shortcode.
- * Usage: [wp-adzonia id="#"] - pass the ID of the ad to show.
+ * Usage: [adzonia id="#"] - pass the ID of the ad to show.
  * @see  show_adzonia()
  * @param  array $atts attributes that passed through shortcode.
  * @return string       formatted ad.
@@ -700,6 +702,7 @@ function adzonia_shortcode( $atts ) {
     <?php
     return ob_get_clean();
 }
+
 add_shortcode( 'adzonia', 'adzonia_shortcode' );
 
 
@@ -794,6 +797,7 @@ class adzonia_widget extends WP_Widget {
 function adzonia_load_widget() {
     register_widget( 'adzonia_widget' );
 }
+
 add_action( 'widgets_init', 'adzonia_load_widget' );
 
 
