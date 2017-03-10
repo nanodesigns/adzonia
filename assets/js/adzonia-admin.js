@@ -2,6 +2,45 @@
 jQuery(function($){
 
     /* ----------------------------------------------------------- */
+    /*  00. WordPress Media Uploader for fields - reusable
+    /*
+    /*      @since 2.0.0    Initiated reusable code
+    /* ----------------------------------------------------------- */
+    function _nano_media_image_uploader_func( e, img_id_field, lib_head, btn_text, prev_img_wrap, prev_img, btn ){
+
+        var nano_field_image_uploader;
+
+        e.preventDefault();
+
+        //if the uploader object has already been created, reopen the dialog
+        if( nano_field_image_uploader ) {
+            nano_field_image_uploader.open();
+            return;
+        }
+
+        //extend the wp.media object
+        nano_field_image_uploader = wp.media.frames.file_frame = wp.media( {
+            title: lib_head,
+            button:{
+                text: btn_text
+            },
+            multiple: false
+        } );
+
+        //when a file is selected, grab the URL and set it as the text field's value
+        nano_field_image_uploader.on( 'select', function() {
+            attachment = nano_field_image_uploader.state().get('selection').first().toJSON();
+            img_id_field.val(attachment.id).attr( 'value', attachment.id );
+            prev_img.attr( 'src', attachment.url );
+            prev_img_wrap.show();
+            btn.addClass('has-image');
+        });
+
+        //Open the uploader dialog
+        nano_field_image_uploader.open();
+    }
+
+    /* ----------------------------------------------------------- */
     /*  0. HIDE SOMETHING WHEN js IS ENABLED
     /* ----------------------------------------------------------- */
     $('p.non-js-directions').hide();
@@ -47,37 +86,28 @@ jQuery(function($){
     }
 
     /* ----------------------------------------------------------- */
-    /*  5. UPLOAD IMAGE
+    /*  05. UPLOAD AD IMAGE
+    /*
+    /*      @since 1.2.0 Initiated.
+    /*      @since 2.0.0 Updated with reUsable function.
     /* ----------------------------------------------------------- */
-    var adzonia_uploader;
+    var image_input_btn         = $('#grm-banner-mini-input'),
+        image_close_btn         = $('#close-offer-banner-mini'),
+        image_id_field          = $('#grm_banner_mini'),
+        image_preview           = $('#banner-mini-preview'),
+        image_preview_holder    = $('.grm-offer-banner-mini-preview');
+    
+    image_input_btn.click(function(e){
+        var lib_head = adzonia.img_lib_head,
+            btn_text = adzonia.img_btn_text;
 
-    $('#nano-ad-image').click( function(e) {
-            e.preventDefault();
+        _nano_media_image_uploader_func( e, image_id_field, lib_head, btn_text, image_preview_holder, image_preview, image_input_btn );
+    });
 
-            //if the uploader object has already been created, reopen the dialog
-            if( adzonia_uploader ) {
-                adzonia_uploader.open();
-                return;
-            }
-
-            //extend the wp.media object
-            adzonia_uploader = wp.media.frames.file_frame = wp.media( {
-                title:"Choose Ad Image",
-                button:{
-                    text: "Choose Image"
-                },
-                multiple: false
-            } );
-
-            //when a file is selected, grab the URL and set it as the text field's value
-            adzonia_uploader.on( 'select', function() {
-                attachment = adzonia_uploader.state().get('selection').first().toJSON();
-                $('#wpadz_ad_image').val(attachment.url);
-            });
-
-        //Open the uploader dialog
-        adzonia_uploader.open();
-
+    image_close_btn.on('click', function() {
+        image_id_field.val('');
+        image_preview_holder.hide();
+        image_input_btn.removeClass('has-image');
     });
 
 });

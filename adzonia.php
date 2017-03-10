@@ -217,7 +217,7 @@ function adzonia_admin_scripts() {
         wp_enqueue_script( 'adzonia-admin', plugins_url( '/assets/js/adzonia-admin.min.js', __FILE__ ), array('jquery', 'jquery-ui-tabs', 'jquery-datetimepicker'), PLUGINVERSION, true );
 
         //load only on edit page (not in add-new page)
-        if( $screen->action == '' ) {
+        //if( $screen->action == '' ) {
             global $post;
             $image_ad   = '';
             $code_ad    = '';
@@ -229,10 +229,12 @@ function adzonia_admin_scripts() {
                 'adzonia',     //the var key in JS
                 array(
                     'is_img_ad'    => $image_ad,
-                    'is_code_ad'   => $code_ad
+                    'is_code_ad'   => $code_ad,
+                    'img_lib_head'  => esc_html__( 'Choose Ad Image', 'adzonia' ),
+                    'img_btn_text'  => esc_html__( 'Choose Image', 'adzonia' )
                 )
             );
-        }//endif( $screen->action == '' )
+        //}//endif( $screen->action == '' )
 
     } //endif
 }
