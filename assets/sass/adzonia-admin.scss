@@ -1,4 +1,4 @@
-@import "../dev/lessmixins.less";
+@import 'variables';
 
 /*---------------------
 *   Common CSS
@@ -54,14 +54,14 @@
 }
 .adz-meta-div{
   .p-icon{
-    font-size: 13*@toRem;
+    font-size: 13*$toRem;
     vertical-align: sub;
   }
 }
 .adz-label-td,
 .adz-info-td{
   min-width: 80px;
-  font-size: 13*@toRem;
+  font-size: 13*$toRem;
 }
 .adz-img-table{
   .adz-info-td{
@@ -75,7 +75,7 @@
 .adz-info-td{
   input[type='text'],
   textarea{
-    .border-radius(5px);
+    border-radius: 5px;
     width: 100%;
   }
   textarea#wpadz_ad_code{
@@ -94,7 +94,7 @@ body.post-type-adzonia.post-new-php{
   }
 }
 .adz-tooltip-icon{
-  font-size: 18*@toRem;
+  font-size: 18*$toRem;
   color: #999;
   position: relative;
   cursor: pointer;
@@ -108,14 +108,14 @@ body.post-type-adzonia.post-new-php{
       background-color: rgba(0,0,0,0.6);
       color: #fff;
       padding: 10px;
-      .border-radius(10px);
+      border-radius: 10px;
       z-index: 9999;
       white-space: normal;
       width: 160px;
       top: -5px;
       left: 20px;
       font-family: "Open Sans",sans-serif;
-      font-size: 13*@toRem;
+      font-size: 13*$toRem;
       line-height: 1.2;
     }
   }
@@ -133,11 +133,11 @@ body.post-type-adzonia.post-new-php{
       margin-bottom: 0;
 
       &:first-of-type{
-        .border-radius-custom(5px,0,0,5px);
+        border-radius: 5px 0 0 5px;
         border-right-width: 0;
       }
       &:last-of-type{
-        .border-radius-custom(0,5px,5px,0);
+        border-radius: 0 5px 5px 0;
         border-left-width: 0;
       }
       &.ui-state-default{

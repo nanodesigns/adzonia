@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:     WP AdZonia
+ * Plugin Name:     AdZonia
  * Plugin URI:      http://nanodesignsbd.com/
  * Description:     A simpler and easier advertisement manager plugin for WordPress sites, and most astonishingly - it's in WordPress way. Read the instructions (AdZonia &raquo; Settings-Instructions).
- * Version:         1.2.2
+ * Version:         2.0.0
  * Author:          Mayeenul Islam (@mayeenulislam)
  * Author URI:      http://nanodesignsbd.com/mayeenulislam/
  * License:         GNU General Public License v2.0
@@ -32,7 +32,7 @@ if( !defined( 'ABSPATH' ) )
     exit;
 
 // CONSTANTS
-define( 'PLUGINVERSION', '1.2.2' );
+define( 'PLUGINVERSION', '2.0.0' );
 
 
 /**
@@ -43,7 +43,7 @@ define( 'PLUGINVERSION', '1.2.2' );
  * ----------------------------------------------------
  */
 function adzonia_load_textdomain() {
-    load_plugin_textdomain( 'wp-adzonia', FALSE, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    load_plugin_textdomain( 'adzonia', FALSE, dirname( plugin_basename( __FILE__ ) ) . '/i18n/languages/' );
 }
 add_action( 'init', 'adzonia_load_textdomain', 1 );
 
@@ -61,8 +61,8 @@ add_action( 'init', 'adzonia_load_textdomain', 1 );
 function adzonia_settings_page() {
     add_submenu_page(
         'edit.php?post_type=adzonia',                   //$parent_slug
-        __('Settings & Instructions', 'wp-adzonia' ),   //$page_title
-        __('Settings-Instructions', 'wp-adzonia' ),     //$menu_title
+        __('Settings & Instructions', 'adzonia' ),      //$page_title
+        __('Settings-Instructions', 'adzonia' ),        //$menu_title
         'manage_options',                               //$capability
         'adzonia-settings',                             //$menu_slug
         'adzonia_settings_page_callback'                //callback function
@@ -74,7 +74,7 @@ add_action('admin_menu', 'adzonia_settings_page');
 function adzonia_settings_page_callback() { ?>
 
     <div class="wrap">
-        <h2><?php _e('Settings & Instructions', 'wp-adzonia' ); ?></h2>
+        <h2><?php _e('Settings & Instructions', 'adzonia' ); ?></h2>
         <?php settings_errors(); ?>
         <div class="adzonia-left-column">
             <form action="options.php" method="post">
@@ -107,26 +107,26 @@ function adzonia_options_init(){
     );
     add_settings_section(
         'adzonia_general',                          // ID/Slug*
-        sprintf( __( '%s Settings', 'wp-adzonia' ), '<span class="dashicons dashicons-admin-generic"></span>'),                                       // Name*
+        sprintf( __( '%s Settings', 'adzonia' ), '<span class="dashicons dashicons-admin-generic"></span>'),                                       // Name*
         'adzonia_gen_section_callback',             // Callback*
         'adzonia_settings'                          // Page on which to add this section of options*
     );
     add_settings_field(
         'adzonia_css',                              // ID*
-        __( 'AdZonia CSS', 'wp-adzonia' ),          // Title*
+        __( 'AdZonia CSS', 'adzonia' ),          // Title*
         'adzonia_setting_css_field',                // Callback Function*
         'adzonia_settings',                         // Page (Plugin)*
         'adzonia_general'                           // Section
     );
     add_settings_section(
         'adzonia_troubleshoot',                     // ID/Slug*
-        sprintf( __( '%s Troubleshoot', 'wp-adzonia' ), '<span class="dashicons dashicons-admin-tools"></span>'),                                       // Name*
+        sprintf( __( '%s Troubleshoot', 'adzonia' ), '<span class="dashicons dashicons-admin-tools"></span>'),                                       // Name*
         'adzonia_tr_section_callback',              // Callback*
         'adzonia_settings'                          // Page on which to add this section of options*
     );
     add_settings_field(
         'adzonia_jquery',                           // ID*
-        __( 'AdZonia jQuery', 'wp-adzonia' ),       // Title*
+        __( 'AdZonia jQuery', 'adzonia' ),       // Title*
         'adzonia_setting_jquery_field',             // Callback Function*
         'adzonia_settings',                         // Page (Plugin)*
         'adzonia_troubleshoot'                      // Section
@@ -136,22 +136,22 @@ add_action( 'admin_init', 'adzonia_options_init' );
 
 // General Section
 function adzonia_gen_section_callback() {
-    _e('<p>Set these optional settings if you want. It\'s not mandatory, and even without the settings your advertisements will work just fine.</p>', 'wp-adzonia');
+    _e('<p>Set these optional settings if you want. It&rsquo;s not mandatory, and even without the settings your advertisements will work just fine.</p>', 'adzonia');
 }
 
 function adzonia_setting_css_field() {
     $options = get_option('adzonia_options');
-    echo "<input name='adzonia_options[adzonia_css_check]' id='adzonia_css' type='checkbox' value='1' ".checked( 1, $options['adzonia_css_check'], false ) . " /> <label for='adzonia_css'>". __( 'check the box to show Ads as inline element rather block element. It will load AdZonia CSS into the site\'s front-end', 'wp-adzonia' ) ."</label>";
+    echo "<input name='adzonia_options[adzonia_css_check]' id='adzonia_css' type='checkbox' value='1' ".checked( 1, $options['adzonia_css_check'], false ) . " /> <label for='adzonia_css'>". __( 'check the box to show Ads as inline element rather block element. It will load AdZonia CSS into the site&rsquo;s front-end', 'adzonia' ) ."</label>";
 }
 
 // Troubleshoot Section
 function adzonia_tr_section_callback() {
-    _e('<p>Getting trouble using the plugin? If the date picker and/or image uploader is not working, try enabling the jQuery from the plugin resources.</p>', 'wp-adzonia');
+    _e('<p>Getting trouble using the plugin? If the date picker and/or image uploader is not working, try enabling the jQuery from the plugin resources.</p>', 'adzonia');
 }
 
 function adzonia_setting_jquery_field() {
     $options = get_option('adzonia_options');
-    echo "<input name='adzonia_options[adzonia_jquery_check]' id='adzonia_jquery' type='checkbox' value='1' ".checked( 1, $options['adzonia_jquery_check'], false ) . " /> <label for='adzonia_jquery'>". __( 'Load jQuery from plugin', 'wp-adzonia' ) ."</label>";
+    echo "<input name='adzonia_options[adzonia_jquery_check]' id='adzonia_jquery' type='checkbox' value='1' ".checked( 1, $options['adzonia_jquery_check'], false ) . " /> <label for='adzonia_jquery'>". __( 'Load jQuery from plugin', 'adzonia' ) ."</label>";
 }
 
 // validate our options
@@ -179,8 +179,8 @@ $get_options = get_option('adzonia_options');
  * ----------------------------------------------------
  */
 function adzonia_css() {
-    wp_enqueue_style( 'adzonia-admin-style', plugins_url('css/admin-style.css', __FILE__) );
-    wp_enqueue_style( 'datepicker-style', plugins_url('css/jquery.datetimepicker.css', __FILE__) );
+    wp_enqueue_style( 'adzonia-admin', plugins_url('assets/css/adzonia-admin.css', __FILE__) );
+    //wp_enqueue_style( 'datepicker-style', plugins_url('assets/css/jquery.datetimepicker.css', __FILE__) );
 }
 add_action( 'admin_enqueue_scripts', 'adzonia_css' );
 
@@ -191,7 +191,7 @@ add_action( 'admin_enqueue_scripts', 'adzonia_css' );
  */
 if( $get_options['adzonia_css_check'] === true ) {
     function adzonia_output_css() {
-        wp_enqueue_style( 'adzonia-output-style', plugins_url('css/adzonia-output.css', __FILE__) );
+        wp_enqueue_style( 'adzonia', plugins_url('assets/css/adzonia.css', __FILE__) );
     }
     add_action( 'wp_enqueue_scripts', 'adzonia_output_css' );
 }
@@ -207,7 +207,7 @@ function adzonia_admin_scripts() {
     $screen = get_current_screen();
     if( 'adzonia' === $screen->post_type && 'post' === $screen->base ) {
         
-        wp_enqueue_script( 'datetimepicker-js', plugins_url('/js/jquery.datetimepicker.min.js', __FILE__), array('jquery'), PLUGINVERSION, true );
+        //wp_enqueue_script( 'datetimepicker-js', plugins_url('/assets/js/jquery.datetimepicker.min.js', __FILE__), array('jquery'), PLUGINVERSION, true );
 
         if( function_exists('wp_enqueue_media') ) {
             wp_enqueue_media();
@@ -218,7 +218,7 @@ function adzonia_admin_scripts() {
             wp_enqueue_style('thickbox');
         }
 
-        wp_enqueue_script( 'adzonia', plugins_url( '/js/adzonia-scripts.min.js', __FILE__ ), array('jquery', 'jquery-ui-tabs'), PLUGINVERSION, true );
+        wp_enqueue_script( 'adzonia', plugins_url( '/assets/js/adzonia-admin.min.js', __FILE__ ), array('jquery', 'jquery-ui-tabs', 'jquery-ui-datepicker'), PLUGINVERSION, true );
 
         //load only on edit page (not in add-new page)
         if( $screen->action == '' ) {
@@ -253,18 +253,18 @@ add_action('admin_enqueue_scripts', 'adzonia_admin_scripts');
  */
 function register_cpt_adzonia() {
     $labels = array(
-        'name'                  => _x( 'AdZonia', 'AdZonia', 'wp-adzonia' ),
-        'singular_name'         => _x( 'AdZonia', 'AdZonia', 'wp-adzonia' ),
-        'add_new'               => _x( 'New AdZonia', 'AdZonia', 'wp-adzonia' ),
-        'add_new_item'          => _x( 'Add New AdZonia', 'AdZonia', 'wp-adzonia' ),
-        'edit_item'             => _x( 'Edit AdZonia', 'AdZonia', 'wp-adzonia' ),
-        'new_item'              => _x( 'New AdZonia', 'AdZonia', 'wp-adzonia' ),
-        'view_item'             => _x( 'View AdZonia', 'AdZonia', 'wp-adzonia' ),
-        'search_items'          => _x( 'Search AdZonia', 'AdZonia', 'wp-adzonia' ),
-        'not_found'             => _x( 'No AdZonia is created yet. Try making one first', 'AdZonia', 'wp-adzonia' ),
-        'not_found_in_trash'    => _x( 'No AdZonia found in Trash', 'AdZonia', 'wp-adzonia' ),
-        'parent_item_colon'     => _x( 'Parent AdZonia:', 'AdZonia', 'wp-adzonia' ),
-        'menu_name'             => _x( 'AdZonia', 'AdZonia', 'wp-adzonia' ),
+        'name'                  => _x( 'AdZonia', 'AdZonia', 'adzonia' ),
+        'singular_name'         => _x( 'AdZonia', 'AdZonia', 'adzonia' ),
+        'add_new'               => _x( 'New AdZonia', 'AdZonia', 'adzonia' ),
+        'add_new_item'          => _x( 'Add New AdZonia', 'AdZonia', 'adzonia' ),
+        'edit_item'             => _x( 'Edit AdZonia', 'AdZonia', 'adzonia' ),
+        'new_item'              => _x( 'New AdZonia', 'AdZonia', 'adzonia' ),
+        'view_item'             => _x( 'View AdZonia', 'AdZonia', 'adzonia' ),
+        'search_items'          => _x( 'Search AdZonia', 'AdZonia', 'adzonia' ),
+        'not_found'             => _x( 'No AdZonia is created yet. Try making one first', 'AdZonia', 'adzonia' ),
+        'not_found_in_trash'    => _x( 'No AdZonia found in Trash', 'AdZonia', 'adzonia' ),
+        'parent_item_colon'     => _x( 'Parent AdZonia:', 'AdZonia', 'adzonia' ),
+        'menu_name'             => _x( 'AdZonia', 'AdZonia', 'adzonia' ),
     );
 
     $args = array(
@@ -276,7 +276,7 @@ function register_cpt_adzonia() {
         'show_ui'               => true,
         'show_in_menu'          => true,
         'menu_position'         => 25,
-        'menu_icon'             => plugins_url('/assets/adzonia-icon.png', __FILE__),
+        'menu_icon'             => plugins_url('/assets/images/adzonia-icon.png', __FILE__),
         'show_in_nav_menus'     => false,
         'publicly_queryable'    => false,
         'exclude_from_search'   => true,
@@ -303,7 +303,7 @@ add_action( 'init', 'register_cpt_adzonia' );
 function adzonia_specifications_meta_box() {
     add_meta_box(
         'adzonia-info',                                 // metabox ID
-        __('AdZonia Specification', 'wp-adzonia'),      // metabox title
+        __('AdZonia Specification', 'adzonia'),      // metabox title
         'adzonia_specifications_specifics',             // callback function
         'adzonia',                                      // post type (+ CPT)
         'normal',                                       // 'normal', 'advanced', or 'side'
@@ -316,32 +316,32 @@ add_action( 'add_meta_boxes', 'adzonia_specifications_meta_box' );
 // Field Array
 $adzonia_meta_fields = array(
     array(
-        'label' => __('Ad Image', 'wp-adzonia'),
-        'desc'  => __('Add an image if you wish to show an image ad', 'wp-adzonia'),
+        'label' => __('Ad Image', 'adzonia'),
+        'desc'  => __('Add an image if you wish to show an image ad', 'adzonia'),
         'id'    => 'wpadz_ad_image',
         'type'  => 'ad_image'
     ),
     array(
-        'label' => __('Ad Code', 'wp-adzonia'),
-        'desc'  => __('If your ad is a Code-ad, then write down the code here', 'wp-adzonia'),
+        'label' => __('Ad Code', 'adzonia'),
+        'desc'  => __('If your ad is a Code-ad, then write down the code here', 'adzonia'),
         'id'    => 'wpadz_ad_code',
         'type'  => 'ad_code'
     ),
     array(
-        'label' => __('End Date', 'wp-adzonia'),
-        'desc'  => __('Choose a date until when the ad will be visible', 'wp-adzonia'),
+        'label' => __('End Date', 'adzonia'),
+        'desc'  => __('Choose a date until when the ad will be visible', 'adzonia'),
         'id'    => 'wpadz_end_date',
         'type'  => 'end_date'
     ),
     array(
-        'label' => __('Target URL', 'wp-adzonia'),
-        'desc'  => __('Enter the URL, to where the ad will direct the viewer after clicking', 'wp-adzonia'),
+        'label' => __('Target URL', 'adzonia'),
+        'desc'  => __('Enter the URL, to where the ad will direct the viewer after clicking', 'adzonia'),
         'id'    => 'wpadz_target_url',
         'type'  => 'target_url'
     ),
     array(
-        'label' => __('Location', 'wp-adzonia'),
-        'desc'  => __('Choose a location to show the ad in predefined areas', 'wp-adzonia'),
+        'label' => __('Location', 'adzonia'),
+        'desc'  => __('Choose a location to show the ad in predefined areas', 'adzonia'),
         'id'    => 'wpadz_location',
         'type'  => 'location',
         'options' => array (
@@ -366,7 +366,7 @@ echo '<input type="hidden" name="adzonia_nonce" value="'.wp_create_nonce(basenam
 ?>
     <div class="row adz-meta-div">
 
-        <p class="non-js-directions"><?php _e( 'Either create an <strong>Image ad</strong> (<span class="dashicons dashicons-format-image p-icon"></span>), or a <strong>Code ad</strong> (<span class="dashicons dashicons-editor-code p-icon"></span>). Mixure won\'t be counted, sorry.', 'wp-adzonia' ) ?></p>
+        <p class="non-js-directions"><?php _e( 'Either create an <strong>Image ad</strong> (<span class="dashicons dashicons-format-image p-icon"></span>), or a <strong>Code ad</strong> (<span class="dashicons dashicons-editor-code p-icon"></span>). Mixure won&rsquo;t be counted, sorry.', 'adzonia' ) ?></p>
 
         <?php
         $image_ad = '';
@@ -554,11 +554,11 @@ function adzonia_set_custom_columns( $columns ) {
         $before = array_slice( $columns, 0, $index + 1 );
         $after = array_splice( $columns, $index + 1, count( $columns ) );
         $columns = $before + array(
-            'ad_id' => __( 'ID', 'wp-adzonia' ),
-            'ad_image' => __( 'Preview', 'wp-adzonia' )
+            'ad_id' => __( 'ID', 'adzonia' ),
+            'ad_image' => __( 'Preview', 'adzonia' )
             ) + $after + array(
-                'until' => __( 'Until', 'wp-adzonia' ),
-                'adz_shortcode' => __( 'Shortcode', 'wp-adzonia' )            
+                'until' => __( 'Until', 'adzonia' ),
+                'adz_shortcode' => __( 'Shortcode', 'adzonia' )            
             );
     }
     return $columns;
@@ -651,13 +651,13 @@ function get_adzonia( $ad_id ) {
 
         } else {
             $the_ad .= '<div id="adzonia-ad-'. $postID .'" class="adzonia-holder">';
-                $the_ad .= '<span style="color:red;">'. __( '<strong>WARNING:</strong> Assigned ad is expired! <em>Extend</em> the term or <em>Delete</em> it.', 'wp-adzonia' ) .'</span>';
+                $the_ad .= '<span style="color:red;">'. __( '<strong>WARNING:</strong> Assigned ad is expired! <em>Extend</em> the term or <em>Delete</em> it.', 'adzonia' ) .'</span>';
             $the_ad .= '</div> <!-- /#adzonia-ad-'. $postID .' .adzonia-holder -->';
         }
 
     } else {
         $the_ad .= '<div class="adzonia-holder">';
-            $the_ad .= '<span style="color:red;">'. __( '<strong>Sorry!</strong> No such Ad exists!', 'wp-adzonia' ) .'</span>';
+            $the_ad .= '<span style="color:red;">'. __( '<strong>Sorry!</strong> No such Ad exists!', 'adzonia' ) .'</span>';
         $the_ad .= '</div> <!-- /.adzonia-holder -->';
     }
     return $the_ad;    
@@ -694,13 +694,13 @@ function adzonia_shortcode( $atts ) {
 
     ob_start();
     ?>
-        <div class="wp-adzonia-ad <?php echo $adID != '' ? 'adzonia-'. $adID : '' ?>">
+        <div class="adzonia-ad <?php echo $adID != '' ? 'adzonia-'. $adID : '' ?>">
             <?php show_adzonia( $adID ); ?>
         </div>
     <?php
     return ob_get_clean();
 }
-add_shortcode( 'wp-adzonia', 'adzonia_shortcode' );
+add_shortcode( 'adzonia', 'adzonia_shortcode' );
 
 
 /**
@@ -715,8 +715,8 @@ class adzonia_widget extends WP_Widget {
     function __construct() {
         parent::__construct(
             'adzonia_widget', //base ID of widget
-            __('AdZonia', 'wp-adzonia'), //name of the widget
-            array( 'description' => __( 'AdZonia widget to call the advertisement easily.', 'wp-adzonia' ) )
+            __('AdZonia', 'adzonia'), //name of the widget
+            array( 'description' => __( 'AdZonia widget to call the advertisement easily.', 'adzonia' ) )
         );
     }
 
@@ -746,13 +746,13 @@ class adzonia_widget extends WP_Widget {
         $widget_ad_query = get_posts( $wpadz_args );
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'adzonia' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id( 'ad_id' ); ?>"><?php _e( 'Advertisements:', 'wp-adzonia' ); ?></label>         
+            <label for="<?php echo $this->get_field_id( 'ad_id' ); ?>"><?php _e( 'Advertisements:', 'adzonia' ); ?></label>         
             <select class="widefat" id="<?php echo $this->get_field_id( 'ad_id' ); ?>" name="<?php echo $this->get_field_name( 'ad_id' ); ?>">
-                <option value=""><?php _e( 'Choose one...', 'wp-adzonia' ); ?></option>
+                <option value=""><?php _e( 'Choose one...', 'adzonia' ); ?></option>
                 <?php
                 foreach( $widget_ad_query as $active_ad ) { ?>
                     <option value="<?php echo $active_ad->ID; ?>" <?php selected( $ad_id, $active_ad->ID ); ?>>
