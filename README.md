@@ -1,5 +1,6 @@
 <img src="assets/banner-1544x500.png" alt="WP AdZonia - WordPress Ad Management Plugin"/>
-##WP AdZonia##
+
+## WP AdZonia
 WordPress Advertisement Manager Plugin<br>
 Version 1.2.2<br>
 <strong>Developer:</strong> Mayeenul Islam (@mayeenulislam)<br>
@@ -9,21 +10,25 @@ A simplest and easiest Advertisement Manager Plugin for WordPress sites, and mos
 
 A new feature is added in v1.2.2 as a *beta feature* that enables any ad to show in predefined areas directly from the admin panel, without any coding. *Isn't that cool!*
 
-###Screenshots###
+### Screenshots
+
 <img src="assets/screenshot-1.png" alt="WP AdZonia - List of advertisements"/>
 <p><em>List of advertisements</em></p>
 <img src="assets/screenshot-2.png" alt="WP AdZonia - Adding new advertisement"/>
 <p><em>Adding new advertisement</em></p>
 
-###Credits###
+### Credits
+
 Thanks to my plugin guru Ms. Tahmina Aktar for the appreciation and support from the very beginning.
+
 Thanks also to Shimul Islam, Tareq Hasan, Sisir Kanti Adhikari. And thanks also to Franz Josef Kaiser, Stephen Harris, Tom J Nowell, Andrey Savchenko (Rarst), Thomas Scholz (Toscho), and Giuseppe (Gmazzap) for their remote support and assistance. I won't ever forget their love and teachings. Thanks a lot and jazakALLAH
-####Libraries used####
+
+#### Libraries used
 * jQuery (from WP core) - fallback jQuery v1.11.1
 * jQuery UI tabs (from WP core)
 * [jQuery DateTimePicker](http://xdsoft.net/jqplugins/datetimepicker/) v2.1.1
 
-###Change Log###
+### Change Log
 #### 1.2.2
 * Fixed the `register_post_type()` as it need not to be public
 * Revamped the code a bit
