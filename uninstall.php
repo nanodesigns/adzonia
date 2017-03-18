@@ -1,41 +1,31 @@
 <?php
-/**
- * Uninstallation
- * @package  wp-adzonia
- * ----------------------------------------------------
- */
-//if uninstall not called from WordPress exit
-if( !defined( 'ABSPATH' ) && !defined( 'WP_UNINSTALL_PLUGIN' ) )
-    exit();
-
 
 /**
- * DELETE ALL THE THINGS, THE PLUGIN CREATED
- * ----------------------------------------------------
+ * Fired when the plugin is uninstalled.
+ *
+ * When populating this file, consider the following flow
+ * of control:
+ *
+ * - This method should be static
+ * - Check if the $_REQUEST content actually is the plugin name
+ * - Run an admin referrer check to make sure it goes through authentication
+ * - Verify the output of $_GET makes sense
+ * - Repeat with other user roles. Best directly by using the links/query string parameters.
+ * - Repeat things for multisite. Once for a single site in the network, once sitewide.
+ *
+ * This file may be updated more in future version of the Boilerplate; however, this is the
+ * general skeleton and outline for how the file should work.
+ *
+ * For more information, see the following discussion:
+ * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
+ *
+ * @link       http://nanodesignsbd.com
+ * @since      1.0.0
+ *
+ * @package    AdZonia
  */
 
-// To delete options from options table
-delete_option('adzonia_options');
-
-// Delete all the advertisements and their addition data
-$adz_args = array(
-			'post_type' => 'adzonia',
-			'posts_per_page' => -1,
-			'post_status' => 'any'
-		);
-
-$get_adzonia_posts = get_posts( $adz_args );
-
-foreach ( $get_adzonia_posts as $post ) {
-	setup_postdata( $post );
-
-	$postid = $post->ID;
-	wp_delete_post( $postid, true ); //bypass trash and delete forcefully
-	delete_post_meta( $postid, 'wpadz_ad_image' );
-	delete_post_meta( $postid, 'wpadz_ad_code' );
-	delete_post_meta( $postid, 'wpadz_end_date' );
-	delete_post_meta( $postid, 'wpadz_target_url' );
-	delete_post_meta( $postid, 'wpadz_location' );
+// If uninstall not called from WordPress, then exit.
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+	exit;
 }
-
-wp_reset_postdata();
