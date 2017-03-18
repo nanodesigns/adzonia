@@ -1,10 +1,10 @@
 ## Exclude the following directory/files
 
 ## Minified files
-assets/css/adzonia.css
-assets/css/adzonia-admin.css
-assets/js/adzonia.min.js
-assets/js/adzonia-admin.min.js
+public/css/adzonia.css
+admin/css/adzonia-admin.css
+public/js/adzonia.min.js
+admin/js/adzonia-admin.min.js
 
 ## Common setting
 *.log

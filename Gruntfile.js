@@ -20,8 +20,8 @@ module.exports = function(grunt) {
         jshint: {
             all: [
                 'Gruntfile.js',
-                'assets/js/adzonia.js',
-                'assets/js/adzonia-admin.js'
+                'public/js/adzonia.js',
+                'admin/js/adzonia-admin.js'
             ]
         },
 
@@ -36,8 +36,8 @@ module.exports = function(grunt) {
                     preserveComments: /^!/ // Preserve comments that start with a bang.
                 },
                 files: {
-                    'assets/js/adzonia.min.js': [ 'assets/js/adzonia.js' ],
-                    'assets/js/adzonia-admin.min.js': [ 'assets/js/adzonia-admin.js' ]
+                    'public/js/adzonia.min.js': [ 'public/js/adzonia.js' ],
+                    'admin/js/adzonia-admin.min.js': [ 'admin/js/adzonia-admin.js' ]
                 },
             }
         },
@@ -52,8 +52,8 @@ module.exports = function(grunt) {
                     sourceMap: false
                 },
                 files: {
-                    'assets/css/adzonia.css': 'assets/sass/adzonia.scss',
-                    'assets/css/adzonia-admin.css': 'assets/sass/adzonia-admin.scss'
+                    'public/css/adzonia.css': 'public/sass/adzonia.scss',
+                    'admin/css/adzonia-admin.css': 'admin/sass/adzonia-admin.scss'
                 }
             }
         },
@@ -67,10 +67,10 @@ module.exports = function(grunt) {
                 cascade: false
             },
             adzCSS: {
-                src: 'assets/css/adzonia.css'
+                src: 'public/css/adzonia.css'
             },
             adminCSS: {
-                src: 'assets/css/adzonia-admin.css'
+                src: 'admin/css/adzonia-admin.css'
             }
         },
 
@@ -81,8 +81,8 @@ module.exports = function(grunt) {
         cssmin: {
             minify: {
                 files: {
-                    'assets/css/adzonia.css': 'assets/css/adzonia.css',
-                    'assets/css/adzonia-admin.css': 'assets/css/adzonia-admin.css'
+                    'public/css/adzonia.css': 'public/css/adzonia.css',
+                    'admin/css/adzonia-admin.css': 'admin/css/adzonia-admin.css'
                 },
                 options: {
                     report: 'min',
@@ -100,9 +100,19 @@ module.exports = function(grunt) {
             target: {
                 options: {
                     domainPath: '/i18n/languages/',
-                    exclude: ['assets/.*', 'node_modules/.*', 'vendor/.*', 'tests/.*'],
+                    exclude: [
+                        'public/css/.*',
+                        'public/sass/.*',
+                        'admin/sass/.*',
+                        'admin/css/.*',
+                        'public/js/.*',
+                        'admin/js/.*',
+                        'node_modules/.*',
+                        'vendor/.*',
+                        'tests/.*'
+                    ],
                     mainFile: 'adzonia.php',
-                    potComments: 'Copyright (c) 2014 nanodesigns',
+                    potComments: 'Copyright (c) 2014-2017 nanodesigns',
                     potFilename: 'adzonia.pot',
                     potHeaders: {
                         poedit: true,
@@ -205,11 +215,17 @@ module.exports = function(grunt) {
                 }
             },
             js: {
-                files: ['assets/js/adzonia.js', 'assets/js/adzonia-admin.js'],
+                files: [
+                    'public/js/adzonia.js',
+                    'admin/js/adzonia-admin.js'
+                ],
                 tasks: ['uglify']
             },
             css: {
-                files: ['assets/sass/*.scss'],
+                files: [
+                    'public/sass/*.scss',
+                    'admin/sass/*.scss'
+                ],
                 tasks: ['sass', 'autoprefixer', 'cssmin']
             }
         }
