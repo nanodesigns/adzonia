@@ -179,7 +179,7 @@ module.exports = function(grunt) {
                         '!composer.lock',
                         '!tests/**',
                         '!logs/**',
-                        '!readme.md',
+                        '!README.md',
                         '!contributing.md',
                         '!*.sublime-grunt.cache',
                         '!Gruntfile.js',
