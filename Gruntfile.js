@@ -100,9 +100,16 @@ module.exports = function(grunt) {
             target: {
                 options: {
                     domainPath: '/i18n/languages/',
-                    exclude: ['assets/.*', 'node_modules/.*', 'vendor/.*', 'tests/.*'],
+                    exclude: [
+                        'assets/css/.*',
+                        'assets/sass/.*',
+                        'assets/js/.*',
+                        'node_modules/.*',
+                        'vendor/.*',
+                        'tests/.*'
+                    ],
                     mainFile: 'adzonia.php',
-                    potComments: 'Copyright (c) 2014 nanodesigns',
+                    potComments: 'Copyright (c) 2014-2017 nanodesigns',
                     potFilename: 'adzonia.pot',
                     potHeaders: {
                         poedit: true,
@@ -179,7 +186,7 @@ module.exports = function(grunt) {
                         '!composer.lock',
                         '!tests/**',
                         '!logs/**',
-                        '!readme.md',
+                        '!README.md',
                         '!contributing.md',
                         '!*.sublime-grunt.cache',
                         '!Gruntfile.js',
@@ -205,11 +212,16 @@ module.exports = function(grunt) {
                 }
             },
             js: {
-                files: ['assets/js/adzonia.js', 'assets/js/adzonia-admin.js'],
+                files: [
+                    'assets/js/adzonia.js',
+                    'assets/js/adzonia-admin.js'
+                ],
                 tasks: ['uglify']
             },
             css: {
-                files: ['assets/sass/*.scss'],
+                files: [
+                    'assets/sass/*.scss'
+                ],
                 tasks: ['sass', 'autoprefixer', 'cssmin']
             }
         }

@@ -1,9 +1,9 @@
-# Copyright (c) 2014 nanodesigns
+# Copyright (c) 2014-2017 nanodesigns
 msgid ""
 msgstr ""
 "Project-Id-Version: AdZonia 2.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/nanodesigns/adzonia/issues\n"
-"POT-Creation-Date: 2017-03-10 20:18:32+00:00\n"
+"POT-Creation-Date: 2017-03-24 19:07:05+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,98 +23,172 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: adzonia.php:64 adzonia.php:77
+#: admin/adzonia-admin-functions.php:44
+msgid "Choose Ad Image"
+msgstr ""
+
+#: admin/adzonia-admin-functions.php:45
+msgid "Choose Image"
+msgstr ""
+
+#: admin/adzonia-settings.php:14 admin/adzonia-settings.php:27
 msgid "Settings & Instructions"
 msgstr ""
 
-#: adzonia.php:65
+#: admin/adzonia-settings.php:15
 msgid "Settings-Instructions"
 msgstr ""
 
-#: adzonia.php:110
+#: admin/adzonia-settings.php:60
 msgid "%s Settings"
 msgstr ""
 
-#: adzonia.php:116
+#: admin/adzonia-settings.php:66
 msgid "AdZonia CSS"
 msgstr ""
 
-#: adzonia.php:123
+#: admin/adzonia-settings.php:73
 msgid "%s Troubleshoot"
 msgstr ""
 
-#: adzonia.php:129
+#: admin/adzonia-settings.php:79
 msgid "AdZonia jQuery"
 msgstr ""
 
-#: adzonia.php:139
+#: admin/adzonia-settings.php:89
 msgid ""
 "<p>Set these optional settings if you want. It&rsquo;s not mandatory, and "
 "even without the settings your advertisements will work just fine.</p>"
 msgstr ""
 
-#: adzonia.php:144
+#: admin/adzonia-settings.php:94
 msgid ""
 "check the box to show Ads as inline element rather block element. It will "
 "load AdZonia CSS into the site&rsquo;s front-end"
 msgstr ""
 
-#: adzonia.php:149
+#: admin/adzonia-settings.php:99
 msgid ""
 "<p>Getting trouble using the plugin? If the date picker and/or image "
 "uploader is not working, try enabling the jQuery from the plugin "
 "resources.</p>"
 msgstr ""
 
-#: adzonia.php:154
+#: admin/adzonia-settings.php:104
 msgid "Load jQuery from plugin"
 msgstr ""
 
-#: adzonia.php:304
+#: adzonia.php:226
+msgid "Set the AdZonia settings"
+msgstr ""
+
+#: adzonia.php:226
+msgid "Settings"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:16
+msgid "Add New AdZonia"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:17
+msgid "Edit AdZonia"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:18
+msgid "New AdZonia"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:19
+msgid "View AdZonia"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:20
+msgid "Search AdZonia"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:21
+msgid "No AdZonia is created yet. Try making one first"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:22
+msgid "No AdZonia found in Trash"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:23
+msgid "Parent AdZonia:"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:70
+msgid "ID"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:71
+msgid "Preview"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:73
+msgid "Until"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:74
+msgid "Shortcode"
+msgstr ""
+
+#: includes/adzonia-functions.php:50
+msgid ""
+"<strong>WARNING:</strong> Assigned ad is expired! <em>Extend</em> the term "
+"or <em>Delete</em> it."
+msgstr ""
+
+#: includes/adzonia-functions.php:56
+msgid "<strong>Sorry!</strong> No such Ad exists!"
+msgstr ""
+
+#: includes/adzonia-metaboxes.php:13
 msgid "AdZonia Specification"
 msgstr ""
 
-#: adzonia.php:318
+#: includes/adzonia-metaboxes.php:27
 msgid "Ad Image"
 msgstr ""
 
-#: adzonia.php:319
+#: includes/adzonia-metaboxes.php:28
 msgid "Add an image if you wish to show an image ad"
 msgstr ""
 
-#: adzonia.php:324
+#: includes/adzonia-metaboxes.php:33
 msgid "Ad Code"
 msgstr ""
 
-#: adzonia.php:325
+#: includes/adzonia-metaboxes.php:34
 msgid "If your ad is a Code-ad, then write down the code here"
 msgstr ""
 
-#: adzonia.php:330
+#: includes/adzonia-metaboxes.php:39
 msgid "End Date"
 msgstr ""
 
-#: adzonia.php:331
+#: includes/adzonia-metaboxes.php:40
 msgid "Choose a date until when the ad will be visible"
 msgstr ""
 
-#: adzonia.php:336
+#: includes/adzonia-metaboxes.php:45
 msgid "Target URL"
 msgstr ""
 
-#: adzonia.php:337
+#: includes/adzonia-metaboxes.php:46
 msgid "Enter the URL, to where the ad will direct the viewer after clicking"
 msgstr ""
 
-#: adzonia.php:342
+#: includes/adzonia-metaboxes.php:51
 msgid "Location"
 msgstr ""
 
-#: adzonia.php:343
+#: includes/adzonia-metaboxes.php:52
 msgid "Choose a location to show the ad in predefined areas"
 msgstr ""
 
-#: adzonia.php:368
+#: includes/adzonia-metaboxes.php:77
 msgid ""
 "Either create an <strong>Image ad</strong> (<span class=\"dashicons "
 "dashicons-format-image p-icon\"></span>), or a <strong>Code ad</strong> "
@@ -122,49 +196,41 @@ msgid ""
 "won&rsquo;t be counted, sorry."
 msgstr ""
 
-#: adzonia.php:557
-msgid "ID"
-msgstr ""
-
-#: adzonia.php:558
-msgid "Preview"
-msgstr ""
-
-#: adzonia.php:560
-msgid "Until"
-msgstr ""
-
-#: adzonia.php:561
-msgid "Shortcode"
-msgstr ""
-
-#: adzonia.php:656
+#: includes/class-adzonia-install.php:127
+#. translators: 1. minimum WordPress core version 2. WordPress update page URL
 msgid ""
-"<strong>WARNING:</strong> Assigned ad is expired! <em>Extend</em> the term "
-"or <em>Delete</em> it."
+"AdZonia requires WordPress core version <strong>%1$s</strong> or greater. "
+"The plugin has been deactivated. Consider <a href=\"%2$s\">upgrading "
+"WordPress</a>."
 msgstr ""
 
-#: adzonia.php:662
-msgid "<strong>Sorry!</strong> No such Ad exists!"
+#: includes/class-adzonia-install.php:146
+#. translators: 1. first command 2. second command 3. plugin installation link
+#. with popup thickbox (modal)
+msgid ""
+"AdZonia&rsquo;s required dependencies are not loaded - plugin cannot "
+"function properly. Open the command console and run %1$s and then %2$s "
+"before anything else. If you are unaware what this is, please <a "
+"href=\"%3$s\" class=\"thickbox\">install the production version</a> instead."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "AdZonia"
 msgstr ""
 
-#: adzonia.php:722
+#: includes/widgets/adzonia-widget.php:15
 msgid "AdZonia widget to call the advertisement easily."
 msgstr ""
 
-#: adzonia.php:752
+#: includes/widgets/adzonia-widget.php:45
 msgid "Title:"
 msgstr ""
 
-#: adzonia.php:756
+#: includes/widgets/adzonia-widget.php:49
 msgid "Advertisements:"
 msgstr ""
 
-#: adzonia.php:758
+#: includes/widgets/adzonia-widget.php:51
 msgid "Choose one..."
 msgstr ""
 
@@ -218,65 +284,30 @@ msgid ""
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://nanodesignsbd.com/"
+msgid "http://adzonia.nanodesignsbd.com/"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
 "A simpler and easier advertisement manager plugin for WordPress sites, and "
-"most astonishingly - it's in WordPress way. Read the instructions (AdZonia "
-"&raquo; Settings-Instructions)."
+"most astonishingly - it's in WordPress way."
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Mayeenul Islam (@mayeenulislam)"
+msgid "nanodesigns"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://nanodesignsbd.com/mayeenulislam/"
+msgid "http://nanodesignsbd.com/"
 msgstr ""
 
-#: adzonia.php:254 adzonia.php:255 adzonia.php:265
+#: includes/adzonia-cpt-adzonia.php:13 includes/adzonia-cpt-adzonia.php:14
+#: includes/adzonia-cpt-adzonia.php:24
 msgctxt "AdZonia"
 msgid "AdZonia"
 msgstr ""
 
-#: adzonia.php:256 adzonia.php:259
+#: includes/adzonia-cpt-adzonia.php:15
 msgctxt "AdZonia"
 msgid "New AdZonia"
-msgstr ""
-
-#: adzonia.php:257
-msgctxt "AdZonia"
-msgid "Add New AdZonia"
-msgstr ""
-
-#: adzonia.php:258
-msgctxt "AdZonia"
-msgid "Edit AdZonia"
-msgstr ""
-
-#: adzonia.php:260
-msgctxt "AdZonia"
-msgid "View AdZonia"
-msgstr ""
-
-#: adzonia.php:261
-msgctxt "AdZonia"
-msgid "Search AdZonia"
-msgstr ""
-
-#: adzonia.php:262
-msgctxt "AdZonia"
-msgid "No AdZonia is created yet. Try making one first"
-msgstr ""
-
-#: adzonia.php:263
-msgctxt "AdZonia"
-msgid "No AdZonia found in Trash"
-msgstr ""
-
-#: adzonia.php:264
-msgctxt "AdZonia"
-msgid "Parent AdZonia:"
 msgstr ""
