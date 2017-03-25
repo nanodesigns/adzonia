@@ -78,9 +78,9 @@ echo '<input type="hidden" name="adzonia_nonce" value="'.wp_create_nonce(basenam
 
         <?php
         $image_ad = '';
-        $code_ad = '';
+        $code_ad  = '';
         $image_ad = get_post_meta( $post->ID, 'wpadz_ad_image', true );
-        $code_ad = get_post_meta( $post->ID, 'wpadz_ad_code', true );
+        $code_ad  = get_post_meta( $post->ID, 'wpadz_ad_code', true );
         ?>
 
         <div id="adzonia-tabs">

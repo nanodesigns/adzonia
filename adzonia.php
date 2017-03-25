@@ -245,16 +245,4 @@ if( is_admin() ) :
     require_once( 'admin/adzonia-settings.php' );
 endif;
 
-/**
- * Additional Functions
- *
- * To make the main page clean, additional functions
- * are taken away from this page.
- * 
- * @since  1.2.1
- * ----------------------------------------------------
- */
-require_once( 'includes/functions-additionals.php' );
-
-
 register_activation_hook( __FILE__, array( 'ADZ_Install', 'adzonia_install' ) );

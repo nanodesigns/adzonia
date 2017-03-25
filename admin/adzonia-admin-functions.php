@@ -12,8 +12,8 @@ function adzonia_admin_scripts() {
         /**
          * jQuery DateTimePicker
          */
-        wp_register_style( 'jquery-datetimepicker', plugins_url('libs/jquery-datetimepicker/jquery.datetimepicker.css', __FILE__) );
-        wp_register_script( 'jquery-datetimepicker', plugins_url('/libs/jquery-datetimepicker/jquery.datetimepicker.min.js', __FILE__), array('jquery'), PLUGINVERSION, true );
+        wp_register_style( 'jquery-datetimepicker', ADZ()->plugin_url() .'/libs/jquery-datetimepicker/jquery.datetimepicker.css' );
+        wp_register_script( 'jquery-datetimepicker', ADZ()->plugin_url() .'/libs/jquery-datetimepicker/jquery.datetimepicker.min.js', array('jquery'), ADZ()->version, true );
 
         if( function_exists('wp_enqueue_media') ) {
             wp_enqueue_media();
@@ -24,8 +24,8 @@ function adzonia_admin_scripts() {
             wp_enqueue_style('thickbox');
         }
 
-        wp_enqueue_style( 'adzonia-admin', plugins_url('assets/css/adzonia-admin.css', __FILE__), array('jquery-datetimepicker'), PLUGINVERSION );
-        wp_enqueue_script( 'adzonia-admin', plugins_url( '/assets/js/adzonia-admin.min.js', __FILE__ ), array('jquery', 'jquery-ui-tabs', 'jquery-datetimepicker'), PLUGINVERSION, true );
+        wp_enqueue_style( 'adzonia-admin', ADZ()->plugin_url() .'/assets/css/adzonia-admin.css', array('jquery-datetimepicker'), ADZ()->version );
+        wp_enqueue_script( 'adzonia-admin', ADZ()->plugin_url() . '/assets/js/adzonia-admin.min.js', array('jquery', 'jquery-ui-tabs', 'jquery-datetimepicker'), ADZ()->version, true );
 
         //load only on edit page (not in add-new page)
         //if( $screen->action == '' ) {
@@ -41,8 +41,8 @@ function adzonia_admin_scripts() {
                 array(
                     'is_img_ad'    => $image_ad,
                     'is_code_ad'   => $code_ad,
-                    'img_lib_head'  => esc_html__( 'Choose Ad Image', 'adzonia' ),
-                    'img_btn_text'  => esc_html__( 'Choose Image', 'adzonia' )
+                    'img_lib_head' => esc_html__( 'Choose Ad Image', 'adzonia' ),
+                    'img_btn_text' => esc_html__( 'Choose Image', 'adzonia' )
                 )
             );
         //}//endif( $screen->action == '' )

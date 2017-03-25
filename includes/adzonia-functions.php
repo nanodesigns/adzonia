@@ -11,51 +11,44 @@ function get_adzonia( $ad_id ) {
 
     $ad = get_post( $ad_id );
 
-    if( $ad !== '' && $ad->post_type === 'adzonia' ) {
+    if( $ad !== '' && 'adzonia' === $ad->post_type ) {
 
-        $this_date = date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
-        $datetoday = strtotime( $this_date );
+        $this_date       = date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
+        $datetoday       = strtotime( $this_date );
+        
+        $post_id         = $ad->ID;
+        
+        $image_ad_url    = get_post_meta( $post_id, 'wpadz_ad_image', true );
+        $ad_code         = get_post_meta( $post_id, 'wpadz_ad_code', true );
+        $end_date        = get_post_meta( $post_id, 'wpadz_end_date', true );
+        $get_target_url  = get_post_meta( $post_id, 'wpadz_target_url', true );
+        $target_url      = $get_target_url != '' ? $get_target_url : '#';
+        
+        $end_date_string = $end_date != '' ? strtotime($end_date) : '';
 
-        $postID = $ad->ID;
+        if( $datetoday <= $end_date_string ) {
 
-        $image_ad_url   = get_post_meta( $postID, 'wpadz_ad_image', true );
-        $ad_code        = get_post_meta( $postID, 'wpadz_ad_code', true );
-        $end_date       = get_post_meta( $postID, 'wpadz_end_date', true );
-        $get_target_url = get_post_meta( $postID, 'wpadz_target_url', true );
-        $target_url     = $get_target_url != '' ? $get_target_url : '#';
+            if( ! empty( $get_target_url ) ) $the_ad .= '<a href="'. esc_url( $target_url ) .'">';
 
-        $endDateString = ( $end_date != '' ? strtotime( $end_date ) : '' );
+                // Image ad
+                if ( $image_ad_url !== '' ) {
+                    $the_ad .= '<img src="'. esc_url( $image_ad_url ) .'" alt="Advertisement '.the_title_attribute(array('echo'=>0,'post'=>$post_id)) .'" />';
+                }
+                // Code ad
+                else if ( $ad_code !== '' ) {
+                    $the_ad .= stripslashes( $ad_code );
+                }
 
-        if( $datetoday <= $endDateString ) {
-
-            $the_ad .= '<div id="adzonia-ad-'. $postID .'" class="adzonia-holder">';
-
-                if( !empty( $get_target_url ) ) $the_ad .= '<a href="'. esc_url( $target_url ) .'">';
-
-                    // Image ad
-                    if ( $image_ad_url !== '' ) {
-                        $the_ad .= '<img src="'. esc_url( $image_ad_url ) .'" alt="Advertisement '.the_title_attribute(array('echo'=>0,'post'=>$postID)) .'" />';
-                    }
-                    // Code ad
-                    else if ( $ad_code !== '' ) {
-                        $the_ad .= stripslashes( $ad_code );
-                    }
-
-                if( !empty( $get_target_url ) ) $the_ad .= '</a>';
-
-            $the_ad .= '</div> <!-- /#adzonia-ad-'. $postID .' .adzonia-holder -->';
+            if( !empty( $get_target_url ) ) $the_ad .= '</a>';
 
         } else {
-            $the_ad .= '<div id="adzonia-ad-'. $postID .'" class="adzonia-holder">';
-                $the_ad .= '<span style="color:red;">'. __( '<strong>WARNING:</strong> Assigned ad is expired! <em>Extend</em> the term or <em>Delete</em> it.', 'adzonia' ) .'</span>';
-            $the_ad .= '</div> <!-- /#adzonia-ad-'. $postID .' .adzonia-holder -->';
+            $the_ad .= '<span style="color:red;">'. __( '<strong>WARNING:</strong> Assigned ad is expired! <em>Extend</em> the term or <em>Delete</em> it.', 'adzonia' ) .'</span>';
         }
 
     } else {
-        $the_ad .= '<div class="adzonia-holder">';
-            $the_ad .= '<span style="color:red;">'. __( '<strong>Sorry!</strong> No such Ad exists!', 'adzonia' ) .'</span>';
-        $the_ad .= '</div> <!-- /.adzonia-holder -->';
+        $the_ad .= '<span style="color:red;">'. __( '<strong>Sorry!</strong> No such Ad exists!', 'adzonia' ) .'</span>';
     }
+
     return $the_ad;    
 }
 
@@ -63,11 +56,11 @@ function get_adzonia( $ad_id ) {
 /**
  * Show AdZonia
  * 
- * @see  get_adzonia()
+ * @see    get_adzonia()
  * 
  * @param  integer $ad_id pass the ID of the AdZonia post.
  * ----------------------------------------------------
  */
 function show_adzonia( $ad_id ) {
-    echo get_adzonia( $ad_id );
+    echo get_adzonia( intval($ad_id) );
 }

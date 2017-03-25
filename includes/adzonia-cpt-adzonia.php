@@ -1,5 +1,19 @@
 <?php
 /**
+ * CPT 'adzonia'
+ *
+ * Functions to initiate the Custom Post Type 'adzonia'.
+ *
+ * @author      nanodesigns
+ * @category    Post Type
+ * @package     AdZonia
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
  * Register AdZonia Custom Post Type
  *
  * Custom post type to get the advertisement information
@@ -44,7 +58,9 @@ function adzonia_register_cpt_adzonia() {
         'capability_type'       => 'post'
     );
 
-    register_post_type( 'adzonia', $args );    
+    if( ! post_type_exists( 'adzonia' ) ) {
+    	register_post_type( 'adzonia', $args );
+    }
 }
 
 add_action( 'init', 'adzonia_register_cpt_adzonia' );
@@ -62,16 +78,16 @@ add_action( 'init', 'adzonia_register_cpt_adzonia' );
 function adzonia_set_custom_columns( $columns ) {
 
     //Insert columns after 'title'
-    $index = array_search( "title", array_keys( $columns ) );
+    $index = array_search( 'title', array_keys( $columns ) );
     if( $index !== false ){
         $before = array_slice( $columns, 0, $index + 1 );
         $after = array_splice( $columns, $index + 1, count( $columns ) );
         $columns = $before + array(
-            'ad_id' => __( 'ID', 'adzonia' ),
-            'ad_image' => __( 'Preview', 'adzonia' )
+			'ad_id'    => __( 'ID', 'adzonia' ),
+			'ad_image' => __( 'Preview', 'adzonia' )
             ) + $after + array(
-                'until' => __( 'Until', 'adzonia' ),
-                'adz_shortcode' => __( 'Shortcode', 'adzonia' )            
+				'until'         => __( 'Until', 'adzonia' ),
+				'adz_shortcode' => __( 'Shortcode', 'adzonia' )
             );
     }
     return $columns;
@@ -82,7 +98,9 @@ add_filter( 'manage_edit-adzonia_columns', 'adzonia_set_custom_columns', 50 );
 
 
 /**
- * Fill the columns with their data
+ * Fill the columns with their data.
+ *
+ * @since  1.2.0
  * 
  * @param  array $column  specific post type column.
  * @param  integer $post_id adzonia post id.

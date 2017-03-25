@@ -40,10 +40,7 @@ function adzonia_settings_page_callback() { ?>
         <!-- /.adzonia-right-column -->
         <div class="clearfix"></div>
         <hr>
-        <?php
-        //get the manual from external file
-        require_once( 'manual/inner-manual.php' );
-        ?>
+        <?php require_once ADZ()->plugin_path() .'/includes/_manual.php'; ?>
     </div> <!-- .wrap -->
 
 <?php

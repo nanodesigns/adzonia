@@ -1,20 +1,4 @@
 <?php
-// Get the back end options
-$get_options = get_option('adzonia_options');
-
-
-/**
- * AdZonia FrontEnd stylesheet.
- * @see  option is checked or not.
- * ----------------------------------------------------
- */
-if( $get_options['adzonia_css_check'] === true ) {
-    function adzonia_output_css() {
-        wp_enqueue_style( 'adzonia', plugins_url('assets/css/adzonia.css', __FILE__) );
-    }
-    add_action( 'wp_enqueue_scripts', 'adzonia_output_css' );
-}
-
 
 /**
  * Assistance from Giuseppe (aka Gmazzap, G.M.) (@gmazzap) - Italy.
@@ -29,6 +13,7 @@ function adzonia_ad_position_executioner( \WP_Query $query ) {
     if ( ! $query->is_main_query() ) {
         return;
     }
+    
     $key =  'wpadz_location';
     $ads_args = array(
             'post_type' => 'adzonia',
