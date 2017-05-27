@@ -10,7 +10,7 @@
 function adzonia_specifications_meta_box() {
     add_meta_box(
         'adzonia-info',                                 // metabox ID
-        __('AdZonia Specification', 'adzonia'),      // metabox title
+        esc_html__('AdZonia Specification', 'adzonia'), // metabox title
         'adzonia_specifications_specifics',             // callback function
         'adzonia',                                      // post type (+ CPT)
         'normal',                                       // 'normal', 'advanced', or 'side'
@@ -20,227 +20,156 @@ function adzonia_specifications_meta_box() {
 
 add_action( 'add_meta_boxes', 'adzonia_specifications_meta_box' );
 
-
-// Field Array
-$adzonia_meta_fields = array(
-    array(
-        'label' => __('Ad Image', 'adzonia'),
-        'desc'  => __('Add an image if you wish to show an image ad', 'adzonia'),
-        'id'    => 'wpadz_ad_image',
-        'type'  => 'ad_image'
-    ),
-    array(
-        'label' => __('Ad Code', 'adzonia'),
-        'desc'  => __('If your ad is a Code-ad, then write down the code here', 'adzonia'),
-        'id'    => 'wpadz_ad_code',
-        'type'  => 'ad_code'
-    ),
-    array(
-        'label' => __('End Date', 'adzonia'),
-        'desc'  => __('Choose a date until when the ad will be visible', 'adzonia'),
-        'id'    => 'wpadz_end_date',
-        'type'  => 'end_date'
-    ),
-    array(
-        'label' => __('Target URL', 'adzonia'),
-        'desc'  => __('Enter the URL, to where the ad will direct the viewer after clicking', 'adzonia'),
-        'id'    => 'wpadz_target_url',
-        'type'  => 'target_url'
-    ),
-    array(
-        'label' => __('Location', 'adzonia'),
-        'desc'  => __('Choose a location to show the ad in predefined areas', 'adzonia'),
-        'id'    => 'wpadz_location',
-        'type'  => 'location',
-        'options' => array (
-            'before_content' => array (
-                'label' => 'Before all the Post/Page Content',
-                'value' => 'before_content'
-            ),
-            'after_content' => array (
-                'label' => 'After all the Post/Page Content',
-                'value' => 'after_content'
-            )
-        )
-    )
-);
-
-
 // The Callback
 function adzonia_specifications_specifics() {
-global $adzonia_meta_fields, $post;
-// Use nonce for verification
-echo '<input type="hidden" name="adzonia_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';
-?>
-    <div class="row adz-meta-div">
 
-        <p class="non-js-directions"><?php _e( 'Either create an <strong>Image ad</strong> (<span class="dashicons dashicons-format-image p-icon"></span>), or a <strong>Code ad</strong> (<span class="dashicons dashicons-editor-code p-icon"></span>). Mixure won&rsquo;t be counted, sorry.', 'adzonia' ) ?></p>
+    global $post;
 
-        <?php
-        $image_ad = '';
-        $code_ad  = '';
-        $image_ad = get_post_meta( $post->ID, 'wpadz_ad_image', true );
-        $code_ad  = get_post_meta( $post->ID, 'wpadz_ad_code', true );
-        ?>
+    $meta_data = get_post_meta( $post->ID, '_adzonia_specs', true );
+    $meta_data = empty($meta_data) ? array() : $meta_data;
+    $meta      = adz_parse_defaults($meta_data);
+    ?>
 
-        <div id="adzonia-tabs">
-            <?php if( $image_ad === '' && $code_ad === '' ) { ?>
-            <ul class="tab-switches">
-                <li><a href="#image-ad-tab-content">Image Ad</a></li>
-                <li><a href="#code-ad-tab-content">Code Ad</a></li>
-            </ul>
-            <?php } ?>
-            <div class="clearfix"></div>
-            <div id="image-ad-tab-content" class="adzonia-tab-contents">
-                <table class="adz-meta-table adz-img-table">
-                    <?php
-                    foreach ($adzonia_meta_fields as $field) {
-                        // get value of this field if it exists for this post
-                        $meta = get_post_meta( $post->ID, $field['id'], true );
-                        // begin a table row with
-                            switch($field['type']) {
-                                // case items will go here
-                                
-                                case 'ad_image':
-                                    echo '<tr>';
-                                        echo '<td><div class="dashicons dashicons-format-image"></div></td>';
-                                        echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'<span class="orange">*</span></label></td>';
-                                        echo '<td class="adz-info-td upload-td">';
-                                            echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" />';
-                                            echo '<input type="button" name="nano_ad_image" class="button" id="nano-ad-image" value="Upload"/>';
-                                        echo '</td>';
-                                        echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span></td>';
-                                    echo '</tr>';
-                                break;
+    <div class="adz-container">
 
-                                case 'target_url':
-                                    echo '<tr>';
-                                        echo '<td><div class="dashicons dashicons-admin-links"></div></td>';
-                                        echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'</label></td>';
-                                        echo '<td class="adz-info-td">';
-                                            echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" placeholder="http://example.com" />';
-                                        echo '</td>';
-                                        echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span></td>';
-                                    echo '</tr>';
-                                break;
-
-                            } //end switch
-                    } // end foreach
-                    ?>
-                </table>
+        <div class="adz-row">
+            <div class="adz-btn-group adz-form-group" data-toggle="buttons">
+                <label class="adz-btn adz-btn-sm adz-btn-primary active">
+                    <input type="radio" name="_adz_ad_type" value="image_ad" <?php checked( $meta['ad_type'], 'image_ad', true ); ?>><i class="dashicons dashicons-format-image"></i> <?php _e('Image Ad', 'adzonia'); ?>
+                </label>
+                <label class="adz-btn adz-btn-sm adz-btn-primary">
+                    <input type="radio" name="_adz_ad_type" value="code_ad" <?php checked( $meta['ad_type'], 'code_ad', true ); ?>> <?php _e('Code Ad', 'adzonia'); ?> <i class="dashicons dashicons-editor-code"></i>
+                </label>
             </div>
-            <!-- /#image-ad-tab-content -->
-            <div id="code-ad-tab-content" class="adzonia-tab-contents">
-                <table class="adz-meta-table">
-                    <?php
-                    foreach ($adzonia_meta_fields as $field) {
-                        // get value of this field if it exists for this post
-                        $meta = get_post_meta($post->ID, $field['id'], true);
-                        // begin a table row with
-                            switch($field['type']) {
-                                case 'ad_code':
-                                    echo '<tr>';
-                                        echo '<td><div class="dashicons dashicons-editor-code"></div></td>';
-                                        echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'<span class="orange">*</span></label></td>';
-                                        echo '<td class="adz-info-td">';
-                                            echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="50" rows="5">'.stripslashes( $meta ).'</textarea>';
-                                        echo '</td>';
-                                        echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span></td>';
-                                    echo '</tr>';
-                                break;
-                            } //end switch
-                    } // end foreach
-                    ?>
-                </table>
-            </div>
-            <!-- /#code-ad-tab-content -->
         </div>
 
-        <table class="adz-meta-table">
-            <?php
-            foreach ($adzonia_meta_fields as $field) {
-                // get value of this field if it exists for this post
-                $meta = get_post_meta($post->ID, $field['id'], true);
-                // begin a table row with
-                    switch($field['type']) {
-                        // case items will go here
-
-                        case 'end_date':
-                            echo '<tr>';
-                                echo '<td><div class="dashicons dashicons-calendar"></div></td>';
-                                echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'<span class="required">*</span></label></td>';
-                                echo '<td class="adz-info-td">';
-                                    echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" autocomplete="off" placeholder="YYYY/MM/DD 24:00" required />';
-                                echo '</td>';
-                                echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span></td>';
-                            echo '</tr>';
-                        break;
-
-                        case 'location':
-                            echo '<tr>';
-                                echo '<td><div class="dashicons dashicons-align-right"></div></td>';
-                                echo '<td class="adz-label-td"><label for="'.$field['id'].'">'.$field['label'].'</label></td>';
-                                echo '<td class="adz-info-td">';
-                                    echo '<select name="'.$field['id'].'" id="'.$field['id'].'">';
-                                        echo '<option>Select a predefined place (optional)</option>';
-                                        foreach ($field['options'] as $option) {
-                                            echo '<option', $meta == $option['value'] ? ' selected="selected"' : '', ' value="'.$option['value'].'">'.$option['label'].'</option>';
-                                        }
-                                    echo '</select>';
-                                echo '</td>';
-                                echo '<td><span class="dashicons dashicons-editor-help adz-tooltip-icon" data-tooltip="'. $field['desc'] .'"></span> <em style="color: red">*Beta Feature</em></td>';
-                            echo '</tr>';
-                        break;
-
-                    } //end switch
-            } // end foreach
-            ?>
+        <table class="form-table">
+            <tbody>
+                <tr class="adz-conditional-to-image-ad">
+                    <th scope="row">
+                        <?php _e('Ad Image', 'adzonia'); ?> <small class="adz-text-danger">*</small>
+                        <?php echo adz_tooltip( 'adz-image-tooltip', __( 'Upload/Add an image using Media Library to display on the ad place.', 'adzonia' ), 'right' ); ?>
+                    </th>
+                    <td>
+                        <?php
+                        if( empty($meta['image_id']) ) {
+                            $logo_preview = ADZ()->plugin_url() .'/assets/images/default.jpg';
+                            $class = '';
+                        } else {
+                            $logo_preview = wp_get_attachment_url($meta['image_id']);
+                            $class = 'has-image';
+                        }
+                        ?>
+                        <div class="adz-preview-image ad-image-preview <?php echo esc_attr($class); ?>">
+                            <div class="close-btn" id="close-ad-image"><i class="dashicons dashicons-dismiss"></i></div>
+                            <img id="ad-image-preview" src="<?php echo esc_url($logo_preview); ?>" alt="<?php esc_attr_e('Preview of Ad Image', 'adzonia' ); ?>" style="max-width: 100px; max-height: 100px; border: none;" />
+                        </div>
+                        <input type="text" class="grm-field-item grm-file screen-reader-text" name="_adz_ad_image" id="adz-ad-image" value="<?php echo $meta['image_id']; ?>" required="required">
+                        <div id="adz-image-btn" class="adz-btn adz-btn-primary img-input-btn <?php echo esc_attr($class); ?>">
+                            <i class="dashicons dashicons-upload"></i> <?php _e('Upload', 'adzonia'); ?>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="adz-conditional-to-image-ad">
+                    <th scope="row">
+                        <?php _e('Target URL', 'adzonia'); ?>
+                        <?php echo adz_tooltip( 'adz-target-url-tooltip', __( 'If you want to direct the user to a specific URL by clicking on the image, type it here.', 'adzonia' ), 'right' ); ?>
+                    </th>
+                    <td>
+                        <input type="text" id="adz-target-url" class="adz-form-control" name="_adz_target_url" placeholder="http://example.com" value="<?php echo esc_url($meta['target_url']); ?>">
+                    </td>
+                </tr>
+                <tr class="adz-conditional-to-code-ad adz-conditional-hide-first">
+                    <th scope="row">
+                        <?php _e('Code', 'adzonia'); ?>
+                        <?php echo adz_tooltip( 'adz-ad-code-tooltip', __( 'Paste the code of your advertisement. Make sure it&rsquo;s not harmful and not any type of SQL injection.', 'adzonia' ), 'right' ); ?>
+                    </th>
+                    <td>
+                        <textarea id="adz-ad-code" class="adz-form-control" name="_adz_ad_code" cols="50" rows="4"><?php echo stripslashes($meta['code']); ?></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <?php _e('End Date', 'adzonia'); ?>
+                        <?php echo adz_tooltip( 'adz-end-date-tooltip', __( 'Mention a date to end the display of the advertisement automatically.', 'adzonia' ), 'right' ); ?>
+                    </th>
+                    <td>
+                        <div class="adz-input-group">
+                            <?php $date_value = !empty($meta['end_date']) ? date('F d, Y', strtotime($meta['end_date'])) : ''; ?>
+                            <input type="text" id="adz-end-date" class="adz-form-control" name="_adz_end_date" autocomplete="off" placeholder="February 21, 1952" value="<?php echo $date_value; ?>">
+                            <div id="call-adz-end-date" class="adz-input-group-addon"><i class="dashicons dashicons-calendar"></i></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <?php _e('Location', 'adzonia'); ?> <em style="color: red">(*beta)</em>
+                        <?php echo adz_tooltip( 'adz-location-tooltip', __( 'Beta Feature: you can display the advertisement on any of the predefined places.', 'adzonia' ), 'right' ); ?>
+                    </th>
+                    <td>
+                        <select name="_adz_location" id="adz-location" class="adz-form-control">
+                            <option value=""><?php _e('Select a Predefined Place (optional)', 'adzonia'); ?></option>
+                            <option value="before_content" <?php selected( $meta['ad_location'], 'before_content', true ); ?>><?php _e('Before all the Post/Page Content', 'adzonia'); ?></option>
+                            <option value="after_content" <?php selected( $meta['ad_location'], 'after_content', true ); ?>><?php _e('After all the Post/Page Content', 'adzonia'); ?></option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
         </table>
 
-    </div> <!-- .row -->
+        <?php
+        // Use nonce for verification
+        echo '<input type="hidden" name="adzonia_nonce" value="'. wp_create_nonce(basename(__FILE__)) .'" />';
+        ?>
 
-    <?php
+    </div>
+
+<?php
 }
 
 // Save the Data
-function save_adzonia_meta( $post_id ) {
-    global $adzonia_meta_fields;
-     
+function adz_save_adzonia_meta( $post_id ) {     
     // verify nonce
-    if ( !isset($_POST['adzonia_nonce']) || !wp_verify_nonce( $_POST['adzonia_nonce'], basename(__FILE__) ) ) 
+    if ( !isset($_POST['adzonia_nonce']) || !wp_verify_nonce( $_POST['adzonia_nonce'], basename(__FILE__) ) ) {
         return $post_id;
+    }
 
     // check autosave
-    if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+    if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
         return $post_id;
+    }
 
     // check permissions
     if ( 'adzonia' === $_POST['post_type'] ) {
-        if ( !current_user_can('edit_page', $post_id) )
+        if ( !current_user_can('edit_page', $post_id) ) {
             return $post_id;
         } elseif ( !current_user_can('edit_post', $post_id) ) {
             return $post_id;
-    }
-     
-    // loop through fields and save the data
-    foreach ( $adzonia_meta_fields as $field ) {
-        $old = get_post_meta($post_id, $field['id'], true);
-        $new = $_POST[$field['id']];
-        if ( $new && $new != $old ) {
-            //if it's the code field, sanitize the data
-            if( 'wpadz_ad_code' === $field['id'] ) {
-                $filtered_code = addslashes( $_POST[$field['id']] );
-                update_post_meta($post_id, $field['id'], $filtered_code);
-            }
-            //otherwise simply insert 'em
-            else {
-                update_post_meta($post_id, $field['id'], $new);
-            }
-        } elseif ( '' == $new && $old ) {
-            delete_post_meta($post_id, $field['id'], $old);
         }
-    } // end foreach
+    }
+
+    $existing_data = get_post_meta( $post_id, '_adzonia_specs', true );
+    $meta_data     = array();
+
+    if( 'code_ad' === $_POST['_adz_ad_type'] ) {
+        $filtered_code     = addslashes($_POST['_adz_ad_code']);
+        $meta_data['code'] = $filtered_code;
+    }
+    else if( 'image_ad' === $_POST['_adz_ad_type'] ) {
+        $meta_data['image_id']   = $_POST['_adz_ad_image'];
+        $meta_data['target_url'] = $_POST['_adz_target_url'];
+    }
+    $end_date                 = $_POST['_adz_end_date'];
+    $meta_data['end_date']    = ! empty($end_date) ? date('Y-m-d 23:59:59', strtotime($end_date)) : $end_date;
+    $meta_data['ad_location'] = $_POST['_adz_location'];
+    $meta_data['ad_type']     = $_POST['_adz_ad_type'];
+
+    if( !empty($meta_data) && $meta_data !== $existing_data ) {
+        update_post_meta( $post_id, '_adzonia_specs', $meta_data );
+    } else {
+        delete_post_meta( $post_id, '_adzonia_specs', $existing_data );
+    }
 }
 
-add_action( 'save_post',        'save_adzonia_meta' );
-add_action( 'new_to_publish',   'save_adzonia_meta' );
+add_action( 'save_post',        'adz_save_adzonia_meta' );
+add_action( 'new_to_publish',   'adz_save_adzonia_meta' );
