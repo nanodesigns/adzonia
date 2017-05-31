@@ -11,8 +11,8 @@
 function adzonia_settings_page() {
     add_submenu_page(
         'edit.php?post_type=adzonia',                   //$parent_slug
-        __('Settings & Instructions', 'adzonia' ),      //$page_title
-        __('Settings-Instructions', 'adzonia' ),        //$menu_title
+        __( 'Instructions', 'adzonia' ),      //$page_title
+        __( 'Instructions', 'adzonia' ),        //$menu_title
         'manage_options',                               //$capability
         'adzonia-settings',                             //$menu_slug
         'adzonia_settings_page_callback'                //callback function
@@ -24,7 +24,7 @@ add_action('admin_menu', 'adzonia_settings_page');
 function adzonia_settings_page_callback() { ?>
 
     <div class="wrap">
-        <h2><?php _e('Settings & Instructions', 'adzonia' ); ?></h2>
+        <h2><?php esc_html_e('Settings &amp; Instructions', 'adzonia' ); ?></h2>
         <?php settings_errors(); ?>
         <div class="adzonia-left-column">
             <form action="options.php" method="post">

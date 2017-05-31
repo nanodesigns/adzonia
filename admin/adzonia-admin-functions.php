@@ -1,7 +1,21 @@
 <?php
 /**
+ * Admin Functions
+ *
+ * Functions specific to admin specific pages.
+ *
+ * @author      nanodesigns
+ * @category    Admin/Functions
+ * @package     AdZonia
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
  * Enqueue necessary admin scripts.
- * Load scripts only where necessary using get_currecnt_screen().
+ * Load scripts only where necessary using get_current_screen().
  * ----------------------------------------------------
  */
 function adzonia_admin_scripts() {
@@ -19,7 +33,7 @@ function adzonia_admin_scripts() {
         }
 
         wp_enqueue_style( 'adzonia', ADZ()->plugin_url() .'/assets/css/adzonia-admin.css', array(), ADZ()->version );
-        wp_enqueue_script( 'adzonia', ADZ()->plugin_url() .'/assets/js/adzonia-admin.min.js', array('jquery', 'jquery-ui-tabs', 'jquery-ui-datepicker'), ADZ()->version, true );
+        wp_enqueue_script( 'adzonia', ADZ()->plugin_url() .'/assets/js/adzonia-admin.min.js', array('jquery', 'jquery-ui-datepicker'), ADZ()->version, true );
 
         wp_localize_script(
             'adzonia',

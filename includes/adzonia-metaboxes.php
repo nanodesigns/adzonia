@@ -1,7 +1,20 @@
 <?php
 /**
- * AdZonia Metabox
+ * Metabox
+ *
  * To get additional information about an advertisement.
+ *
+ * @author      nanodesigns
+ * @category    Metaboxes
+ * @package     AdZonia
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * AdZonia Metabox
  *
  * @since  1.0.0 initiated
  * @since  1.2.0 modified

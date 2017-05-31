@@ -5,6 +5,7 @@
  * @author  nanodesigns
  * @package AdZonia
  */
+
 jQuery(document).ready(function($) {
 
     /* ----------------------------------------------------------- */
@@ -60,7 +61,10 @@ jQuery(document).ready(function($) {
     /* ----------------------------------------------------------- */
     var adz_end_date_field = $('#adz-end-date');
 
-    adz_end_date_field.datepicker();
+    adz_end_date_field.datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
 
     $('#call-adz-end-date').on('click', function() {
         adz_end_date_field.datepicker('show');

@@ -52,7 +52,6 @@ module.exports = function(grunt) {
                     sourceMap: false
                 },
                 files: {
-                    'assets/css/adzonia.css': 'assets/sass/adzonia.scss',
                     'assets/css/adzonia-admin.css': 'assets/sass/adzonia-admin.scss'
                 }
             }
@@ -66,9 +65,6 @@ module.exports = function(grunt) {
             options: {
                 cascade: false
             },
-            adzCSS: {
-                src: 'assets/css/adzonia.css'
-            },
             adminCSS: {
                 src: 'assets/css/adzonia-admin.css'
             }
@@ -81,7 +77,6 @@ module.exports = function(grunt) {
         cssmin: {
             minify: {
                 files: {
-                    'assets/css/adzonia.css': 'assets/css/adzonia.css',
                     'assets/css/adzonia-admin.css': 'assets/css/adzonia-admin.css'
                 },
                 options: {
@@ -170,7 +165,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'adzonia-<%= pkg.version %>.zip',
+                    archive: '<%= pkg.name %>-<%= pkg.version %>.zip',
                     mode: 'zip'
                 },
                 files: [{
@@ -193,9 +188,9 @@ module.exports = function(grunt) {
                         '!package.json',
                         '!*.sublime-workspace',
                         '!*.sublime-project',
-                        '!adzonia-<%= pkg.version %>.zip'
+                        '!<%= pkg.name %>-<%= pkg.version %>.zip'
                     ],
-                    dest: 'adzonia/' // archive it in this directory
+                    dest: '<%= pkg.name %>/' // archive it in this directory
                 }]
             }
         },

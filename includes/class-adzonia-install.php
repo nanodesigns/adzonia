@@ -1,6 +1,6 @@
 <?php
 /**
- * Installation related functions and actions
+ * Installation related functions and actions.
  *
  * @author   	nanodesigns
  * @category 	Core
@@ -27,20 +27,7 @@ Class ADZ_Install {
      * -----------------------------------------------------------------------
      */
     public static function adzonia_install() {
-        /**
-         * Set up the default Settings
-         * ...
-         */
-        /*$adzonia_gen_settings = array(
-                'support_desk'         => $support_desk_page_id,
-                'submit_page'          => $submit_ticket_page_id,
-                'enable_notice'        => absint(1),
-                'submit_ticket_notice' => esc_attr(strip_tags($ns_submit_ticket_notice)),
-                'support_desk_notice'  => esc_attr(strip_tags($ns_support_desk_notice)),
-                'knowledgebase_notice' => esc_attr(strip_tags($ns_knowledgebase_notice)),
-            );
-        add_option( 'adzonia_settings', $adzonia_gen_settings );*/
-
+        
         /**
          * Update db version to current
          * @since  1.0.0
