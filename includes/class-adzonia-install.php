@@ -70,12 +70,8 @@ Class ADZ_Install {
      * @return boolean True of dependencies are here, false otherwise.
      * --------------------------------------------------------------------------
      */
-    public function adzonia_is_dependency_loaded() {
-        if( ! file_exists( ADZ()->plugin_path() .'/assets/css/adzonia.css' ) ) {
-            return false;
-        } else if( ! file_exists( ADZ()->plugin_path() .'/assets/css/adzonia-admin.css' ) ) {
-            return false;
-        } else if( ! file_exists( ADZ()->plugin_path() .'/assets/js/adzonia.min.js' ) ) {
+    public static function adzonia_is_dependency_loaded() {
+        if( ! file_exists( ADZ()->plugin_path() .'/assets/css/adzonia-admin.css' ) ) {
             return false;
         } else if( ! file_exists( ADZ()->plugin_path() .'/assets/js/adzonia-admin.min.js' ) ) {
             return false;
@@ -92,7 +88,7 @@ Class ADZ_Install {
      * @return boolean True of WordPress version supported, false otherwise.
      * --------------------------------------------------------------------------
      */
-    public function adzonia_is_version_supported() {
+    public static function adzonia_is_version_supported() {
         if ( version_compare( get_bloginfo( 'version' ), ADZ()->wp_version, '<=' ) ) {
             return false;
         }
@@ -107,7 +103,7 @@ Class ADZ_Install {
      * @since  2.0.0
      * --------------------------------------------------------------------------
      */
-    public function adzonia_fail_version_admin_notice() {
+    public static function adzonia_fail_version_admin_notice() {
         echo '<div class="updated"><p>';
             printf(
                 /* translators: 1. minimum WordPress core version 2. WordPress update page URL */
@@ -126,7 +122,7 @@ Class ADZ_Install {
      * @since  2.0.0
      * --------------------------------------------------------------------------
      */
-    public function adzonia_fail_dependency_admin_notice() {
+    public static function adzonia_fail_dependency_admin_notice() {
         echo '<div class="updated"><p>';
             printf(
                 /* translators: 1. first command 2. second command 3. plugin installation link with popup thickbox (modal) */
@@ -154,7 +150,7 @@ Class ADZ_Install {
      * @since  2.0.0
      * --------------------------------------------------------------------------
      */
-    public function adzonia_force_deactivate() {
+    public static function adzonia_force_deactivate() {
         deactivate_plugins( ADZ()->plugin_basename() );
     }
 

@@ -20,7 +20,6 @@ module.exports = function(grunt) {
         jshint: {
             all: [
                 'Gruntfile.js',
-                'assets/js/adzonia.js',
                 'assets/js/adzonia-admin.js'
             ]
         },
@@ -36,7 +35,6 @@ module.exports = function(grunt) {
                     preserveComments: /^!/ // Preserve comments that start with a bang.
                 },
                 files: {
-                    'assets/js/adzonia.min.js': [ 'assets/js/adzonia.js' ],
                     'assets/js/adzonia-admin.min.js': [ 'assets/js/adzonia-admin.js' ]
                 },
             }
@@ -165,7 +163,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: '<%= pkg.name %>-<%= pkg.version %>.zip',
+                    archive: './build/<%= pkg.name %>-<%= pkg.version %>.zip',
                     mode: 'zip'
                 },
                 files: [{

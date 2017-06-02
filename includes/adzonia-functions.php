@@ -102,7 +102,7 @@ function adz_tooltip( $id = '', $message = '', $position = 'top', $icon = 'dashi
  * @since  1.2.1
  * ----------------------------------------------------
  */
-function adzonia_ad_position_executioner( \WP_Query $query ) {
+/*function adzonia_ad_position_executioner( \WP_Query $query ) {
     if ( ! $query->is_main_query() ) {
         return;
     }
@@ -144,9 +144,9 @@ function adzonia_ad_position_executioner( \WP_Query $query ) {
     // at the very end remove the filter
     add_action( 'loop_end', 'adzonia_remove_hooks' );
 }
-add_action( 'loop_start', 'adzonia_ad_position_executioner' );
+add_action( 'loop_start', 'adzonia_ad_position_executioner' );*/
 
-function adzonia_ad_position_func( $content ) {
+/*function adzonia_ad_position_func( $content ) {
     global $wp_query;
     if ( isset($wp_query->adzonia_before) && ! empty($wp_query->adzonia_before) ) {
         $content = $wp_query->adzonia_before . $content;
@@ -165,7 +165,7 @@ function adzonia_remove_hooks() {
     remove_filter( 'the_content', 'adzonia_ad_position_func', PHP_INT_MAX  );
     remove_filter( 'the_excerpt', 'adzonia_ad_position_func', PHP_INT_MAX  );
     remove_action( current_filter(), __FUNCTION__  );
-}
+}*/
 
 /**
  * Get AdZonia advertisement.

@@ -99,11 +99,6 @@ final class AdZonia {
     public $wp_version = '4.4.0';
 
     /**
-     * @var string
-     */
-    public $prefix = 'adz_';
-
-    /**
      * @var ADZ The single instance of the class
      */
     protected static $_instance = null;
@@ -116,6 +111,7 @@ final class AdZonia {
      * @static
      * @see ADZ()
      * @return AdZonia - Main instance
+     * ...
      */
     public static function instance() {
         if ( is_null( self::$_instance ) ) {
@@ -127,6 +123,7 @@ final class AdZonia {
     /**
      * Get the plugin url.
      * @return string
+     * ...
      */
     public function plugin_url() {
         return untrailingslashit( plugins_url( '/', __FILE__ ) );
@@ -135,6 +132,7 @@ final class AdZonia {
     /**
      * Get the plugin path.
      * @return string
+     * ...
      */
     public function plugin_path() {
         return untrailingslashit( plugin_dir_path( __FILE__ ) );
@@ -143,6 +141,7 @@ final class AdZonia {
     /**
      * Get the plugin base location.
      * @return string
+     * ...
      */
     public function plugin_basename() {
         return plugin_basename( __FILE__ );
@@ -163,7 +162,7 @@ function ADZ() {
 
 
 /**
- * Cross Check Requirements when active
+ * Cross Check Requirements when active.
  *
  * Cross check for Current WordPress version is
  * greater than required. Cross check whether the user
@@ -184,17 +183,17 @@ function adzonia_cross_check_on_activation() {
         
         if ( ! $install->adzonia_is_version_supported() ) {
             $unmet = true;
-            add_action( 'admin_notices', array( 'WP_Install', 'adzonia_fail_version_admin_notice' ) );
+            add_action( 'admin_notices', array( 'ADZ_Install', 'adzonia_fail_version_admin_notice' ) );
         }
 
         if ( ! $install->adzonia_is_dependency_loaded() ) {
             $unmet = true;
-            add_action( 'admin_notices', array( 'WP_Install', 'adzonia_fail_dependency_admin_notice' ) );
+            add_action( 'admin_notices', array( 'ADZ_Install', 'adzonia_fail_dependency_admin_notice' ) );
         }
         
         if( $unmet ) {
 
-            add_action( 'admin_init', array( 'WP_Install', 'adzonia_force_deactivate' ) );
+            add_action( 'admin_init', array( 'ADZ_Install', 'adzonia_force_deactivate' ) );
             
             if ( isset( $_GET['activate'] ) ) {
                 unset( $_GET['activate'] );
@@ -208,41 +207,16 @@ function adzonia_cross_check_on_activation() {
 add_action( 'plugins_loaded', 'adzonia_cross_check_on_activation' );
 
 
-/**
- * Add Settings link on plugin page
- *
- * Add a 'Settings' link to the Admin Plugin page after the activation
- * of the plugin. So the user can easily get to the Settings page, and
- * can setup the plugin as necessary.
- *
- * @since  2.0.0
- * 
- * @param  array $links  Links on the plugin page per plugin.
- * @return array         Modified with our link.
- * -----------------------------------------------------------------------
- */
-function adzonia_plugin_settings_link( $links ) {
-    // '/wp-admin/edit.php?post_type=adzonia&page=adzonia-settings';
-    $settings_link = '<a href="'. esc_url( admin_url( 'edit.php?post_type=adzonia&page=adzonia-settings' ) ) .'" title="'. esc_attr__( 'Set the AdZonia settings', 'adzonia' ) .'">'. __( 'Settings', 'adzonia' ) .'</a>';
-
-    array_unshift( $links, $settings_link ); //make the settings link be first item
-    return $links;
-}
-
-add_filter( 'plugin_action_links_'. plugin_basename( __FILE__ ), 'adzonia_plugin_settings_link' );
-
-
 require_once( 'includes/class-adzonia-install.php' );
 require_once( 'includes/adzonia-cpt-adzonia.php' );
 require_once( 'includes/adzonia-functions.php' );
-require_once( 'includes/adzonia-set-environment.php' );
 require_once( 'includes/shortcodes/adzonia-shortcode.php' );
-require_once( 'includes/widgets/adzonia-widget.php' );
 
 if( is_admin() ) :
     require_once( 'includes/adzonia-metaboxes.php' );
-    require_once( 'admin/adzonia-admin-functions.php' );
-    require_once( 'admin/adzonia-settings.php' );
+    require_once( 'includes/widgets/adzonia-widget.php' );
+    require_once( 'includes/admin/adzonia-admin-functions.php' );
+    require_once( 'includes/admin/adzonia-help.php' );
 endif;
 
 register_activation_hook( __FILE__, array( 'ADZ_Install', 'adzonia_install' ) );
