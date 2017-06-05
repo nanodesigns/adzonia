@@ -93,6 +93,18 @@ function adz_tooltip( $id = '', $message = '', $position = 'top', $icon = 'dashi
 
 }
 
+function __adzonia_ad_places() {
+    $ad_places = array(
+        'default' => array(
+            'before_content' => __( 'Before all the Post/Page Content', 'adzonia' ),
+            'after_content'  => __( 'After all the Post/Page Content', 'adzonia' )
+        ),
+        'theme'  => array()
+    );
+
+    return apply_filters( 'adzonia_ad_places', $ad_places );
+}
+
 /**
  * Assistance from Giuseppe (aka Gmazzap, G.M.) (@gmazzap) - Italy.
  * Show the advertisement into the starting of the posts or
@@ -102,21 +114,21 @@ function adz_tooltip( $id = '', $message = '', $position = 'top', $icon = 'dashi
  * @since  1.2.1
  * ----------------------------------------------------
  */
-/*function adzonia_ad_position_executioner( \WP_Query $query ) {
+function adzonia_ad_position_executioner( \WP_Query $query ) {
     if ( ! $query->is_main_query() ) {
         return;
     }
     
-    $key =  'wpadz_location';
+    $key =  '_adzonia_location';
     $ads_args = array(
             'post_type' => 'adzonia',
             'meta_query' => array(
-              array(
-                'key' => $key,
-                'value' => array( 'after_content', 'before_content' ),
-                'compare' => 'IN'
-              )
-            ),
+                    array(
+                        'key' => $key,
+                        'value' => array( 'after_content', 'before_content' ),
+                        'compare' => 'IN'
+                    )
+                ),
                 'nopaging' => true,
                 'post_status' => 'publish'
             );
@@ -136,7 +148,7 @@ function adz_tooltip( $id = '', $message = '', $position = 'top', $icon = 'dashi
     }
 
     $query->adzonia_before = $before;
-    $query->adzonia_after = $after;
+    $query->adzonia_after  = $after;
 
     add_filter( 'the_content', 'adzonia_ad_position_func', PHP_INT_MAX  );
     add_filter( 'the_excerpt', 'adzonia_ad_position_func', PHP_INT_MAX  );
@@ -144,9 +156,9 @@ function adz_tooltip( $id = '', $message = '', $position = 'top', $icon = 'dashi
     // at the very end remove the filter
     add_action( 'loop_end', 'adzonia_remove_hooks' );
 }
-add_action( 'loop_start', 'adzonia_ad_position_executioner' );*/
+add_action( 'loop_start', 'adzonia_ad_position_executioner' );
 
-/*function adzonia_ad_position_func( $content ) {
+function adzonia_ad_position_func( $content ) {
     global $wp_query;
     if ( isset($wp_query->adzonia_before) && ! empty($wp_query->adzonia_before) ) {
         $content = $wp_query->adzonia_before . $content;
@@ -165,7 +177,7 @@ function adzonia_remove_hooks() {
     remove_filter( 'the_content', 'adzonia_ad_position_func', PHP_INT_MAX  );
     remove_filter( 'the_excerpt', 'adzonia_ad_position_func', PHP_INT_MAX  );
     remove_action( current_filter(), __FUNCTION__  );
-}*/
+}
 
 /**
  * Get AdZonia advertisement.

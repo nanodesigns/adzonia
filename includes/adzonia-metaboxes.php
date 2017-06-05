@@ -38,9 +38,10 @@ function adzonia_specifications_specifics() {
 
     global $post;
 
-    $meta_data = get_post_meta( $post->ID, '_adzonia_specs', true );
-    $meta_data = empty($meta_data) ? array() : $meta_data;
-    $meta      = adz_parse_defaults($meta_data);
+    $meta_data     = get_post_meta( $post->ID, '_adzonia_specs', true );
+    $meta_location = get_post_meta( $post->ID, '_adzonia_location', true );
+    $meta_data     = empty($meta_data) ? array() : $meta_data;
+    $meta          = adz_parse_defaults($meta_data);
     ?>
 
     <div class="adz-container">
@@ -120,10 +121,33 @@ function adzonia_specifications_specifics() {
                         <?php echo adz_tooltip( 'adz-location-tooltip', __( 'Beta Feature: you can display the advertisement on any of the predefined places.', 'adzonia' ), 'right' ); ?>
                     </th>
                     <td>
+                        <?php $ad_places = __adzonia_ad_places(); ?>
                         <select name="_adz_location" id="adz-location" class="adz-form-control">
-                            <option value=""><?php _e('Select a Predefined Place (optional)', 'adzonia'); ?></option>
-                            <option value="before_content" <?php selected( $meta['ad_location'], 'before_content', true ); ?>><?php _e('Before all the Post/Page Content', 'adzonia'); ?></option>
-                            <option value="after_content" <?php selected( $meta['ad_location'], 'after_content', true ); ?>><?php _e('After all the Post/Page Content', 'adzonia'); ?></option>
+                            
+                            <option value=""><?php _e('Select a place (optional)', 'adzonia'); ?></option>
+                            
+                            <?php
+                            echo '<optgroup label="'. __('Predefined places', 'adzonia') .'">';
+                                if( empty($ad_places['default']) ) {
+                                    echo '<option value="">-- no defaults --</option>';
+                                } else {
+                                    foreach( $ad_places['default'] as $ad_place => $ad_place_label ) {
+                                        echo '<option value="'. $ad_place .'" '. selected( $meta_location, $ad_place, false ) .'>'. $ad_place_label .'</option>';
+                                    }
+                                }
+                            echo '</optgroup>';
+
+                            echo '<optgroup label="'. __('Theme Defined places', 'adzonia') .'">';
+                                if( empty($ad_places['theme']) ) {
+                                    echo '<option value="">-- no theme defined places --</option>';
+                                } else {
+                                    foreach( $ad_places['theme'] as $ad_place => $ad_place_label ) {
+                                        echo '<option value="'. $ad_place .'" '. selected( $meta_location, $ad_place, false ) .'>'. $ad_place_label .'</option>';
+                                    }
+                                }
+                            echo '</optgroup>';
+                            ?>
+                            
                         </select>
                     </td>
                 </tr>
@@ -174,13 +198,21 @@ function adz_save_adzonia_meta( $post_id ) {
     }
     $end_date                 = $_POST['_adz_end_date'];
     $meta_data['end_date']    = ! empty($end_date) ? date('Y-m-d 23:59:59', strtotime($end_date)) : $end_date;
-    $meta_data['ad_location'] = $_POST['_adz_location'];
     $meta_data['ad_type']     = $_POST['_adz_ad_type'];
 
     if( !empty($meta_data) && $meta_data !== $existing_data ) {
         update_post_meta( $post_id, '_adzonia_specs', $meta_data );
     } else {
         delete_post_meta( $post_id, '_adzonia_specs', $existing_data );
+    }
+
+    // Ad Location
+    $existing_location = get_post_meta( $post_id, '_adzonia_location', true );
+    $meta_location     = $_POST['_adz_location'];
+    if( !empty($meta_location) && $meta_location !== $existing_location ) {
+        update_post_meta( $post_id, '_adzonia_location', $meta_location );
+    } else {
+        delete_post_meta( $post_id, '_adzonia_location', $existing_location );
     }
 }
 

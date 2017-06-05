@@ -107,23 +107,27 @@ add_filter( 'manage_edit-adzonia_columns', 'adzonia_set_custom_columns', 50 );
  * ----------------------------------------------------
  */
 function adzonia_custom_column( $column, $post_id ) {
+    $meta_data = get_post_meta( $post_id , '_adzonia_specs' , true );
     switch ( $column ) {
         case 'ad_id' :
             echo $post_id;
             break;
 
         case 'ad_image' :
-            $image_url = get_post_meta( $post_id , 'wpadz_ad_image' , true );
-            $ad_codes = get_post_meta( $post_id , 'wpadz_ad_code' , true );
-            if ( $image_url != '' )
-                echo '<img src="'. $image_url .'" width="80" height="auto" />';
-            else if ( $ad_codes != '' )
+            if( 'image_ad' === $meta_data['ad_type'] ) {
+                $image_url = wp_get_attachment_url($meta_data['image_id']);
+                echo '<img src="'. esc_url($image_url) .'" width="80" height="auto" />';
+            } else {
                 echo '<code>CodeAd</code>';
+            }
             break;
 
         case 'until' :
-            $to_date = get_post_meta( $post_id , 'wpadz_end_date' , true );
-            echo mysql2date( 'Y/m/d', $to_date) . '<br/>' . mysql2date( 'g:i A', $to_date);
+            if( !empty($meta_data['end_date']) ) {
+                echo mysql2date( 'd F Y', $meta_data['end_date']);
+            } else {
+                echo '&mdash;';
+            }
             break;
 
         case 'adz_shortcode' :

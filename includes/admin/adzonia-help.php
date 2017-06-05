@@ -60,3 +60,4 @@ function adzonia_help_contents() {
 
 add_action( 'load-edit.php',        'adzonia_help_contents' );
 add_action( 'load-post-new.php',    'adzonia_help_contents' );
+add_action( 'load-post.php',        'adzonia_help_contents' );
