@@ -86,6 +86,17 @@ module.exports = function(grunt) {
 
 
         /**
+         * Clean the arena
+         * @url: https://github.com/gruntjs/grunt-contrib-clean
+         */
+        clean: {
+            dist: {
+                src: ['./dist']
+            }
+        },
+
+
+        /**
          * Updates the translation catalog
          * @url: https://www.npmjs.com/package/grunt-wp-i18n
          */
@@ -157,13 +168,42 @@ module.exports = function(grunt) {
 
 
         /**
+         * Versioning dynamically
+         * @url: https://www.npmjs.com/package/grunt-version
+         */
+        version: {
+            pluginVersion: {
+                options: {
+                    prefix: 'Version:\\s+'
+                },
+                src: [
+                    'adzonia.php'
+                ]
+            },
+            pluginVariable: {
+                options: {
+                    prefix: 'public\\s+\\$version\\s+=\\s+\''
+                },
+                src: [
+                    'adzonia.php'
+                ]
+            },
+            packageJson: {
+                src: [
+                    'package.json'
+                ]
+            }
+        },
+
+
+        /**
          * Create a neat zip archive for distribution
          * @url: https://github.com/gruntjs/grunt-contrib-compress
          */
         compress: {
             main: {
                 options: {
-                    archive: './build/<%= pkg.name %>-<%= pkg.version %>.zip',
+                    archive: './dist/<%= pkg.name %>-<%= pkg.version %>.zip',
                     mode: 'zip'
                 },
                 files: [{
@@ -172,12 +212,14 @@ module.exports = function(grunt) {
                         '**',
                         '!node_modules/**',
                         '!vendor/**',
+                        '!dist/**',
                         '!tests/**',
                         '!.gitignore',
                         '!.travis.yml',
                         '!composer.json',
                         '!composer.lock',
                         '!tests/**',
+                        '!tmp/**',
                         '!logs/**',
                         '!README.md',
                         '!contributing.md',
@@ -186,6 +228,7 @@ module.exports = function(grunt) {
                         '!package.json',
                         '!*.sublime-workspace',
                         '!*.sublime-project',
+                        '!package-lock.json',
                         '!<%= pkg.name %>-<%= pkg.version %>.zip'
                     ],
                     dest: '<%= pkg.name %>/' // archive it in this directory
@@ -230,6 +273,9 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['jshint', 'uglify', 'sass', 'autoprefixer', 'cssmin', 'watch']);
     grunt.registerTask('build', ['jshint', 'uglify', 'sass', 'autoprefixer', 'cssmin']);
     grunt.registerTask('translate', ['checktextdomain', 'makepot']);
-    grunt.registerTask('release', ['translate', 'build', 'compress']);
+    grunt.registerTask('release', ['translate', 'build', 'clean', 'compress']);
+    grunt.registerTask('release_patch', ['version::patch', 'release']);
+    grunt.registerTask('release_minor', ['version::minor', 'release']);
+    grunt.registerTask('release_major', ['version::major', 'release']);
 
 };

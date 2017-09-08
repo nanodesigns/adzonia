@@ -37,3 +37,6 @@ composer.phar
 
 ## Archives
 *.zip
+
+## NPM package Lock
+package-lock.json
