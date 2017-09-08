@@ -41,7 +41,7 @@ function adzonia_specifications_specifics() {
     $meta_data     = get_post_meta( $post->ID, '_adzonia_specs', true );
     $meta_location = get_post_meta( $post->ID, '_adzonia_location', true );
     $meta_data     = empty($meta_data) ? array() : $meta_data;
-    $meta          = adz_parse_defaults($meta_data);
+    $meta          = adzonia_parse_defaults($meta_data);
     ?>
 
     <div class="adz-container">
@@ -62,7 +62,7 @@ function adzonia_specifications_specifics() {
                 <tr class="adz-conditional-to-image-ad">
                     <th scope="row">
                         <?php _e('Ad Image', 'adzonia'); ?> <small class="adz-text-danger">*</small>
-                        <?php echo adz_tooltip( 'adz-image-tooltip', __( 'Upload/Add an image using Media Library to display on the ad place.', 'adzonia' ), 'right' ); ?>
+                        <?php echo adzonia_tooltip( 'adz-image-tooltip', __( 'Upload/Add an image using Media Library to display on the ad place.', 'adzonia' ), 'right' ); ?>
                     </th>
                     <td>
                         <?php
@@ -87,7 +87,7 @@ function adzonia_specifications_specifics() {
                 <tr class="adz-conditional-to-image-ad">
                     <th scope="row">
                         <?php _e('Target URL', 'adzonia'); ?>
-                        <?php echo adz_tooltip( 'adz-target-url-tooltip', __( 'If you want to direct the user to a specific URL by clicking on the image, type it here.', 'adzonia' ), 'right' ); ?>
+                        <?php echo adzonia_tooltip( 'adz-target-url-tooltip', __( 'If you want to direct the user to a specific URL by clicking on the image, type it here.', 'adzonia' ), 'right' ); ?>
                     </th>
                     <td>
                         <input type="text" id="adz-target-url" class="adz-form-control" name="_adz_target_url" placeholder="http://example.com" value="<?php echo esc_url($meta['target_url']); ?>">
@@ -96,7 +96,7 @@ function adzonia_specifications_specifics() {
                 <tr class="adz-conditional-to-code-ad adz-conditional-hide-first">
                     <th scope="row">
                         <?php _e('Code', 'adzonia'); ?>
-                        <?php echo adz_tooltip( 'adz-ad-code-tooltip', __( 'Paste the code of your advertisement. Make sure it&rsquo;s not harmful and not any type of SQL injection.', 'adzonia' ), 'right' ); ?>
+                        <?php echo adzonia_tooltip( 'adz-ad-code-tooltip', __( 'Paste the code of your advertisement. Make sure it&rsquo;s not harmful and not any type of SQL injection.', 'adzonia' ), 'right' ); ?>
                     </th>
                     <td>
                         <textarea id="adz-ad-code" class="adz-form-control" name="_adz_ad_code" cols="50" rows="4"><?php echo stripslashes($meta['code']); ?></textarea>
@@ -105,7 +105,7 @@ function adzonia_specifications_specifics() {
                 <tr>
                     <th scope="row">
                         <?php _e('End Date', 'adzonia'); ?>
-                        <?php echo adz_tooltip( 'adz-end-date-tooltip', __( 'Mention a date to end the display of the advertisement automatically.', 'adzonia' ), 'right' ); ?>
+                        <?php echo adzonia_tooltip( 'adz-end-date-tooltip', __( 'Mention a date to end the display of the advertisement automatically.', 'adzonia' ), 'right' ); ?>
                     </th>
                     <td>
                         <div class="adz-input-group">
@@ -118,7 +118,7 @@ function adzonia_specifications_specifics() {
                 <tr>
                     <th scope="row">
                         <?php _e('Location', 'adzonia'); ?> <em style="color: red">(*beta)</em>
-                        <?php echo adz_tooltip( 'adz-location-tooltip', __( 'Beta Feature: you can display the advertisement on any of the predefined places.', 'adzonia' ), 'right' ); ?>
+                        <?php echo adzonia_tooltip( 'adz-location-tooltip', __( 'Beta Feature: you can display the advertisement on any of the predefined places.', 'adzonia' ), 'right' ); ?>
                     </th>
                     <td>
                         <?php $ad_places = __adzonia_ad_places(); ?>
@@ -165,7 +165,7 @@ function adzonia_specifications_specifics() {
 }
 
 // Save the Data
-function adz_save_adzonia_meta( $post_id ) {     
+function adzonia_save_meta( $post_id ) {     
     // verify nonce
     if ( !isset($_POST['adzonia_nonce']) || !wp_verify_nonce( $_POST['adzonia_nonce'], basename(__FILE__) ) ) {
         return $post_id;
@@ -216,8 +216,8 @@ function adz_save_adzonia_meta( $post_id ) {
     }
 }
 
-add_action( 'save_post',        'adz_save_adzonia_meta' );
-add_action( 'new_to_publish',   'adz_save_adzonia_meta' );
+add_action( 'save_post',        'adzonia_save_meta' );
+add_action( 'new_to_publish',   'adzonia_save_meta' );
 
 
 /**

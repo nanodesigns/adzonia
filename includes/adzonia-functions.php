@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return array        Parsed arguments with defaults.
  * ----------------------------------------------------
  */
-function adz_parse_defaults( $args ) {
+function adzonia_parse_defaults( $args ) {
 
     if( ! is_array($args) ) {
         return 'AdZonia arguments must be in an array';
@@ -57,7 +57,7 @@ function adz_parse_defaults( $args ) {
  * @return string           Formatted tooltip that needs proper CSS.
  * ------------------------------------------------------------------------------
  */
-function adz_tooltip( $id = '', $message = '', $position = 'top', $icon = 'dashicons dashicons-editor-help' ) {
+function adzonia_tooltip( $id = '', $message = '', $position = 'top', $icon = 'dashicons dashicons-editor-help' ) {
 
     if( empty($message) )
         return;
@@ -93,6 +93,11 @@ function adz_tooltip( $id = '', $message = '', $position = 'top', $icon = 'dashi
 
 }
 
+/**
+ * AdZonia Ad Places.
+ * @return array
+ * ------------------------------------------------------------------------------
+ */
 function __adzonia_ad_places() {
     $ad_places = array(
         'default' => array(
@@ -214,7 +219,7 @@ function get_adzonia( $advertisement_id ) {
     }
 
     // Settle advertisement specs.
-    $ad_specs = adz_parse_defaults($meta_data);
+    $ad_specs = adzonia_parse_defaults($meta_data);
 
     // Set some basics
     $the_advertisement = ''; // to avoid undefined index.
