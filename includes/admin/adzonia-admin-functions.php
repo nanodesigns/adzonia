@@ -25,14 +25,12 @@ function adzonia_admin_scripts() {
 
         if( function_exists('wp_enqueue_media') ) {
             wp_enqueue_media();
-        }
-        else {
+        } else {
             wp_enqueue_script('media-upload');
             wp_enqueue_script('thickbox');
             wp_enqueue_style('thickbox');
         }
 
-        wp_enqueue_style( 'adzonia', ADZ()->plugin_url() .'/assets/css/adzonia-admin.css', array(), ADZ()->version );
         wp_enqueue_script( 'adzonia', ADZ()->plugin_url() .'/assets/js/adzonia-admin.min.js', array('jquery', 'jquery-ui-datepicker'), ADZ()->version, true );
 
         wp_localize_script(
@@ -47,6 +45,12 @@ function adzonia_admin_scripts() {
         );
 
     } //endif
+
+    if( 'adzonia' === $screen->post_type ) {
+
+        wp_enqueue_style( 'adzonia', ADZ()->plugin_url() .'/assets/css/adzonia-admin.css', array(), ADZ()->version );
+
+    }
 }
 
 add_action('admin_enqueue_scripts', 'adzonia_admin_scripts');
