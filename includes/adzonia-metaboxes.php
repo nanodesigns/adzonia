@@ -218,3 +218,25 @@ function adz_save_adzonia_meta( $post_id ) {
 
 add_action( 'save_post',        'adz_save_adzonia_meta' );
 add_action( 'new_to_publish',   'adz_save_adzonia_meta' );
+
+
+/**
+ * Shortcode on Post Submitbox.
+ * 
+ * @return void
+ * ----------------------------------------------------
+ */
+function adzonia_shortcode_specifics() {
+    global $post;
+    
+    if( 'adzonia' === $post->post_type && 'publish' === $post->post_status ) {
+        ?>
+        <div class="misc-pub-section">
+            <span class="dashicons dashicons-editor-code"></span> <?php esc_html_e('Shortcode', 'adzonia'); ?>:
+            <strong><code class="selectable">[adzonia id="<?php echo $post->ID; ?>"]</code></strong>
+        </div>
+        <?php
+    }
+}
+
+add_action('post_submitbox_misc_actions', 'adzonia_shortcode_specifics');

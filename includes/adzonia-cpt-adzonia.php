@@ -131,7 +131,7 @@ function adzonia_custom_column( $column, $post_id ) {
             break;
 
         case 'adz_shortcode' :
-            echo '<code class="selectable">[adzonia id="'. $post_id .'"]</code>';
+            echo '<strong><code class="selectable">[adzonia id="'. $post_id .'"]</code></strong>';
             break;
     }
 }
