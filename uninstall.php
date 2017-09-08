@@ -11,11 +11,11 @@
  * @version     2.0.0
  */
 
-// If uninstall not called from WordPress exit
+// If uninstall not called from WordPress exit.
 if( !defined( 'ABSPATH' ) && !defined( 'WP_UNINSTALL_PLUGIN' ) )
     exit();
 
-// Delete all the advertisements and their addition data
+// Delete all the advertisements and their addition data.
 $get_adzonia_posts = get_posts( array(
 			'post_type'      => 'adzonia',
 			'posts_per_page' => -1,
@@ -32,6 +32,9 @@ foreach ( $get_adzonia_posts as $post ) {
 
 wp_reset_postdata();
 
-// Clear up options table
+// Flush the rewrite rules once again.
+flush_rewrite_rules();
+
+// Clear up options table.
 delete_option( 'adzonia_version' );
 delete_option( 'widget_adzonia' );
