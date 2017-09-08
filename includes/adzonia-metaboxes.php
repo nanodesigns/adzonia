@@ -136,16 +136,6 @@ function adzonia_specifications_specifics() {
                                     }
                                 }
                             echo '</optgroup>';
-
-                            echo '<optgroup label="'. __('Theme Defined places', 'adzonia') .'">';
-                                if( empty($ad_places['theme']) ) {
-                                    echo '<option value="">-- no theme defined places --</option>';
-                                } else {
-                                    foreach( $ad_places['theme'] as $ad_place => $ad_place_label ) {
-                                        echo '<option value="'. $ad_place .'" '. selected( $meta_location, $ad_place, false ) .'>'. $ad_place_label .'</option>';
-                                    }
-                                }
-                            echo '</optgroup>';
                             ?>
                             
                         </select>

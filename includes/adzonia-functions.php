@@ -103,8 +103,7 @@ function __adzonia_ad_places() {
         'default' => array(
             'before_content' => __( 'Before all the Post/Page Content', 'adzonia' ),
             'after_content'  => __( 'After all the Post/Page Content', 'adzonia' )
-        ),
-        'theme'  => array()
+        )
     );
 
     return apply_filters( 'adzonia_ad_places', $ad_places );
