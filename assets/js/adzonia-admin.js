@@ -92,8 +92,6 @@ jQuery(document).ready(function($) {
         // load panel
         conditional_to_image_ad.show();
         conditional_to_code_ad.hide();
-        // empty other panel's fields
-        code_ad_fields.val('').attr('value', '');
         // set/unset required fields
         adz_ad_image.prop('required', true);
         adz_ad_code.removeAttr('required');
@@ -104,8 +102,6 @@ jQuery(document).ready(function($) {
         // load panel
         conditional_to_code_ad.show();
         conditional_to_image_ad.hide();
-        // empty other panel's fields
-        image_ad_fields.val('').attr('value', '');
         // set/unset required fields
         adz_ad_image.removeAttr('required');
         adz_ad_code.prop('required', true);

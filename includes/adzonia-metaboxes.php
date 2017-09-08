@@ -179,21 +179,30 @@ function adzonia_save_meta( $post_id ) {
     $meta_data     = array();
 
     if( 'code_ad' === $_POST['_adz_ad_type'] ) {
-        $filtered_code     = addslashes($_POST['_adz_ad_code']);
-        $meta_data['code'] = $filtered_code;
+        if( ! empty($_POST['_adz_ad_code']) ) {
+            $filtered_code     = addslashes($_POST['_adz_ad_code']);
+            $meta_data['code'] = $filtered_code;
+        }
     }
     else if( 'image_ad' === $_POST['_adz_ad_type'] ) {
-        $meta_data['image_id']   = $_POST['_adz_ad_image'];
-        $meta_data['target_url'] = $_POST['_adz_target_url'];
+        if( ! empty($_POST['_adz_ad_image']) || ! empty($_POST['_adz_target_url']) ) {
+            $meta_data['image_id']   = $_POST['_adz_ad_image'];
+            $meta_data['target_url'] = $_POST['_adz_target_url'];
+        }
     }
-    $end_date                 = $_POST['_adz_end_date'];
-    $meta_data['end_date']    = ! empty($end_date) ? date('Y-m-d 23:59:59', strtotime($end_date)) : $end_date;
-    $meta_data['ad_type']     = $_POST['_adz_ad_type'];
 
-    if( !empty($meta_data) && $meta_data !== $existing_data ) {
-        update_post_meta( $post_id, '_adzonia_specs', $meta_data );
-    } else {
+    if( ! empty($_POST['_adz_end_date']) ) {
+        $meta_data['end_date'] = date('Y-m-d 23:59:59', strtotime($_POST['_adz_end_date']));
+    }
+
+    if( ! empty($meta_data) ) {
+        $meta_data['ad_type'] = $_POST['_adz_ad_type'];
+    }
+
+    if( empty($meta_data) ) {
         delete_post_meta( $post_id, '_adzonia_specs', $existing_data );
+    } else if( !empty($meta_data) && $meta_data !== $existing_data ) {
+        update_post_meta( $post_id, '_adzonia_specs', $meta_data );
     }
 
     // Ad Location

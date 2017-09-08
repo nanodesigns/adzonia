@@ -217,19 +217,24 @@ function get_adzonia( $advertisement_id ) {
         return;
     }
 
+    // To avoid undefined index.
+    $ad_type     = '';
+    $end_date    = '';
+    $ad_location = '';
+
     // Settle advertisement specs.
     $ad_specs = adzonia_parse_defaults($meta_data);
 
-    // Set some basics
+    // Set some basics.
     $the_advertisement = ''; // to avoid undefined index.
-    $date_today        = strtotime( date( 'Y-m-d H:i:s', current_time('timestamp') ) );
+    $date_today        = strtotime( date('Y-m-d H:i:s', current_time('timestamp')) );
 
     // Settle the values.
     $ad_type     = $ad_specs['ad_type'];
     $end_date    = $ad_specs['end_date'];
     $ad_location = $ad_specs['ad_location'];
 
-    if( !empty($end_date) && $date_today > strtotime($end_date) ) {
+    if( ! empty($end_date) && $date_today > strtotime($end_date) ) {
         return;
     }
 
@@ -240,21 +245,21 @@ function get_adzonia( $advertisement_id ) {
         $image_alt  = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
 
         // Start the anchor tag.
-        $the_advertisement .= !empty($target_url) ? '<a href="'. esc_url( $target_url ) .'">' : '';
+        $the_advertisement .= ! empty($target_url) ? '<a href="'. esc_url( $target_url ) .'">' : '';
 
             // Display the image.
-            if( !empty($image_url) ) {
-                $the_advertisement .= '<img src="'. esc_url($image_url) .'" alt="Advertisement: '. $image_alt .'">';
+            if( ! empty($image_url) ) {
+                $the_advertisement .= '<img src="'. esc_url($image_url) .'" alt="Advertisement: '. esc_attr($image_alt) .'">';
             }
 
         // End the anchor tag.
-        $the_advertisement .= !empty($target_url) ? '</a>' : '';
+        $the_advertisement .= ! empty($target_url) ? '</a>' : '';
 
     } else if( 'code_ad' === $ad_type ) {
         $ad_code = $ad_specs['code'];
 
         // Display the code.
-        if( !empty($ad_code) ) {
+        if( ! empty($ad_code) ) {
             $the_advertisement .= stripslashes($ad_code);
         }
     }
