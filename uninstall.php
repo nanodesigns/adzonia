@@ -8,10 +8,10 @@
  * @author      nanodesigns
  * @category    Core
  * @package     AdZonia/Uninstaller
- * @version     1.0.0
+ * @version     2.0.0
  */
 
-//if uninstall not called from WordPress exit
+// If uninstall not called from WordPress exit
 if( !defined( 'ABSPATH' ) && !defined( 'WP_UNINSTALL_PLUGIN' ) )
     exit();
 
@@ -27,6 +27,11 @@ foreach ( $get_adzonia_posts as $post ) {
 
 	wp_delete_post( $post->ID, true ); // bypass trash and delete forcefully
 	delete_post_meta( $post->ID, '_adzonia_specs' );
+	delete_post_meta( $post->ID, '_adzonia_location' );
 }
 
 wp_reset_postdata();
+
+// Clear up options table
+delete_option( 'adzonia_version' );
+delete_option( 'widget_adzonia' );
