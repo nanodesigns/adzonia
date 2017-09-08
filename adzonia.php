@@ -7,7 +7,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       AdZonia
- * Plugin URI:        http://adzonia.nanodesignsbd.com/
+ * Plugin URI:        http://nanodesignsbd.com/freeproducts/adzonia/
  * Description:       A simpler and easier advertisement manager plugin for WordPress sites, and most astonishingly - it's in WordPress way.
  * Version:           2.0.0
  * Author:            nanodesigns
@@ -109,8 +109,8 @@ final class AdZonia {
      * Ensures only one instance of AdZonia Ticket is loaded or can be loaded.
      * 
      * @static
-     * @see ADZ()
-     * @return AdZonia - Main instance
+     * @see     ADZ()
+     * @return  AdZonia - Main instance
      * ...
      */
     public static function instance() {
@@ -206,6 +206,7 @@ function adzonia_cross_check_on_activation() {
 
 add_action( 'plugins_loaded', 'adzonia_cross_check_on_activation' );
 
+/* REQUIRE ALL THE NECESSARY FILES */
 
 require_once( 'includes/class-adzonia-install.php' );
 require_once( 'includes/adzonia-cpt-adzonia.php' );
@@ -218,5 +219,8 @@ if( is_admin() ) :
     require_once( 'includes/admin/adzonia-admin-functions.php' );
     require_once( 'includes/admin/adzonia-help.php' );
 endif;
+
+
+/* SET UP THE PLUGIN ON ACTIVATION */
 
 register_activation_hook( __FILE__, array( 'ADZ_Install', 'adzonia_install' ) );

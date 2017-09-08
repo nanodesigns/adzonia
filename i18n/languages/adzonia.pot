@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AdZonia 2.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/nanodesigns/adzonia/issues\n"
-"POT-Creation-Date: 2017-03-24 19:07:05+00:00\n"
+"POT-Creation-Date: 2017-09-08 09:28:49+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,180 +23,208 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: admin/adzonia-admin-functions.php:44
+#: includes/admin/adzonia-admin-functions.php:42
 msgid "Choose Ad Image"
 msgstr ""
 
-#: admin/adzonia-admin-functions.php:45
+#: includes/admin/adzonia-admin-functions.php:43
 msgid "Choose Image"
 msgstr ""
 
-#: admin/adzonia-settings.php:14 admin/adzonia-settings.php:27
-msgid "Settings & Instructions"
+#: includes/admin/adzonia-admin-functions.php:44
+msgid "Oops! Both image and code fields are empty"
 msgstr ""
 
-#: admin/adzonia-settings.php:15
-msgid "Settings-Instructions"
+#: includes/admin/adzonia-admin-functions.php:45
+msgid "Oops! You can&rsquo;t fill both Ad Image and Code field!"
 msgstr ""
 
-#: admin/adzonia-settings.php:60
-msgid "%s Settings"
-msgstr ""
-
-#: admin/adzonia-settings.php:66
-msgid "AdZonia CSS"
-msgstr ""
-
-#: admin/adzonia-settings.php:73
-msgid "%s Troubleshoot"
-msgstr ""
-
-#: admin/adzonia-settings.php:79
-msgid "AdZonia jQuery"
-msgstr ""
-
-#: admin/adzonia-settings.php:89
+#: includes/admin/adzonia-help.php:28
 msgid ""
-"<p>Set these optional settings if you want. It&rsquo;s not mandatory, and "
-"even without the settings your advertisements will work just fine.</p>"
+"Advertisements added using AdZonia, can be displayed in 4 alternative ways "
+"&mdash;"
 msgstr ""
 
-#: admin/adzonia-settings.php:94
+#: includes/admin/adzonia-help.php:32
+#. translators: AdZonia shortcode
 msgid ""
-"check the box to show Ads as inline element rather block element. It will "
-"load AdZonia CSS into the site&rsquo;s front-end"
+"<strong>Shortcode</strong> &mdash; The simplest is using a shortcode. The "
+"shortcode is that simple, just put %s into the body of any post or page or "
+"shortcode enabled widget. Just replace the <em>hash</em> (<code>#</code>) "
+"with the ad ID."
 msgstr ""
 
-#: admin/adzonia-settings.php:99
+#: includes/admin/adzonia-help.php:35
 msgid ""
-"<p>Getting trouble using the plugin? If the date picker and/or image "
-"uploader is not working, try enabling the jQuery from the plugin "
-"resources.</p>"
+"<strong>Widget</strong> &mdash; Using the AdZonia widget into any widget "
+"enabled area or sidebar. Just drag and drop the \"AdZonia\" widget into the "
+"sidebar, and choose the active (published) ad from the list."
 msgstr ""
 
-#: admin/adzonia-settings.php:104
-msgid "Load jQuery from plugin"
+#: includes/admin/adzonia-help.php:39
+#. translators: AdZonia PHP function
+msgid ""
+"<strong>PHP Code</strong> &mdash; If you are a developer and want to use "
+"the PHP code into your template (theme) directly, just use this: %s. Just "
+"replace the <em>hash</em> (<code>#</code>) with the ad ID."
 msgstr ""
 
-#: adzonia.php:226
-msgid "Set the AdZonia settings"
+#: includes/admin/adzonia-help.php:42
+msgid ""
+"<strong>Predefined Areas</strong> &mdash; a new beta feature is added to "
+"show advertisement in predefined areas, directly from the admin panel "
+"without any code. Just you have to set the location where you want to show "
+"the ad. (it&rsquo;s an additional feature will work beside all the 3 "
+"mentioned above)"
 msgstr ""
 
-#: adzonia.php:226
-msgid "Settings"
+#. Plugin Name of the plugin/theme
+msgid "AdZonia"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:16
+#: includes/admin/adzonia-help.php:54
+msgid "For more detailed instructions:"
+msgstr ""
+
+#: includes/admin/adzonia-help.php:55
+msgid "AdZonia Manual"
+msgstr ""
+
+#: includes/adzonia-cpt-adzonia.php:30
 msgid "Add New AdZonia"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:17
+#: includes/adzonia-cpt-adzonia.php:31
 msgid "Edit AdZonia"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:18
+#: includes/adzonia-cpt-adzonia.php:32
 msgid "New AdZonia"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:19
+#: includes/adzonia-cpt-adzonia.php:33
 msgid "View AdZonia"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:20
+#: includes/adzonia-cpt-adzonia.php:34
 msgid "Search AdZonia"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:21
+#: includes/adzonia-cpt-adzonia.php:35
 msgid "No AdZonia is created yet. Try making one first"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:22
+#: includes/adzonia-cpt-adzonia.php:36
 msgid "No AdZonia found in Trash"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:23
+#: includes/adzonia-cpt-adzonia.php:37
 msgid "Parent AdZonia:"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:70
+#: includes/adzonia-cpt-adzonia.php:86
 msgid "ID"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:71
+#: includes/adzonia-cpt-adzonia.php:87
 msgid "Preview"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:73
+#: includes/adzonia-cpt-adzonia.php:89
 msgid "Until"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:74
+#: includes/adzonia-cpt-adzonia.php:90
 msgid "Shortcode"
 msgstr ""
 
-#: includes/adzonia-functions.php:50
-msgid ""
-"<strong>WARNING:</strong> Assigned ad is expired! <em>Extend</em> the term "
-"or <em>Delete</em> it."
+#: includes/adzonia-functions.php:99
+msgid "Before all the Post/Page Content"
 msgstr ""
 
-#: includes/adzonia-functions.php:56
-msgid "<strong>Sorry!</strong> No such Ad exists!"
+#: includes/adzonia-functions.php:100
+msgid "After all the Post/Page Content"
 msgstr ""
 
-#: includes/adzonia-metaboxes.php:13
+#: includes/adzonia-metaboxes.php:26
 msgid "AdZonia Specification"
 msgstr ""
 
-#: includes/adzonia-metaboxes.php:27
+#: includes/adzonia-metaboxes.php:52
+msgid "Image Ad"
+msgstr ""
+
+#: includes/adzonia-metaboxes.php:55
+msgid "Code Ad"
+msgstr ""
+
+#: includes/adzonia-metaboxes.php:64
 msgid "Ad Image"
 msgstr ""
 
-#: includes/adzonia-metaboxes.php:28
-msgid "Add an image if you wish to show an image ad"
+#: includes/adzonia-metaboxes.php:65
+msgid "Upload/Add an image using Media Library to display on the ad place."
 msgstr ""
 
-#: includes/adzonia-metaboxes.php:33
-msgid "Ad Code"
+#: includes/adzonia-metaboxes.php:79
+msgid "Preview of Ad Image"
 msgstr ""
 
-#: includes/adzonia-metaboxes.php:34
-msgid "If your ad is a Code-ad, then write down the code here"
+#: includes/adzonia-metaboxes.php:83
+msgid "Upload"
 msgstr ""
 
-#: includes/adzonia-metaboxes.php:39
-msgid "End Date"
-msgstr ""
-
-#: includes/adzonia-metaboxes.php:40
-msgid "Choose a date until when the ad will be visible"
-msgstr ""
-
-#: includes/adzonia-metaboxes.php:45
+#: includes/adzonia-metaboxes.php:89
 msgid "Target URL"
 msgstr ""
 
-#: includes/adzonia-metaboxes.php:46
-msgid "Enter the URL, to where the ad will direct the viewer after clicking"
+#: includes/adzonia-metaboxes.php:90
+msgid ""
+"If you want to direct the user to a specific URL by clicking on the image, "
+"type it here."
 msgstr ""
 
-#: includes/adzonia-metaboxes.php:51
+#: includes/adzonia-metaboxes.php:98
+msgid "Code"
+msgstr ""
+
+#: includes/adzonia-metaboxes.php:99
+msgid ""
+"Paste the code of your advertisement. Make sure it&rsquo;s not harmful and "
+"not any type of SQL injection."
+msgstr ""
+
+#: includes/adzonia-metaboxes.php:107
+msgid "End Date"
+msgstr ""
+
+#: includes/adzonia-metaboxes.php:108
+msgid "Mention a date to end the display of the advertisement automatically."
+msgstr ""
+
+#: includes/adzonia-metaboxes.php:120
 msgid "Location"
 msgstr ""
 
-#: includes/adzonia-metaboxes.php:52
-msgid "Choose a location to show the ad in predefined areas"
-msgstr ""
-
-#: includes/adzonia-metaboxes.php:77
+#: includes/adzonia-metaboxes.php:121
 msgid ""
-"Either create an <strong>Image ad</strong> (<span class=\"dashicons "
-"dashicons-format-image p-icon\"></span>), or a <strong>Code ad</strong> "
-"(<span class=\"dashicons dashicons-editor-code p-icon\"></span>). Mixure "
-"won&rsquo;t be counted, sorry."
+"Beta Feature: you can display the advertisement on any of the predefined "
+"places."
 msgstr ""
 
-#: includes/class-adzonia-install.php:127
+#: includes/adzonia-metaboxes.php:127
+msgid "Select a place (optional)"
+msgstr ""
+
+#: includes/adzonia-metaboxes.php:130
+msgid "Predefined places"
+msgstr ""
+
+#: includes/adzonia-metaboxes.php:140
+msgid "Theme Defined places"
+msgstr ""
+
+#: includes/class-adzonia-install.php:110
 #. translators: 1. minimum WordPress core version 2. WordPress update page URL
 msgid ""
 "AdZonia requires WordPress core version <strong>%1$s</strong> or greater. "
@@ -204,7 +232,7 @@ msgid ""
 "WordPress</a>."
 msgstr ""
 
-#: includes/class-adzonia-install.php:146
+#: includes/class-adzonia-install.php:129
 #. translators: 1. first command 2. second command 3. plugin installation link
 #. with popup thickbox (modal)
 msgid ""
@@ -214,73 +242,20 @@ msgid ""
 "href=\"%3$s\" class=\"thickbox\">install the production version</a> instead."
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-msgid "AdZonia"
-msgstr ""
-
-#: includes/widgets/adzonia-widget.php:15
+#: includes/widgets/adzonia-widget.php:16
 msgid "AdZonia widget to call the advertisement easily."
 msgstr ""
 
-#: includes/widgets/adzonia-widget.php:45
+#: includes/widgets/adzonia-widget.php:36
 msgid "Title:"
 msgstr ""
 
-#: includes/widgets/adzonia-widget.php:49
+#: includes/widgets/adzonia-widget.php:42
 msgid "Advertisements:"
 msgstr ""
 
-#: includes/widgets/adzonia-widget.php:51
+#: includes/widgets/adzonia-widget.php:45
 msgid "Choose one..."
-msgstr ""
-
-#: manual/inner-manual.php:1
-msgid "Instructions"
-msgstr ""
-
-#: manual/inner-manual.php:2
-msgid ""
-"Advertisements added using AdZonia, can be displayed in 4 alternative ways "
-"&mdash;"
-msgstr ""
-
-#: manual/inner-manual.php:4
-msgid ""
-"<strong>Shortcode &mdash;</strong> The simplest is using a shortcode. The "
-"shortcode is that simple, just put <code>[wp-adzonia id=\"#\"]</code> into "
-"the body of any post or page or shortcode enabled widget. Just add the ID "
-"of the ad into the hash (#)."
-msgstr ""
-
-#: manual/inner-manual.php:5
-msgid ""
-"<strong>Widget &mdash;</strong> Using the AdZonia widget into any widget "
-"enabled area or sidebar. Just drag and drop the \"AdZonia\" widget into the "
-"sidebar, and choose the active (published) ad from the list."
-msgstr ""
-
-#: manual/inner-manual.php:6
-msgid ""
-"<strong>PHP Code &mdash;</strong> If you are a developer and want to use "
-"the PHP code into your template (theme) directly, just use this: "
-"<code>&lt;?php if ( function_exists( &quot;show_adzonia&quot; )  ) "
-"show_adzonia( # ); ?&gt;</code>. Just add the ID of the ad into the hash "
-"(#)."
-msgstr ""
-
-#: manual/inner-manual.php:7
-msgid ""
-"<strong>Predefined Areas &mdash;</strong> a new <em>beta feature</em> is "
-"added to show advertisement in predefined areas, directly from the admin "
-"panel without any coding. Just you have to <em>set</em> the location where "
-"you want to show the ad. (it's an additional feature all the 3 above)"
-msgstr ""
-
-#: manual/inner-manual.php:9
-msgid ""
-"For more detailed instructions see our <a "
-"href=\"https://github.com/nanodesigns/wp-adzonia/wiki/User-Manual\">AdZonia "
-"GitHub manual</a>. To reduce the plugin size we shifted the manual there."
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -301,13 +276,13 @@ msgstr ""
 msgid "http://nanodesignsbd.com/"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:13 includes/adzonia-cpt-adzonia.php:14
-#: includes/adzonia-cpt-adzonia.php:24
+#: includes/adzonia-cpt-adzonia.php:27 includes/adzonia-cpt-adzonia.php:28
+#: includes/adzonia-cpt-adzonia.php:38
 msgctxt "AdZonia"
 msgid "AdZonia"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:15
+#: includes/adzonia-cpt-adzonia.php:29
 msgctxt "AdZonia"
 msgid "New AdZonia"
 msgstr ""
