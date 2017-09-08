@@ -211,10 +211,10 @@ require_once( 'includes/class-adzonia-install.php' );
 require_once( 'includes/adzonia-cpt-adzonia.php' );
 require_once( 'includes/adzonia-functions.php' );
 require_once( 'includes/shortcodes/adzonia-shortcode.php' );
+require_once( 'includes/widgets/adzonia-widget.php' );
 
 if( is_admin() ) :
     require_once( 'includes/adzonia-metaboxes.php' );
-    require_once( 'includes/widgets/adzonia-widget.php' );
     require_once( 'includes/admin/adzonia-admin-functions.php' );
     require_once( 'includes/admin/adzonia-help.php' );
 endif;
