@@ -63,7 +63,8 @@ jQuery(document).ready(function($) {
 
     adz_end_date_field.datepicker({
         changeMonth: true,
-        changeYear: true
+        changeYear: true,
+        dateFormat: 'MM dd, yy'
     });
 
     $('#call-adz-end-date').on('click', function() {
