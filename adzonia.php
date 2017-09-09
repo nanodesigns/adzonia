@@ -99,6 +99,12 @@ final class AdZonia {
     public $wp_version = '4.4.0';
 
     /**
+     * Minimum PHP version.
+     * @var string
+     */
+    public $php_version = '5.2.1';
+
+    /**
      * @var ADZ The single instance of the class
      */
     protected static $_instance = null;
