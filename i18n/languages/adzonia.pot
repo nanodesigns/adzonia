@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AdZonia 2.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/nanodesigns/adzonia/issues\n"
-"POT-Creation-Date: 2017-09-08 09:28:49+00:00\n"
+"POT-Creation-Date: 2017-09-09 03:53:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,19 +23,19 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: includes/admin/adzonia-admin-functions.php:42
+#: includes/admin/adzonia-admin-functions.php:40
 msgid "Choose Ad Image"
 msgstr ""
 
-#: includes/admin/adzonia-admin-functions.php:43
+#: includes/admin/adzonia-admin-functions.php:41
 msgid "Choose Image"
 msgstr ""
 
-#: includes/admin/adzonia-admin-functions.php:44
+#: includes/admin/adzonia-admin-functions.php:42
 msgid "Oops! Both image and code fields are empty"
 msgstr ""
 
-#: includes/admin/adzonia-admin-functions.php:45
+#: includes/admin/adzonia-admin-functions.php:43
 msgid "Oops! You can&rsquo;t fill both Ad Image and Code field!"
 msgstr ""
 
@@ -90,6 +90,10 @@ msgstr ""
 msgid "AdZonia Manual"
 msgstr ""
 
+#: includes/admin/adzonia-help.php:56
+msgid "To reduce the plugin size we shifted the manual to our Github Wiki."
+msgstr ""
+
 #: includes/adzonia-cpt-adzonia.php:30
 msgid "Add New AdZonia"
 msgstr ""
@@ -134,15 +138,15 @@ msgstr ""
 msgid "Until"
 msgstr ""
 
-#: includes/adzonia-cpt-adzonia.php:90
+#: includes/adzonia-cpt-adzonia.php:90 includes/adzonia-metaboxes.php:234
 msgid "Shortcode"
 msgstr ""
 
-#: includes/adzonia-functions.php:99
+#: includes/adzonia-functions.php:104
 msgid "Before all the Post/Page Content"
 msgstr ""
 
-#: includes/adzonia-functions.php:100
+#: includes/adzonia-functions.php:105
 msgid "After all the Post/Page Content"
 msgstr ""
 
@@ -220,10 +224,6 @@ msgstr ""
 msgid "Predefined places"
 msgstr ""
 
-#: includes/adzonia-metaboxes.php:140
-msgid "Theme Defined places"
-msgstr ""
-
 #: includes/class-adzonia-install.php:110
 #. translators: 1. minimum WordPress core version 2. WordPress update page URL
 msgid ""
@@ -242,24 +242,24 @@ msgid ""
 "href=\"%3$s\" class=\"thickbox\">install the production version</a> instead."
 msgstr ""
 
-#: includes/widgets/adzonia-widget.php:16
+#: includes/widgets/adzonia-widget.php:22
 msgid "AdZonia widget to call the advertisement easily."
 msgstr ""
 
-#: includes/widgets/adzonia-widget.php:36
+#: includes/widgets/adzonia-widget.php:43
 msgid "Title:"
 msgstr ""
 
-#: includes/widgets/adzonia-widget.php:42
+#: includes/widgets/adzonia-widget.php:49
 msgid "Advertisements:"
 msgstr ""
 
-#: includes/widgets/adzonia-widget.php:45
+#: includes/widgets/adzonia-widget.php:52
 msgid "Choose one..."
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://adzonia.nanodesignsbd.com/"
+msgid "http://nanodesignsbd.com/freeproducts/adzonia/"
 msgstr ""
 
 #. Description of the plugin/theme
