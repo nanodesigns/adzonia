@@ -31,7 +31,7 @@ git clone https://github.com/nanodesigns/adzonia.git adzonia && cd adzonia && np
 
 Then run `grunt` to prepare necessary javascripts and styles.
 
-* [:octocat: Fork on Github](https://github.com/nanodesigns/adzonia) &mdash; <small>[:blue_book: Consult the Contribution guide](https://github.com/nanodesigns/adzonia/blob/master/contributing.md)</small>
+* [:octocat: Fork on Github](https://github.com/nanodesigns/adzonia/fork) &mdash; <small>[:blue_book: Consult the Contribution guide](https://github.com/nanodesigns/adzonia/blob/master/contributing.md)</small>
 * [:bug: Report Bug/Limitations or Suggest Feature/Enhancement](https://github.com/nanodesigns/adzonia/issues/new)
 * [:flashlight: Get Support](https://github.com/nanodesigns/adzonia/issues/new)
 * [:earth_asia: Translate AdZonia](https://github.com/nanodesigns/adzonia/wiki/Translating-AdZonia)

@@ -2,7 +2,7 @@
 You are here because you liked AdZonia and want it to be even better. Yes, you can contribute to make it far better. Here are some ways:
 
 ## Bug Fixing and Improvements
-If you are a developer, and familiar with github things, you can **fork** NanoSupport, make your changes and create a **pull request**.
+If you are a developer, and familiar with github things, you can **fork** AdZonia, make your changes and create a **pull request**.
 
 You can:
 * even fix a typo
