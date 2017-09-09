@@ -1,7 +1,7 @@
 {
     "name": "adzonia",
     "title": "AdZonia",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "private": true,
     "description": "A simpler and easier advertisement manager plugin fro WordPress sites, and most astonishingly - it is in WordPress way",
     "scripts": {

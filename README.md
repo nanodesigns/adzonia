@@ -1,10 +1,10 @@
 ![adzonia-icon](https://user-images.githubusercontent.com/4551598/30236758-24e15b64-9543-11e7-9376-1fb044a45c26.png)
-# AdZonia <kbd>[**DOWNLOAD**](https://github.com/nanodesigns/adzonia/releases/download/v2.0.0/adzonia-2.0.0.zip)</kbd>
+# AdZonia <kbd>[**DOWNLOAD**](https://github.com/nanodesigns/adzonia/releases/download/v2.0.1/adzonia-2.0.1.zip)</kbd>
 A simpler and easier, _minimal_ advertisement management plugin for WordPress sites, and most astonishingly - it's in **WordPress way**.
 
 | Requires | Tested up to | Stable Release | License | Downloads |
 |---|---|---|---|---|
-| WordPress 3.5.0 | 4.8.1 | [![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg?style=flat-square)](https://github.com/nanodesigns/adzonia/releases/tag/v2.0.0) | [GPL-2.0+](http://www.gnu.org/licenses/gpl-2.0.txt) | [![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg?style=flat-square)](https://github.com/nanodesigns/adzonia/releases/) |
+| WordPress 3.5.0 | 4.8.1 | [![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg?style=flat-square)](https://github.com/nanodesigns/adzonia/releases/) | [GPL-2.0+](http://www.gnu.org/licenses/gpl-2.0.txt) | [![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg?style=flat-square)](https://github.com/nanodesigns/adzonia/releases/) |
 
 ## Resources
 * [:notebook_with_decorative_cover: **User Guide**](https://github.com/nanodesigns/adzonia/wiki/User-Guide)

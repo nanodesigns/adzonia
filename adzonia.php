@@ -9,7 +9,7 @@
  * Plugin Name:       AdZonia
  * Plugin URI:        http://nanodesignsbd.com/freeproducts/adzonia/
  * Description:       A simpler and easier advertisement manager plugin for WordPress sites, and most astonishingly - it's in WordPress way.
- * Version:           2.0.0
+ * Version:           2.0.1
  * Author:            nanodesigns
  * Author URI:        http://nanodesignsbd.com/
  * Requires at least: 3.5.0
@@ -90,7 +90,7 @@ final class AdZonia {
     /**
      * @var string
      */
-    public $version = '2.0.0';
+    public $version = '2.0.1';
 
     /**
      * Minimum WordPress version.
