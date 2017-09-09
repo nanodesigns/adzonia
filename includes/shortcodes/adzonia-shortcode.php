@@ -27,7 +27,9 @@ function adzonia_shortcode( $atts ) {
     $atts  = shortcode_atts( array( 'id' => '' ), $atts );
     $ad_id = (int) $atts['id'];
 
-    show_adzonia( $ad_id );
+    ob_start();
+    	show_adzonia( $ad_id );
+    return ob_get_clean();
 }
 
 add_shortcode( 'adzonia', 'adzonia_shortcode' );
