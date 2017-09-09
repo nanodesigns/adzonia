@@ -7,7 +7,7 @@ A simpler and easier, _minimal_ advertisement management plugin for WordPress si
 | WordPress 3.5.0 | 4.8.1 | [![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg?style=flat-square)](https://github.com/nanodesigns/adzonia/releases/tag/v2.0.0) | [GPL-2.0+](http://www.gnu.org/licenses/gpl-2.0.txt) | [![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg?style=flat-square)](https://github.com/nanodesigns/adzonia/releases/) |
 
 ## Resources
-* [:notebook_with_decorative_cover: **User Guide**](#)
+* [:notebook_with_decorative_cover: **User Guide**](https://github.com/nanodesigns/adzonia/wiki/User-Guide)
 * [:computer: See the **Screenshots**](https://github.com/nanodesigns/adzonia/wiki/Screenshots)
 * [:octocat: Contribution Guide](https://github.com/nanodesigns/adzonia/blob/master/contributing.md)
 * [:date: Changelog](https://github.com/nanodesigns/adzonia/wiki/Changelog)
