@@ -12,8 +12,8 @@
  * Version:           2.0.0
  * Author:            nanodesigns
  * Author URI:        http://nanodesignsbd.com/
- * Requires at least: 4.4.0
- * Tested up to:      4.7.3
+ * Requires at least: 3.5.0
+ * Tested up to:      4.8.1
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       adzonia
@@ -96,7 +96,7 @@ final class AdZonia {
      * Minimum WordPress version.
      * @var string
      */
-    public $wp_version = '4.4.0';
+    public $wp_version = '3.5.0';
 
     /**
      * Minimum PHP version.
