@@ -1,0 +1,25 @@
+/**
+ * Text sizes.
+ * Variables for em/ rem
+ * ---------------------------------
+ */
+// set to the most common base px size used in browsers,
+// should generally be left at default.
+$base-px: 16;
+
+// Allows you to set values as the default px size to target,
+// which is then converted into scalable rem values.
+$toRem: (1 / $base-px) + 0rem;
+
+// Same as above, but with em values.
+$toEm: (1 / $base-px) + 0em;
+
+/**
+ * Color variables.
+ * ---------------------------------
+ */
+$base-color: 		red;
+$link-color: 		blue;
+$link-hover-color: 	violet;
+$color-red: 		#ad1457;
+$gray-light: 		#777;

@@ -1,0 +1,685 @@
+/**!
+ * AdZonia Admin Stylesheet
+ * For admin panel styles.
+ *
+ * @author  nanodesigns
+ * @package AdZonia
+ */
+
+@import '__variables';
+@import '__mixins';
+
+// ---------------------------------
+// Common CSS
+// ---------------------------------
+
+.text-center{
+    text-align: center;
+}
+
+.dead{
+    color: grey;
+}
+
+.required,
+.ad-inactive{
+    color: #dd3d36;
+}
+
+.orange{
+  color: orange;
+}
+
+.clearfix{
+  clear: both;
+}
+
+
+// ---------------------------------
+// Plugin CSS
+// ---------------------------------
+
+.adzonia-left-column{
+  float: left;
+  width: 78%;
+}
+
+.adzonia-right-column{
+	float: right;
+	width: 20%;
+}
+
+@media (max-width:728px){
+	.adzonia-left-column,
+	.adzonia-right-column{
+		float: none;
+		clear: both;
+		width: 100%;
+	}
+}
+
+#adzonia-info{
+  background: #f3f3f3;
+}
+
+body.post-type-adzonia.post-new-php{
+  #postexcerpt.postbox{
+    background: #f3f3f3;
+  }
+}
+
+.adz-text-danger{
+	color: red;
+}
+
+.adz-container *{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	& *:before,
+	& *:after {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+}
+
+.adz-row:before,
+.adz-row:after,
+.adz-form-horizontal .adz-form-group:before,
+.adz-form-horizontal .adz-form-group:after {
+	content: " ";
+	display: table;
+}
+
+.adz-row:after {
+	clear: both;
+}
+
+.adz-col-left,
+.adz-col-right{
+	float: left;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+@media(min-width: 769px) {
+	.adz-col-left{
+		width: 30%;
+	}
+
+	.adz-col-right{
+		width: 70%;
+	}
+}
+
+.adz-input{
+	border-radius: 4px;
+	//width: 100%;
+	padding: 4px;
+}
+
+.adz-btn{
+	background-color: #fafafa;
+	color: #23282d;
+	text-align: center;
+	border-radius: 4px;
+	border: 1px solid #dcdcdc;
+	box-shadow: 0 1px 0 #ccc;
+	padding: 5px 12px;
+	cursor: pointer;
+}
+
+.adz-adz-input-group-addon{
+	width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 5px 12px;
+    text-align: center;
+    border: 1px solid #dcdcdc;
+}
+
+.adz-adz-input-group{
+	position: relative;
+    display: table;
+    border-collapse: separate;
+    border-radius: 4px;
+
+	.adz-input{
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	.button{
+		width: 20%;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}
+
+
+.adz-btn-group {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.adz-btn-group > .adz-btn {
+	position: relative;
+	float: left;
+}
+
+.adz-btn-group > .adz-btn:hover,
+.adz-btn-group > .adz-btn:focus,
+.adz-btn-group > .adz-btn:active,
+.adz-btn-group > .adz-btn.active {
+	z-index: 2;
+}
+
+.adz-btn-group .adz-btn + .adz-btn,
+.adz-btn-group .adz-btn + .adz-btn-group,
+.adz-btn-group .adz-btn-group + .adz-btn,
+.adz-btn-group .adz-btn-group + .adz-btn-group {
+	margin-left: -1px;
+}
+
+.adz-btn {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+		-ms-user-select: none;
+			user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.adz-btn:focus,
+.adz-btn:active:focus,
+.adz-btn.active:focus,
+.adz-btn.focus,
+.adz-btn:active.focus,
+.adz-btn.active.focus {
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
+
+.adz-btn:hover,
+.adz-btn:focus,
+.adz-btn.focus {
+	color: #333;
+	text-decoration: none;
+}
+
+.adz-btn:active,
+.adz-btn.active {
+	background-image: none;
+	outline: 0;
+	-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+			box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.adz-btn-sm {
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+}
+
+.adz-btn-primary {
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #2e6da4;
+}
+
+.adz-btn-primary:focus,
+.adz-btn-primary.focus {
+	color: #fff;
+	background-color: #286090;
+	border-color: #122b40;
+}
+
+.adz-btn-primary:hover {
+	color: #fff;
+	background-color: #286090;
+	border-color: #204d74;
+}
+
+.adz-btn-primary:active,
+.adz-btn-primary.active {
+	color: #fff;
+	background-color: #286090;
+	border-color: #204d74;
+}
+
+.adz-btn-primary:active:hover,
+.adz-btn-primary.active:hover,
+.adz-btn-primary:active:focus,
+.adz-btn-primary.active:focus,
+.adz-btn-primary:active.focus,
+.adz-btn-primary.active.focus {
+	color: #fff;
+	background-color: #204d74;
+	border-color: #122b40;
+}
+
+.adz-btn-primary:active,
+.adz-btn-primary.active {
+	background-image: none;
+}
+
+.adz-btn-group {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.adz-btn-group > .adz-btn {
+	position: relative;
+	float: left;
+}
+
+.adz-btn-group > .adz-btn:hover,
+.adz-btn-group > .adz-btn:focus,
+.adz-btn-group > .adz-btn:active,
+.adz-btn-group > .adz-btn.active {
+	z-index: 2;
+}
+
+.adz-btn-group .adz-btn + .adz-btn {
+	margin-left: -1px;
+}
+
+.adz-btn-toolbar > .adz-btn,
+.adz-btn-toolbar > .adz-btn-group,
+.adz-btn-toolbar > .adz-input-group {
+	margin-left: 5px;
+}
+
+.adz-btn-group > .adz-btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+	border-radius: 0;
+}
+
+.adz-btn-group > .adz-btn:first-child {
+	margin-left: 0;
+}
+
+.adz-btn-group > .adz-btn:first-child:not(:last-child):not(.dropdown-toggle) {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.adz-btn-group > .adz-btn:last-child:not(:first-child){
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+[data-toggle="buttons"] > .adz-btn input[type="radio"],
+[data-toggle="buttons"] > .adz-btn-group > .adz-btn input[type="radio"],
+[data-toggle="buttons"] > .adz-btn input[type="checkbox"],
+[data-toggle="buttons"] > .adz-btn-group > .adz-btn input[type="checkbox"] {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	pointer-events: none;
+}
+
+.adz-input-group {
+	position: relative;
+	display: table;
+	border-collapse: separate;
+}
+
+.adz-input-group .adz-form-control {
+	position: relative;
+	z-index: 2;
+	float: left;
+	width: 100%;
+	margin-bottom: 0;
+}
+
+.adz-input-group .adz-form-control:focus {
+	z-index: 3;
+}
+
+
+.adz-input-group-addon,
+.adz-input-group-btn,
+.adz-input-group .adz-form-control {
+  display: table-cell;
+}
+.adz-input-group-addon:not(:first-child):not(:last-child),
+.adz-input-group-btn:not(:first-child):not(:last-child),
+.adz-input-group .adz-form-control:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.adz-input-group-addon,
+.adz-input-group-btn {
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.adz-input-group-addon {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.adz-input-group-addon input[type="radio"],
+.adz-input-group-addon input[type="checkbox"] {
+  margin-top: 0;
+}
+.adz-input-group .adz-form-control:first-child,
+.adz-input-group-addon:first-child,
+.adz-input-group-btn:first-child > .adz-btn,
+.adz-input-group-btn:first-child > .adz-btn-group > .adz-btn,
+.adz-input-group-btn:first-child > .dropdown-toggle,
+.adz-input-group-btn:last-child > .adz-btn:not(:last-child):not(.dropdown-toggle),
+.adz-input-group-btn:last-child > .adz-btn-group:not(:last-child) > .adz-btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.adz-input-group-addon:first-child {
+  border-right: 0;
+}
+.adz-input-group .adz-form-control:last-child,
+.adz-input-group-addon:last-child,
+.adz-input-group-btn:last-child > .adz-btn,
+.adz-input-group-btn:last-child > .adz-btn-group > .adz-btn,
+.adz-input-group-btn:last-child > .dropdown-toggle,
+.adz-input-group-btn:first-child > .adz-btn:not(:first-child),
+.adz-input-group-btn:first-child > .adz-btn-group:not(:first-child) > .adz-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.adz-input-group-addon:last-child {
+  border-left: 0;
+}
+.adz-input-group-btn {
+  position: relative;
+  font-size: 0;
+  white-space: nowrap;
+}
+.adz-input-group-btn > .adz-btn {
+  position: relative;
+}
+.adz-input-group-btn > .adz-btn + .adz-btn {
+  margin-left: -1px;
+}
+.adz-input-group-btn > .adz-btn:hover,
+.adz-input-group-btn > .adz-btn:focus,
+.adz-input-group-btn > .adz-btn:active {
+  z-index: 2;
+}
+.adz-input-group-btn:first-child > .adz-btn,
+.adz-input-group-btn:first-child > .adz-btn-group {
+  margin-right: -1px;
+}
+.adz-input-group-btn:last-child > .adz-btn,
+.adz-input-group-btn:last-child > .adz-btn-group {
+  z-index: 2;
+  margin-left: -1px;
+}
+.adz-form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.adz-form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.adz-form-control::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+.adz-form-control:-ms-input-placeholder {
+  color: #999;
+}
+.adz-form-control::-webkit-input-placeholder {
+  color: #999;
+}
+.adz-form-control::-ms-expand {
+  background-color: transparent;
+  border: 0;
+}
+.adz-form-group{
+	margin-bottom: 10px;
+}
+textarea.adz-form-control {
+	height: auto;
+}
+
+.adz-conditional-hide-first{
+	display: none;
+}
+
+// ---------------------------------
+// Tooltip
+// ---------------------------------
+
+$tt_prop: all;
+$tt_time: 500ms;
+$tt_ease: ease;
+
+.adz-tooltip{
+	cursor: help;
+	margin-right: 10px;
+	margin-left: 10px;
+	position: relative;
+	color: $gray-light;
+	vertical-align: middle;
+	float: right;
+
+	&:hover .adz-tooltip-message{
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.adz-tooltip-message{
+	right: 16px;
+	top: 0;
+	@include transition( $tt_prop $tt_time $tt_ease );
+}
+
+@media (min-width: 767px) {
+	.adz-tooltip{
+		.adz-tooltip-message{
+			right: auto;
+		}
+	}
+}
+
+.adz-tooltip-message{
+	opacity: 0;
+	visibility: hidden;
+	display: inline-block;
+	position: absolute;
+	width: 200px;
+	padding: 10px;
+	border-radius: 3px;
+	color: #fff;
+	background-color: #444;
+	border: 1px solid #222;
+	font-size: 12px;
+	line-height: 17px;
+	@include box-shadow( 0 0 5px #333 );
+	text-align: center;
+	z-index: 5;
+	@include transition( $tt_prop $tt_time $tt_ease );
+
+	code,
+	pre{
+		background-color: rgba(0,0,0,0.3);
+		color: $color-red;
+	}
+}
+
+@media (min-width: 768px) {
+	.adz-tooltip-top{
+		.adz-tooltip-message{
+			top: auto;
+			right: -93px;
+			bottom: 19px;
+		}
+	}
+}
+
+.adz-tooltip-left{
+	.adz-tooltip-message{
+		right: 19px;
+	}
+}
+
+.adz-tooltip-right{
+	.adz-tooltip-message{
+		left: 19px;
+	}
+}
+
+// --------------------
+// JQUERY UI DATEPICKER
+// --------------------
+
+.ui-datepicker {
+    display: none;
+    padding: 10px;
+	border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 2px;
+    background-color: rgba(255,255,255,0.9);
+    color: #222;
+    @include box-shadow( 0 0 5px rgba(0,0,0,0.4) );
+}
+
+.ui-datepicker-header a{
+	cursor: pointer;
+}
+
+.ui-datepicker-next{
+	float: right
+}
+
+.ui-datepicker-title{
+	text-align: center;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.ui-datepicker-month,
+.ui-datepicker-year{
+	border-radius: 3px;
+	font-size: inherit;
+}
+
+.ui-datepicker-calendar{
+	a{
+		display: block;
+		text-decoration: none;
+		padding: 3px;
+		border-radius: 2px;
+	}
+
+	td{
+		text-align: center;
+		border-radius: 2px;
+
+		&:hover a{
+			background-color: #e1e1e1;
+		}
+
+		&.ui-datepicker-today{
+			border: 1px solid #d1d1d1;
+		}
+	}
+}
+
+
+// --------------------
+// IMAGE PREVIEW
+// --------------------
+
+.adz-preview-image{
+	position: relative;
+	max-width: 100px;
+	display: none;
+
+	&.has-image{
+		display: inline-block;
+	}
+
+	&:hover .close-btn{
+		opacity: 1;
+	}
+
+	img{
+		max-width: 100px;
+		max-height: 100px;
+		height: auto;
+		@include box-shadow( 0 0 3px rgba(0,0,0,0.5) );
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		padding: 5px;
+	}
+
+	.close-btn{
+		position: absolute;
+		top: -10px;
+		left: -10px;
+		opacity: 0;
+		cursor: pointer;
+		font-size: 18px;
+	}
+}
+
+.img-input-btn.has-image{
+	display: none;
+}
+
+/**
+ * author: Mino
+ * link:   https://stackoverflow.com/a/43783066/1743124
+ */
+.selectable{
+    -webkit-touch-callout: all;	// iOS Safari
+    -webkit-user-select: all;	// Safari
+     -khtml-user-select: all;	// Konqueror HTML
+       -moz-user-select: all;	// Firefox
+        -ms-user-select: all;	// Internet Explorer/Edge
+    		user-select: all;	// Chrome and Opera
+}
